@@ -8,7 +8,6 @@ public class TokenDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     [SerializeField] private Canvas canvas;
 
     public Transform returnParent;
-    public Transform newParent;
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
 
@@ -18,16 +17,22 @@ public class TokenDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
+    private void checkSlot()
+    {
+        if (this.returnParent.GetComponent<NormalTokenSlot>() != null)
+        {
+            this.returnParent.GetComponent<NormalTokenSlot>().slotCountArrange();
+        }
+    }
+
     //OnPointerDown->OnBegineDrag->OnDrag->OnDrop->OnEndDrag
 
     //토큰을 끌기 시작할 때
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("OnBeginDrag");
-        this.transform.parent.GetComponent<TokenSlot>().OnBeginDrag();
-        this.newParent = null;
         this.returnParent = this.transform.parent;
         this.transform.SetParent(this.transform.parent.parent);
+        checkSlot();
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
     }
@@ -41,16 +46,8 @@ public class TokenDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     //토큰을 drop한 후
     public void OnEndDrag(PointerEventData eventData)
     {
-        Debug.Log("OnEndDrag");
-        if(this.newParent == null)
-        {
-            this.transform.SetParent(returnParent);
-            this.transform.parent.GetComponent<TokenSlot>().OnCancelDrag();
-        }
-        else
-        {
-            this.transform.SetParent(newParent);
-        }
+        this.transform.SetParent(this.returnParent);
+        checkSlot();
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
     }
@@ -58,6 +55,5 @@ public class TokenDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     //토큰 클릭(잡으려고) 할 때
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("OnPointerDown");
     }
 }
