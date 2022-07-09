@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using System;
 
-public class TotalDmgChange : MonoBehaviour
+public class ResistChange : MonoBehaviour
 {
     [SerializeField] private int typeNum;
     [SerializeField] private TextMeshProUGUI myText;
@@ -12,15 +11,15 @@ public class TotalDmgChange : MonoBehaviour
     private void OnEnable()
     {
         myText = this.transform.GetComponent<TextMeshProUGUI>();
-        SlotManager.TotalDmgChanged += SlotManager_TotalDmgChanged;
+        Player.ResistChangedEvent += Player_ResistChangedEvent;
     }
 
     private void OnDisable()
     {
-        SlotManager.TotalDmgChanged -= SlotManager_TotalDmgChanged;
+        Player.ResistChangedEvent -= Player_ResistChangedEvent;
     }
 
-    private void SlotManager_TotalDmgChanged(int[] obj)
+    private void Player_ResistChangedEvent(int[] obj)
     {
         switch (typeNum)
         {
@@ -35,9 +34,6 @@ public class TotalDmgChange : MonoBehaviour
                 break;
             case 3:
                 myText.SetText(obj[3].ToString());
-                break;
-            case 4:
-                myText.SetText(obj[4].ToString());
                 break;
         }
     }

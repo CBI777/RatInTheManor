@@ -2,17 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 
-public class EquipmentTokenSlot : MonoBehaviour, IDropHandler
+public class EquipmentTokenSlot : MonoBehaviour, SlotInterface, IDropHandler
 {
-    //[SerializeField] private bool slotEnabled;
+    public static event Action EquipSlotActivatedEvent;
+    public static event Action EquipSlotDeactivatedEvent;
+
+    [SerializeField] private bool slotEnabled;
+
+    private void OnEnable()
+    {
+        EquipmentChangeBtn.OnEquipChange += EquipmentChangeBtn_OnEquipChange;
+    }
+
+    private void OnDisable()
+    {
+        EquipmentChangeBtn.OnEquipChange -= EquipmentChangeBtn_OnEquipChange;
+    }
+
+    private void EquipmentChangeBtn_OnEquipChange(int obj)
+    {
+        this.transform.GetComponentInChildren<TokenDragDrop>().Undragable();
+    }
 
     public void OnDrop(PointerEventData eventData)
     {
-        if (eventData.pointerDrag != null/*&& slotEnabled*/)
+        if (eventData.pointerDrag != null && slotEnabled)
         {
             Debug.Log("On Drop" + eventData.pointerDrag.name);
             eventData.pointerDrag.GetComponent<TokenDragDrop>().returnParent = this.transform;
         }
+    }
+
+    public void tokenAdded()
+    {
+        slotEnabled = false;
+        EquipSlotActivatedEvent?.Invoke();
+    }
+    public void tokenRemoved()
+    {
+        //토큰을 빼고, 아직 내려놓지는 않았음
+        slotEnabled = true;
+    }
+    public void tokenAfterRemoved()
+    {
+        //토큰을 빼고, 다른데다가 내려놨음.
+        EquipSlotDeactivatedEvent?.Invoke();
     }
 }

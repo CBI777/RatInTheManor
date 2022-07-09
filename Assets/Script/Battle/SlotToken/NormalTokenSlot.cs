@@ -4,9 +4,8 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class NormalTokenSlot : MonoBehaviour, IDropHandler
+public class NormalTokenSlot : MonoBehaviour, SlotInterface, IDropHandler
 {
-    [SerializeField] private GameObject textObject;
     [SerializeField] private DmgType dmgType;
     private int tokenCount = 0;
 
@@ -28,8 +27,20 @@ public class NormalTokenSlot : MonoBehaviour, IDropHandler
     {
         if (eventData.pointerDrag != null)
         {
-            Debug.Log("On Drop" + eventData.pointerDrag.name);
             eventData.pointerDrag.GetComponent<TokenDragDrop>().returnParent = this.transform;
         }
+    }
+
+    public void tokenAdded()
+    {
+        slotCountArrange();
+    }
+    public void tokenRemoved()
+    {
+        slotCountArrange();
+    }
+    public void tokenAfterRemoved()
+    {
+        return;
     }
 }

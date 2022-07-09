@@ -11,14 +11,14 @@ public enum DmgType
 public class SlotManager : MonoBehaviour
 {
     public static event Action<float, float, float, float> CoefChanged;
-    public static event Action<int> TotalDmgChanged;
+    public static event Action<int[]> TotalDmgChanged;
     public static event Action<int, int, int, int, int> FinalDmgChanged;
 
-    [SerializeField] private List<EnemySkill> skillList = new List<EnemySkill>();
-
-    [SerializeField] private int totalDmg = 0;
     [SerializeField] private int curSkill = 0;
 
+    private List<EnemySkill> skillList = new List<EnemySkill>();
+
+    private int[] totalDmg = new int[5];
     private int[,] finalDmg = new int[3, 5];
     private int[] resistance = new int[4];
     private int[] playerSlot = new int[4];
@@ -29,15 +29,26 @@ public class SlotManager : MonoBehaviour
         NormalTokenSlot.PlayerSlotChangedEvent += NormalTokenSlot_playerSlotChangedEvent;
         SkillManager.SkillAddedEvent += SkillManager_SkillAddedEvent;
         SkillBtn.SkillChanged += SkillBtn_SkillChanged;
+        Player.ResistChangedEvent += Player_ResistChangedEvent;
     }
 
     private void OnDisable()
     {
         NormalTokenSlot.PlayerSlotChangedEvent -= NormalTokenSlot_playerSlotChangedEvent;
         SkillManager.SkillAddedEvent -= SkillManager_SkillAddedEvent;
+        SkillBtn.SkillChanged -= SkillBtn_SkillChanged;
+        Player.ResistChangedEvent -= Player_ResistChangedEvent;
     }
 
 
+    private void Player_ResistChangedEvent(int[] obj)
+    {
+        for(int i =0; i < obj.Length; i++)
+        {
+            resistance[i] = obj[i];
+        }
+        reCalcAll();
+    }
     private void NormalTokenSlot_playerSlotChangedEvent(DmgType arg1, int arg2)
     {
         playerSlot[(int)arg1] = arg2;
@@ -45,8 +56,6 @@ public class SlotManager : MonoBehaviour
     }
     private void SkillManager_SkillAddedEvent(List<EnemySkill> arg1, int arg2)
     {
-        startSlotTurn();
-
         for(int i = 0; i< arg2;i++)
         {
             skillList.Add(arg1[i]);
@@ -78,26 +87,36 @@ public class SlotManager : MonoBehaviour
         }
     }
 
+    private void calcDmgSum()
+    {
+        for(int i = 0; i<5; i++)
+        {
+            totalDmg[i] = 0;
+        }
+        //합산하고 전체합산을 알려줘야됨
+        for (int i = 0; i < skillList.Count; i++)
+        {
+            finalDmg[i, 4] = 0;
+            for (int j = 0; j < 4; j++)
+            {
+                totalDmg[j] += finalDmg[i, j];
+                finalDmg[i, 4] += finalDmg[i, j];
+            }
+            totalDmg[4] += finalDmg[i, 4];
+        }
+    }
+
     //enum에서의 int임.
     private void reCalcDamage(int arg1)
     {
         calcCoef(arg1);
         for (int i = 0; i < skillList.Count; i++)
         {
-            finalDmg[i, arg1] = (int)(skillList[i].dmgs[arg1] * coef[i, arg1]);
+            finalDmg[i, arg1] = (int)Mathf.Ceil(skillList[i].dmgs[arg1] * coef[i, arg1]);
         }
 
-        totalDmg = 0;
-        //합산하고 전체합산을 알려줘야됨
-        for(int i = 0; i < skillList.Count; i++)
-        {
-            finalDmg[i, 4] = 0;
-            for(int j = 0; j<4; j++)
-            {
-                finalDmg[i, 4] += finalDmg[i, j];
-            }
-            totalDmg += finalDmg[i, 4];
-        }
+        calcDmgSum();
+
         CoefChanged?.Invoke(coef[curSkill, 0], coef[curSkill, 1], coef[curSkill, 2], coef[curSkill, 3]);
         FinalDmgChanged?.Invoke(finalDmg[curSkill, 0], finalDmg[curSkill, 1], finalDmg[curSkill, 2], finalDmg[curSkill, 3], finalDmg[curSkill, 4]);
         TotalDmgChanged?.Invoke(this.totalDmg);
@@ -113,38 +132,11 @@ public class SlotManager : MonoBehaviour
                 finalDmg[i, j] = (int)Mathf.Ceil(skillList[i].dmgs[j] * coef[i, j]);
             }
         }
-        for (int i = 0; i < skillList.Count; i++)
-        {
-            finalDmg[i, 4] = 0;
-            for (int j = 0; j < 4; j++)
-            {
-                finalDmg[i, 4] += finalDmg[i, j];
-            }
-            totalDmg += finalDmg[i, 4];
-        }
+
+        calcDmgSum();
+
         CoefChanged?.Invoke(coef[curSkill, 0], coef[curSkill, 1], coef[curSkill, 2], coef[curSkill, 3]);
         FinalDmgChanged?.Invoke(finalDmg[curSkill, 0], finalDmg[curSkill, 1], finalDmg[curSkill, 2], finalDmg[curSkill, 3], finalDmg[curSkill, 4]);
         TotalDmgChanged?.Invoke(this.totalDmg);
-    }
-
-    public void startSlotTurn()
-    {
-        totalDmg = 0;
-        curSkill = 0;
-        skillList.Clear();
-        for (int i = 0; i < 4; i++)
-        {
-            resistance[i] = 0;
-            playerSlot[i] = 0;
-        }
-        for (int i = 0; i<3; i++)
-        {
-            for(int j = 0; j<4; j++)
-            {
-                finalDmg[i, j] = 0;
-                coef[i, j] = 0;
-            }
-            finalDmg[i, 4] = 0;
-        }
     }
 }
