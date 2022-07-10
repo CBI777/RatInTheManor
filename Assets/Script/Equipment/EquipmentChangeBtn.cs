@@ -33,19 +33,19 @@ public class EquipmentChangeBtn : MonoBehaviour
         this.btn = this.transform.GetComponent<Button>();
         EquipmentChangeBtn.OnECBtnClick += EquipmentChangeBtn_OnECBtnClick;
         EquipmentChangeBtn.OnEquipChange += EquipmentChangeBtn_OnEquipChange;
-        Player.CurEquipChanged += Player_CurEquipChanged;
-        Player.EquipChangedEvent += Player_EquipChangedEvent;
+        EquipmentManager.EquipChangedEvent += EquipmentManager_EquipChangedEvent;
+        EquipmentManager.CurEquipChanged += EquipmentManager_CurEquipChanged;
     }
 
     private void OnDisable()
     {
         EquipmentChangeBtn.OnECBtnClick -= EquipmentChangeBtn_OnECBtnClick;
         EquipmentChangeBtn.OnEquipChange -= EquipmentChangeBtn_OnEquipChange;
-        Player.CurEquipChanged -= Player_CurEquipChanged;
-        Player.EquipChangedEvent -= Player_EquipChangedEvent;
+        EquipmentManager.CurEquipChanged -= EquipmentManager_CurEquipChanged;
+        EquipmentManager.EquipChangedEvent -= EquipmentManager_EquipChangedEvent;
     }
 
-    private void Player_CurEquipChanged(int arg1, int arg2)
+    private void EquipmentManager_CurEquipChanged(int arg1, int arg2)
     {
         if (this.num == arg1)
         {
@@ -61,7 +61,7 @@ public class EquipmentChangeBtn : MonoBehaviour
         }
     }
 
-    private void Player_EquipChangedEvent(int arg1, int arg2, Equipment[] arg3)
+    private void EquipmentManager_EquipChangedEvent(int arg1, int arg2, Equipment[] arg3)
     {
         if(this.num < arg2)
         {
@@ -72,7 +72,7 @@ public class EquipmentChangeBtn : MonoBehaviour
             this.abhorr.GetComponent<TextMeshProUGUI>().SetText(arg3[this.num].resChange[2].ToString());
             this.delus.GetComponent<TextMeshProUGUI>().SetText(arg3[this.num].resChange[3].ToString());
             //eqImg
-            Player_CurEquipChanged(arg1, arg2);
+            EquipmentManager_CurEquipChanged(arg1, arg2);
         }
         else
         {
