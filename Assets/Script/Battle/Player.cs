@@ -6,49 +6,30 @@ using System;
 public class Player : MonoBehaviour
 {
     [SerializeField] private int[] naturalResist = new int[4];
-    [SerializeField] private int sanity;
-    [SerializeField] private int madness;
-    [SerializeField] private int obsession;
 
     [SerializeField] private int[] totalResist = new int[4];
     [SerializeField] private int[] equipResist = new int[4];
     [SerializeField] private int[] supplyResist = new int[4];
 
     public static event Action<int[]> ResistChangedEvent;
+    //인벤토리 창에 나올 저항. 원래 저항 + 장비 저항
+    public static event Action<int[]> InventoryResistChangedEvent;
 
     private void OnEnable()
     {
-        Supply_Base.SupplySanityChange += Supply_Base_SupplySanityChange;
-        Supply_Base.SupplyMadnessChange += Supply_Base_SupplyMadnessChange;
-        Supply_Base.SupplyObsessionChange += Supply_Base_SupplyObsessionChange;
         Supply_Base.SupplyResistChangeEter += NaturalResistChange;
         Supply_Base.SupplyResistChangeTemp += SupplyResistChange;
         EquipmentManager.EquipResistChanged += EquipResistChange;
+        Quirk_Base.QuirkResistChangeEvent += NaturalResistChange;
     }
 
     private void OnDisable()
     {
-        Supply_Base.SupplySanityChange -= Supply_Base_SupplySanityChange;
-        Supply_Base.SupplyMadnessChange -= Supply_Base_SupplyMadnessChange;
-        Supply_Base.SupplyObsessionChange -= Supply_Base_SupplyObsessionChange;
         Supply_Base.SupplyResistChangeEter -= NaturalResistChange;
         Supply_Base.SupplyResistChangeTemp -= SupplyResistChange;
         EquipmentManager.EquipResistChanged -= EquipResistChange;
+        Quirk_Base.QuirkResistChangeEvent -= NaturalResistChange;
     }
-
-    private void Supply_Base_SupplyObsessionChange(int obj)
-    {
-        Debug.Log("집착이 바뀜 ㅅㄱ");
-    }
-    private void Supply_Base_SupplyMadnessChange(int obj)
-    {
-        Debug.Log("광기가 바뀜 ㅅㄱ");
-    }
-    private void Supply_Base_SupplySanityChange(int obj)
-    {
-        Debug.Log("이성이 바뀜 ㅅㄱ");
-    }
-
 
     public void SupplyResistChange(int[] n)
     {
@@ -67,6 +48,7 @@ public class Player : MonoBehaviour
             this.naturalResist[i] += n[i];
         }
         RecalcResist();
+        RecalcDisplayResist();
     }
     public void EquipResistChange(int[] n)
     {
@@ -75,6 +57,7 @@ public class Player : MonoBehaviour
             this.equipResist[i] = n[i];
         }
         RecalcResist();
+        RecalcDisplayResist();
     }
 
     public void RecalcResist()
@@ -85,6 +68,17 @@ public class Player : MonoBehaviour
         }
 
         ResistChangedEvent?.Invoke(totalResist);
+    }
+
+    public void RecalcDisplayResist()
+    {
+        int[] temp = new int[4];
+        for (int i = 0; i < 4; i++)
+        {
+            temp[i] = (naturalResist[i] + equipResist[i]);
+        }
+
+        InventoryResistChangedEvent?.Invoke(temp);
     }
 
     private void Awake()
@@ -98,5 +92,6 @@ public class Player : MonoBehaviour
     private void Start()
     {
         RecalcResist();
+        RecalcDisplayResist();
     }
 }

@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - TokenSlot
-  - SlotManager
+  - Hand
+  - MainCanvas
   layers:
   - Default
   - TransparentFX

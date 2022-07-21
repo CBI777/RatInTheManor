@@ -6,6 +6,8 @@ using System;
 public class EquipmentManager : MonoBehaviour
 {
     private List<Equipment> equipment = new List<Equipment>();
+
+    [SerializeField] private int turnInitEquip = 0;
     [SerializeField] private int curEquip = 0;
     [SerializeField] private int tempEquip = 0;
     [SerializeField] private int equipCount;
@@ -22,6 +24,7 @@ public class EquipmentManager : MonoBehaviour
         EquipmentChangeBtn.OnEquipChange += EquipmentChangeBtn_OnEquipChange;
         EquipmentChangeBtn.OnECBtnClick += EquipmentChangeBtn_OnECBtnClick;
         EquipmentTokenSlot.EquipSlotDeactivatedEvent += EquipmentTokenSlot_EquipSlotDeactivatedEvent;
+        BattleResetManager.ResetBoardEvent += BattleResetManager_ResetBoardEvent;
     }
 
     private void OnDisable()
@@ -29,6 +32,13 @@ public class EquipmentManager : MonoBehaviour
         EquipmentChangeBtn.OnEquipChange -= EquipmentChangeBtn_OnEquipChange;
         EquipmentChangeBtn.OnECBtnClick -= EquipmentChangeBtn_OnECBtnClick;
         EquipmentTokenSlot.EquipSlotDeactivatedEvent -= EquipmentTokenSlot_EquipSlotDeactivatedEvent;
+        BattleResetManager.ResetBoardEvent -= BattleResetManager_ResetBoardEvent;
+    }
+
+    private void BattleResetManager_ResetBoardEvent()
+    {
+        CurEquipChanged?.Invoke(curEquip, equipCount);
+        setCurEquip(turnInitEquip);
     }
 
     private void EquipmentTokenSlot_EquipSlotDeactivatedEvent()
@@ -53,6 +63,7 @@ public class EquipmentManager : MonoBehaviour
     {
         this.curEquip = n;
         this.tempEquip = curEquip;
+        CurEquipChanged?.Invoke(curEquip, equipCount);
         EquipResistChanged?.Invoke(this.equipment[curEquip].resChange);
     }
 
@@ -80,6 +91,7 @@ public class EquipmentManager : MonoBehaviour
 
     private void Start()
     {
+        this.turnInitEquip = 1;
         setCurEquip(1);
         EquipChangedEvent.Invoke(this.curEquip, this.equipCount, this.equipment.ToArray());
     }

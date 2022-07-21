@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class Tooltip : MonoBehaviour
@@ -41,7 +41,7 @@ public class Tooltip : MonoBehaviour
 
     private void Update()
     {
-        Vector2 position = Input.mousePosition / canvas.scaleFactor;
+        Vector2 position = Mouse.current.position.ReadValue() / canvas.scaleFactor;
 
         float pivotX = position.x / Screen.width;
         float pivotY = position.y / Screen.height;

@@ -1,0 +1,54 @@
+{
+    "name": "PlayerInputs",
+    "maps": [
+        {
+            "name": "PlayerInput",
+            "id": "5fa31f01-6a2a-442a-97c7-62046c981009",
+            "actions": [
+                {
+                    "name": "ResetKeyboard",
+                    "type": "Button",
+                    "id": "52cf5467-9dd5-4fc9-8de8-f00db584f4cd",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "OpenInventory",
+                    "type": "Button",
+                    "id": "16205a32-9c0e-4980-a7ab-b8bdc8886e14",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0c347c50-7d92-43ed-8c20-243a20039567",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetKeyboard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27fd602b-7e11-48a8-876f-a8507382c680",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OpenInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

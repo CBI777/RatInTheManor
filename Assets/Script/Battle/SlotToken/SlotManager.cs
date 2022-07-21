@@ -24,6 +24,8 @@ public class SlotManager : MonoBehaviour
     private int[] playerSlot = new int[4];
     private float[,] coef = new float[3, 4];
 
+    private float multiplier = 1f;
+
     private void OnEnable()
     {
         NormalTokenSlot.PlayerSlotChangedEvent += NormalTokenSlot_playerSlotChangedEvent;

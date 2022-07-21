@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class TokenDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [SerializeField] private Canvas canvas;
+    [SerializeField] private Transform Hand;
 
     public Transform returnParent;
     private Transform beforeParent;
@@ -24,12 +25,28 @@ public class TokenDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
 
     private void OnEnable()
     {
+        this.Hand = GameObject.FindWithTag("Hand").transform;
         this.beforeParent = this.transform.parent;
         this.returnParent = this.transform.parent;
+
+        BattleResetManager.ResetBoardEvent += BattleResetManager_ResetBoardEvent;
     }
     private void OnDisable()
     {
-        
+        BattleResetManager.ResetBoardEvent -= BattleResetManager_ResetBoardEvent;
+    }
+
+    private void BattleResetManager_ResetBoardEvent()
+    {
+        this.transform.SetParent(this.Hand); //1. 핸드로 옮긴다.
+        tokenRemoveCheck(); //2.
+        /* 지금은 크게 두 군데에 영향을 미친다.
+         * 1) Slot들이 다시 calculation을 하도록 한다.
+         * 2) 장비 slot을 enable시킨다.
+         */
+        this.returnParent = this.transform.parent;
+        this.beforeParent = this.transform.parent; //3. before과 return을 돌려놓는다.
+        this.Dragable();
     }
 
     private void tokenRemoveCheck()
@@ -65,7 +82,6 @@ public class TokenDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     public void OnDrag(PointerEventData eventData)
     {
         if (!this.dragable) { return; }
-
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 

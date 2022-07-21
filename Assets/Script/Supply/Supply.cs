@@ -81,10 +81,8 @@ public class Supply_Opium : Supply_Base
     public Supply_Opium()
         : base("아편 한 뭉치", "Supply_Opium", true, 2)
     {
-        this.batDescription = "광기를 10만큼 잠재웁니다.";
-        this.description =
-            "공포의 굴, 아편굴에서는 과거 죄악의 기억이 새로운 죄악의 광기로 대체된다.\u000a" +
-            "광기를 10만큼 잠재웁니다.";
+        this.batDescription = "소모품. 광기를 10만큼 잠재웁니다.";
+        this.description = "소모품. 광기를 10만큼 잠재웁니다.";
     }
 
     public override void onUse()
@@ -102,10 +100,8 @@ public class Supply_Painkiller : Supply_Base
     public Supply_Painkiller()
         : base("진통제", "Supply_Painkiller", true, 1)
     {
-        this.batDescription = "이번 턴, 물리적 피해 저항을 2만큼 상승시킵니다.";
-        this.description =
-            "암암리에 거래되는 진통제. 일반적인 제품보다 효과와 중독성이 높다.\u000a" +
-            "사용한 턴, 물리적 피해 저항을 2만큼 상승시킵니다.";
+        this.batDescription = "소모품. 이번 턴, 물리적 피해 저항을 2만큼 상승시킵니다.";
+        this.description = "전투에서만 사용 가능.\u000a" + "소모품. 사용한 턴, 물리적 피해 저항을 2만큼 상승시킵니다.";
     }
 
     public override void onUse()
@@ -125,9 +121,7 @@ public class Supply_Abhorrpainting : Supply_Base
         : base("역겨운 그림", "Supply_Abhorrpainting", true, 0)
     {
         this.batDescription = "전투중에는 사용할 수 없습니다.";
-        this.description =
-            "광기마저 느껴지는 거친 붓터치로 그려진, 역겨운 무언가의 그림.\u000a" +
-            "사용하면 혐오 저항이 영구적으로 1상승하고, 현혹 저항이 영구적으로 1감소합니다.";
+        this.description = "전투중에는 사용 불가.\u000a" + "소모품. 사용하면 혐오 저항이 영구적으로 1상승하고, 현혹 저항이 영구적으로 1감소합니다.";
     }
     public override void onUse()
     {
