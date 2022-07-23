@@ -81,18 +81,17 @@ public class EquipmentManager : MonoBehaviour
     }
 
     private void Awake()
-    {
-        this.equipment.Add((Equipment)Activator.CreateInstance(Type.GetType("Equipment_TempEquip1")));
-        this.equipment.Add((Equipment)Activator.CreateInstance(Type.GetType("Equipment_TempEquip2")));
-        this.equipment.Add((Equipment)Activator.CreateInstance(Type.GetType("Equipment_TempEquip3")));
-
+    {   
+        this.equipment.Add((Equipment)Activator.CreateInstance(Type.GetType("Equipment_Blindfold")));
+        this.equipment.Add((Equipment)Activator.CreateInstance(Type.GetType("Equipment_EyeballJar")));
+        this.equipment.Add((Equipment)Activator.CreateInstance(Type.GetType("Equipment_Lantern")));
         this.equipCount = this.equipment.Count;
     }
 
     private void Start()
     {
-        this.turnInitEquip = 1;
-        setCurEquip(1);
+        this.turnInitEquip = 0;
+        setCurEquip(0);
         EquipChangedEvent.Invoke(this.curEquip, this.equipCount, this.equipment.ToArray());
     }
 

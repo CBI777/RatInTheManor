@@ -33,7 +33,6 @@ public class Player : MonoBehaviour
 
     public void SupplyResistChange(int[] n)
     {
-        Debug.Log("저항이 임시적으로 바뀜 ㅅㄱ");
         for (int i = 0; i < n.Length; i++)
         {
             this.supplyResist[i] += n[i];
@@ -42,7 +41,6 @@ public class Player : MonoBehaviour
     }
     public void NaturalResistChange(int[] n)
     {
-        Debug.Log("저항이 영원히 바뀜 ㅅㄱ");
         for (int i = 0; i < n.Length; i++)
         {
             this.naturalResist[i] += n[i];

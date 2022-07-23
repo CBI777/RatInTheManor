@@ -110,16 +110,12 @@ public class TokenDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     public void Undragable()
     {
         this.dragable = false;
-        Color clr;
-        ColorUtility.TryParseHtmlString("#003E68", out clr);
-        this.transform.GetComponent<Image>().color = clr;
+        this.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/TokenB");
     }
 
     public void Dragable()
     {
         this.dragable = true;
-        Color clr;
-        ColorUtility.TryParseHtmlString("#0694F5", out clr);
-        this.transform.GetComponent<Image>().color = clr;
+        this.transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/TokenN");
     }
 }

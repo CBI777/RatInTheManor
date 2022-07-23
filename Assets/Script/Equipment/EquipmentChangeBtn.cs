@@ -20,6 +20,7 @@ public class EquipmentChangeBtn : MonoBehaviour
     [SerializeField] private int num;
     [SerializeField] private Button btn;
     [SerializeField] private TextMeshProUGUI myText;
+    [SerializeField] private GameObject edge;
 
     //cur은 원래 이걸 끼고 있었는가? sel은 현재 선택되어있는가
     //exist는 애초에 이 장비가 있는지를 확인
@@ -51,12 +52,14 @@ public class EquipmentChangeBtn : MonoBehaviour
         {
             this.cur = true; this.sel = true;
             this.myText.SetText("장착중");
+            this.edge.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/SelectedEdge");
             this.btn.interactable = false;
         }
         else
         {
             this.cur = false; this.sel = false;
             this.myText.SetText("변경");
+            this.edge.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/DeselectedEdge");
             this.btn.interactable = true;
         }
     }
@@ -71,7 +74,8 @@ public class EquipmentChangeBtn : MonoBehaviour
             this.fear.GetComponent<TextMeshProUGUI>().SetText(arg3[this.num].resChange[1].ToString());
             this.abhorr.GetComponent<TextMeshProUGUI>().SetText(arg3[this.num].resChange[2].ToString());
             this.delus.GetComponent<TextMeshProUGUI>().SetText(arg3[this.num].resChange[3].ToString());
-            //eqImg
+            this.edge.SetActive(true);
+            this.eqImg.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/Equipment/" + arg3[this.num].realName);
             EquipmentManager_CurEquipChanged(arg1, arg2);
         }
         else
@@ -82,7 +86,8 @@ public class EquipmentChangeBtn : MonoBehaviour
             this.fear.GetComponent<TextMeshProUGUI>().SetText("-");
             this.abhorr.GetComponent<TextMeshProUGUI>().SetText("-");
             this.delus.GetComponent<TextMeshProUGUI>().SetText("-");
-
+            this.edge.SetActive(false);
+            this.eqImg.SetActive(false);
             this.cur = false; this.sel = false;
             this.myText.SetText("-");
             this.btn.interactable = false;
@@ -101,8 +106,10 @@ public class EquipmentChangeBtn : MonoBehaviour
         {
             this.sel = false;
             this.btn.interactable = true;
-            if(cur) { this.myText.SetText("취소"); }
+            this.edge.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/DeselectedEdge");
+            if (cur) { this.myText.SetText("취소"); }
             else { this.myText.SetText("변경"); }
+
         }
     }
 
@@ -114,11 +121,13 @@ public class EquipmentChangeBtn : MonoBehaviour
             if(sel)
             {
                 OnEquipChange?.Invoke(this.num);
+                this.edge.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/SelectedEdge");
             }
             else
             {
                 //현재 장착 중이 아니고, sel이 아니었다면 한 번 본다는거
                 OnECBtnClick?.Invoke(this.num);
+                this.edge.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/SelectedEdge");
                 this.sel = true;
                 this.myText.SetText("확정");
             }
@@ -128,6 +137,7 @@ public class EquipmentChangeBtn : MonoBehaviour
         {
             //다시 원래 status로 revert하는거
             OnECBtnClick?.Invoke(this.num);
+            this.edge.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/SelectedEdge");
             this.sel = true;
             this.btn.interactable = false;
             this.myText.SetText("장착중");

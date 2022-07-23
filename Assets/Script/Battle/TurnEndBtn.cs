@@ -12,7 +12,8 @@ public class TurnEndBtn : MonoBehaviour
     [SerializeField] private Button btn;
     [SerializeField] private Image img;
 
-    private Color selClr = new Color(250f / 255f, 138f / 255f, 198f / 255f);
+    private Color oriColor = new Color(250f / 255f, 164f / 255f, 131f / 255f);
+    private Color selClr = new Color(233f / 255f, 88f / 255f, 43f / 255f);
 
     public static event Action TurnEndEvent;
 
@@ -30,7 +31,7 @@ public class TurnEndBtn : MonoBehaviour
     {
         if (clicked)
         {
-            this.img.color = Color.white;
+            this.img.color = oriColor;
             this.btn.interactable = false;
             this.myText.SetText("방어 절차 진행");
             TurnEndEvent?.Invoke();
@@ -48,7 +49,7 @@ public class TurnEndBtn : MonoBehaviour
         this.btn.interactable = true;
         this.clicked = false;
         this.myText.SetText("방어를 진행");
-        this.img.color = Color.white;
+        this.img.color = oriColor;
     }
 
     private void Start()

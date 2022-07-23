@@ -10,6 +10,7 @@ public class BattleResetManager : MonoBehaviour
     private PlayerInput playerinput;
 
     [SerializeField] private RectTransform Play_ResetArea;
+    [SerializeField] private RectTransform ResetArrow;
 
     [SerializeField] private int resetMove = 1920;
     [SerializeField] private float resetSpeed = 1f;
@@ -24,7 +25,7 @@ public class BattleResetManager : MonoBehaviour
         {
             playerinput.actions.FindActionMap("PlayerInput").Disable();
             //Dotween은 코루틴처럼 작동함.
-
+            ResetArrow.DORotate(new Vector3(0, 0, 360), 3f, RotateMode.FastBeyond360);
             Play_ResetArea.DOAnchorPos(new Vector2(0, -180f), resetSpeed);
             StartCoroutine(ResetCoverBoard());
         }

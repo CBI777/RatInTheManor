@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class QuirkUIManager : MonoBehaviour
 {
@@ -27,14 +28,16 @@ public class QuirkUIManager : MonoBehaviour
         {
             if(i < arg1)
             {
+                wills[i].GetComponent<Image>().enabled = true;
                 wills[i].GetComponent<TooltipTrigger>().enabled = true;
-                wills[i].GetComponent<TextMeshProUGUI>().SetText(arg2[i].quirkName);
+                wills[i].GetComponentInChildren<TextMeshProUGUI>().SetText(arg2[i].quirkName);
                 wills[i].GetComponent<TooltipTrigger>().header = arg2[i].quirkName;
                 wills[i].GetComponent<TooltipTrigger>().content = arg2[i].quirkDescription;
             }
             else
             {
-                wills[i].GetComponent<TextMeshProUGUI>().SetText("");
+                wills[i].GetComponent<Image>().enabled = false;
+                wills[i].GetComponentInChildren<TextMeshProUGUI>().SetText("");
                 wills[i].GetComponent<TooltipTrigger>().enabled = false;
             }
         }
@@ -46,14 +49,16 @@ public class QuirkUIManager : MonoBehaviour
         {
             if (i < arg1)
             {
+                feeble[i].GetComponent<Image>().enabled = true;
                 feeble[i].GetComponent<TooltipTrigger>().enabled = true;
-                feeble[i].GetComponent<TextMeshProUGUI>().SetText(arg2[i].quirkName);
+                feeble[i].GetComponentInChildren<TextMeshProUGUI>().SetText(arg2[i].quirkName);
                 feeble[i].GetComponent<TooltipTrigger>().header = arg2[i].quirkName;
                 feeble[i].GetComponent<TooltipTrigger>().content = arg2[i].quirkDescription;
             }
             else
             {
-                feeble[i].GetComponent<TextMeshProUGUI>().SetText("");
+                feeble[i].GetComponent<Image>().enabled = false;
+                feeble[i].GetComponentInChildren<TextMeshProUGUI>().SetText("");
                 feeble[i].GetComponent<TooltipTrigger>().enabled = false;
             }
         }

@@ -21,29 +21,38 @@ public class Equipment
     }
 }
 
-public class Equipment_TempEquip1 : Equipment
+public class Equipment_Pistol : Equipment
 {
-    public Equipment_TempEquip1()
-        : base("임시 장비1", "Equipment_TempEquip1", 1, 1, 0, -1)
+    public Equipment_Pistol()
+        : base("피스톨", "Equipment_Pistol", 0, 1, -1, 0)
     {
-        this.description = "물리적 저항 + 1\u000a공포 저항 + 1\u000a현혹 저항 - 1";
+        this.description = "공포 저항 + 1\u000a혐오 저항 - 1";
     }
 }
 
-public class Equipment_TempEquip2 : Equipment
+public class Equipment_Lantern : Equipment
 {
-    public Equipment_TempEquip2() 
-        : base("임시 장비2", "Equipment_TempEquip2", 0, 1, 0, -1)
+    public Equipment_Lantern() 
+        : base("기묘한 등불", "Equipment_Lantern", 0, -1, 0, 1)
     {
-        this.description = "공포 저항 + 1\u000a현혹 저항 - 1";
+        this.description = "공포 저항 - 1\u000a현혹 저항 + 1";
     }
 }
 
-public class Equipment_TempEquip3 : Equipment
+public class Equipment_EyeballJar : Equipment
 {
-    public Equipment_TempEquip3()
-        : base("임시 장비3", "Equipment_TempEquip3", 3, -1, -1, -1)
+    public Equipment_EyeballJar()
+        : base("눈알이 든 병", "Equipment_EyeballJar", 3, -1, -1, -1)
     {
         this.description = "물리적 저항 + 3\u000a공포 저항 -1\u000a혐오 저항 - 1\u000a현혹 저항 -1\u000a";
+    }
+}
+
+public class Equipment_Blindfold : Equipment
+{
+    public Equipment_Blindfold()
+        : base("눈 가리개", "Equipment_Blindfold", -4, 1, 1, 1)
+    {
+        this.description = "물리적 저항 - 4\u000a공포 저항 + 1\u000a혐오 저항 + 1\u000a현혹 저항 + 1\u000a";
     }
 }

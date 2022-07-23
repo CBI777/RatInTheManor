@@ -79,7 +79,7 @@ public class Supply_NoUse : Supply_Base
 public class Supply_Opium : Supply_Base
 {
     public Supply_Opium()
-        : base("아편 한 뭉치", "Supply_Opium", true, 2)
+        : base("아편 한 포", "Supply_Opium", true, 2)
     {
         this.batDescription = "소모품. 광기를 10만큼 잠재웁니다.";
         this.description = "소모품. 광기를 10만큼 잠재웁니다.";

@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryEquipmentUIManager : MonoBehaviour
 {
+    [SerializeField] private GameObject[] bg = new GameObject[3];
     [SerializeField] private GameObject[] equips = new GameObject[3];
     [SerializeField] private GameObject[] equipcheck = new GameObject[3];
 
@@ -21,11 +23,16 @@ public class InventoryEquipmentUIManager : MonoBehaviour
 
     private void EquipmentManager_CurEquipChanged(int arg1, int arg2)
     {
-        Debug.Log("dfadf");
         for (int i = 0; i < arg2; i++)
         {
-            if (i == arg1) { equipcheck[i].SetActive(true); }
-            else { equipcheck[i].SetActive(false); }
+            if (i == arg1)
+            {
+                equipcheck[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/SelectedEdge");
+            }
+            else
+            {
+                equipcheck[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/DeselectedEdge");
+            }
         }
     }
 
@@ -35,18 +42,18 @@ public class InventoryEquipmentUIManager : MonoBehaviour
         {
             if (i < arg2)
             {
-                equips[i].SetActive(true);
-                //ÀÌ¹ÌÁö
+                bg[i].SetActive(true);
                 equips[i].GetComponent<TooltipTrigger>().enabled = true;
                 equips[i].GetComponent<TooltipTrigger>().header = arg3[i].equipName;
                 equips[i].GetComponent<TooltipTrigger>().content = arg3[i].description;
-                if(i == arg1) { equipcheck[i].SetActive(true); }
-                else { equipcheck[i].SetActive(false); }
+                equips[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/Equipment/" + arg3[i].realName);
+
+                if (i == arg1) { equipcheck[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/SelectedEdge"); }
+                else { equipcheck[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/DeselectedEdge"); }
             }
             else
             {
-                equips[i].SetActive(false);
-                equipcheck[i].SetActive(false);
+                bg[i].SetActive(false);
             }
         }
     }
