@@ -12,6 +12,9 @@ public class BattleResetManager : MonoBehaviour
     [SerializeField] private RectTransform Play_ResetArea;
     [SerializeField] private RectTransform ResetArrow;
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip clip;
+
     [SerializeField] private int resetMove = 1920;
     [SerializeField] private float resetSpeed = 1f;
 
@@ -25,6 +28,7 @@ public class BattleResetManager : MonoBehaviour
         {
             playerinput.actions.FindActionMap("PlayerInput").Disable();
             //Dotween은 코루틴처럼 작동함.
+            this.audioSource.PlayOneShot(clip);
             ResetArrow.DORotate(new Vector3(0, 0, 360), 3f, RotateMode.FastBeyond360);
             Play_ResetArea.DOAnchorPos(new Vector2(0, -180f), resetSpeed);
             StartCoroutine(ResetCoverBoard());
@@ -39,7 +43,13 @@ public class BattleResetManager : MonoBehaviour
         Play_ResetArea.DOAnchorPos(new Vector2(-resetMove, -180f), resetSpeed);
         yield return new WaitForSeconds(resetSpeed);
         Play_ResetArea.position = initialPlace;
+        this.audioSource.Stop();
         playerinput.actions.FindActionMap("PlayerInput").Enable();
+    }
+
+    private void Awake()
+    {
+        this.audioSource = this.transform.GetComponent<AudioSource>();
     }
 
     private void Start()

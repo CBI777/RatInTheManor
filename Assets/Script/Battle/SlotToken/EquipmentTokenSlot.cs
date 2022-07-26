@@ -30,7 +30,6 @@ public class EquipmentTokenSlot : MonoBehaviour, SlotInterface, IDropHandler
     {
         if (eventData.pointerDrag != null && slotEnabled)
         {
-            Debug.Log("On Drop" + eventData.pointerDrag.name);
             eventData.pointerDrag.GetComponent<TokenDragDrop>().returnParent = this.transform;
         }
     }

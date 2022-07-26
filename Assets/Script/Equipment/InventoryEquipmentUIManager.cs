@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,5 +58,4 @@ public class InventoryEquipmentUIManager : MonoBehaviour
             }
         }
     }
-    //가능하면 클릭하는 버튼을 image에 달아야...
 }

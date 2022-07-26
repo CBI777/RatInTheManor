@@ -12,6 +12,7 @@ public class Quirk_Base
     public bool isWill;
 
     public static event Action<int[]> QuirkResistChangeEvent;
+    public static event Action<int> TokenChangeEvent;
 
     public Quirk_Base(string quirkName, string realName,  bool isWill)
     {
@@ -30,6 +31,11 @@ public class Quirk_Base
     public void changeResist(int p, int f, int a, int d)
     {
         QuirkResistChangeEvent?.Invoke(new int[4] { p, f, a, d });
+    }
+
+    public void changeToken(int n)
+    {
+        TokenChangeEvent?.Invoke(n);
     }
 }
 
@@ -183,5 +189,41 @@ public class Quirk_BasicDownDelus : Quirk_Base
     public override void onLose()
     {
         changeResist(0, 0, 0, 1);
+    }
+}
+
+public class Quirk_TokenDownOne : Quirk_Base
+{
+    public Quirk_TokenDownOne()
+        : base("엉성한 움직임", "Quirk_TokenDownOne", false)
+    {
+        this.quirkDescription = "매 턴 방어 토큰을 한 개 적게 얻음";
+    }
+
+    public override void onObtain()
+    {
+        changeToken(-1);
+    }
+    public override void onLose()
+    {
+        changeToken(1);
+    }
+}
+
+public class Quirk_TokenUpOne : Quirk_Base
+{
+    public Quirk_TokenUpOne()
+        : base("신앙심", "Quirk_TokenUpOne", false)
+    {
+        this.quirkDescription = "매 턴 방어 토큰을 한 개 더 얻음";
+    }
+
+    public override void onObtain()
+    {
+        changeToken(1);
+    }
+    public override void onLose()
+    {
+        changeToken(-1);
     }
 }

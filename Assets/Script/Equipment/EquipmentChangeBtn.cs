@@ -10,6 +10,10 @@ public class EquipmentChangeBtn : MonoBehaviour
     public static event Action<int> OnECBtnClick;
     public static event Action<int> OnEquipChange;
 
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip chngClip;
+    [SerializeField] private AudioClip clickClip;
+
     [SerializeField] private GameObject eqName;
     [SerializeField] private GameObject phys;
     [SerializeField] private GameObject fear;
@@ -30,6 +34,7 @@ public class EquipmentChangeBtn : MonoBehaviour
 
     private void OnEnable()
     {
+        this.audioSource = this.transform.GetComponent<AudioSource>();
         this.myText = this.transform.GetComponentInChildren<TextMeshProUGUI>();
         this.btn = this.transform.GetComponent<Button>();
         EquipmentChangeBtn.OnECBtnClick += EquipmentChangeBtn_OnECBtnClick;
@@ -120,12 +125,14 @@ public class EquipmentChangeBtn : MonoBehaviour
             //현재 장착 중이 아니었는데, sel인 상태에서 한 번 더 눌렀다면 바꾼다는거
             if(sel)
             {
+                this.audioSource.PlayOneShot(chngClip);
                 OnEquipChange?.Invoke(this.num);
                 this.edge.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/SelectedEdge");
             }
             else
             {
                 //현재 장착 중이 아니고, sel이 아니었다면 한 번 본다는거
+                this.audioSource.PlayOneShot(clickClip);
                 OnECBtnClick?.Invoke(this.num);
                 this.edge.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/SelectedEdge");
                 this.sel = true;
@@ -136,6 +143,7 @@ public class EquipmentChangeBtn : MonoBehaviour
         else
         {
             //다시 원래 status로 revert하는거
+            this.audioSource.PlayOneShot(clickClip);
             OnECBtnClick?.Invoke(this.num);
             this.edge.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/SelectedEdge");
             this.sel = true;

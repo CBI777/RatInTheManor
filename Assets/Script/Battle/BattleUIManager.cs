@@ -6,6 +6,10 @@ using DG.Tweening;
 public class BattleUIManager : MonoBehaviour
 {
     [SerializeField] private RectTransform Play_ValueArea, Play_EnemySlotArea; //StatusArea
+    private AudioSource audioSource;
+
+    [SerializeField] private AudioClip upClip;
+    [SerializeField] private AudioClip downClip;
 
     [SerializeField] private int valueMove = 144;
     [SerializeField] private int enemyMove = 144;
@@ -37,20 +41,28 @@ public class BattleUIManager : MonoBehaviour
 
     private void EquipmentChangeBtn_OnEquipChange(int obj)
     {
+        this.audioSource.PlayOneShot(downClip);
         Play_EnemySlotArea.DOAnchorPos(Vector2.zero, moveSpeed);
         Play_ValueArea.DOAnchorPos(Vector2.zero, moveSpeed);
     }
 
     private void EquipmentTokenSlot_EquipSlotActivatedEvent()
     {
+        this.audioSource.PlayOneShot(upClip);
         Play_EnemySlotArea.DOAnchorPos(new Vector2(0, enemyMove), moveSpeed);
         Play_ValueArea.DOAnchorPos(new Vector2(0, valueMove), moveSpeed);
     }
 
     private void EquipmentTokenSlot_EquipSlotDeactivatedEvent()
     {
+        this.audioSource.PlayOneShot(downClip);
         Play_EnemySlotArea.DOAnchorPos(Vector2.zero, moveSpeed);
         Play_ValueArea.DOAnchorPos(Vector2.zero, moveSpeed);
+    }
+
+    private void Awake()
+    {
+        this.audioSource = this.transform.GetComponent<AudioSource>();
     }
 
     private void Start()

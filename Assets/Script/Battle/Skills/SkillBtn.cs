@@ -12,14 +12,12 @@ public class SkillBtn : MonoBehaviour
     [SerializeField] private TextMeshProUGUI myText;
     private bool isLoaded = false;
     [SerializeField] Button btn;
-    [SerializeField] Image img;
 
     public static event Action<EnemySkill, int> SkillChanged;
 
     private void OnEnable()
     {
         btn = this.transform.GetComponent<Button>();
-        img = this.transform.GetComponent<Image>();
         myText = this.transform.GetComponentInChildren<TextMeshProUGUI>();
         SkillManager.SkillAddedEvent += SkillManager_SkillAddedEvent;
         SkillBtn.SkillChanged += SkillBtn_SkillChanged;
@@ -35,18 +33,16 @@ public class SkillBtn : MonoBehaviour
     {
         if(skillNum < arg2)
         {
+            this.transform.transform.gameObject.SetActive(true);
             skill = arg1[skillNum];
             myText.SetText(skill.skillName);
             isLoaded = true;
-            btn.interactable = true;
-            img.enabled = true;
         }
         else
         {
             myText.SetText("");
             isLoaded = false;
-            btn.interactable = false;
-            img.enabled = false;
+            this.transform.transform.gameObject.SetActive(false);
         }
 
         if(this.skillNum == 0)

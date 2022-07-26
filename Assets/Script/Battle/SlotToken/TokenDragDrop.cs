@@ -9,6 +9,10 @@ public class TokenDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
 {
     [SerializeField] private Canvas canvas;
     [SerializeField] private Transform Hand;
+    private AudioSource audioSource;
+
+    [SerializeField] private AudioClip upClip;
+    [SerializeField] private AudioClip downClip;
 
     public Transform returnParent;
     private Transform beforeParent;
@@ -17,15 +21,13 @@ public class TokenDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
 
     [SerializeField] private bool dragable = true;
 
-    private void Awake()
-    {
-        rectTransform = GetComponent<RectTransform>();
-        canvasGroup = GetComponent<CanvasGroup>();
-    }
-
     private void OnEnable()
     {
+        this.canvas = GameObject.FindWithTag("MainCanvas").GetComponent<Canvas>();
+        rectTransform = GetComponent<RectTransform>();
+        canvasGroup = GetComponent<CanvasGroup>();
         this.Hand = GameObject.FindWithTag("Hand").transform;
+        this.audioSource = this.transform.GetComponent<AudioSource>();
         this.beforeParent = this.transform.parent;
         this.returnParent = this.transform.parent;
 
@@ -71,6 +73,7 @@ public class TokenDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     {
         if(!this.dragable) { return; }
 
+        audioSource.PlayOneShot(upClip);
         this.returnParent = this.transform.parent;
         this.transform.SetParent(this.transform.parent.parent);
         tokenRemoveCheck();
@@ -90,6 +93,7 @@ public class TokenDragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     {
         if (!this.dragable) { return; }
 
+        audioSource.PlayOneShot(downClip);
         this.transform.SetParent(this.returnParent);
         tokenAddCheck();
         canvasGroup.alpha = 1f;

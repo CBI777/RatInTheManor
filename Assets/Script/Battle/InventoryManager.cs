@@ -14,6 +14,11 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private RectTransform StatusUI_Area;
     [SerializeField] private float resetSpeed = 1f;
 
+    private AudioSource audioSource;
+
+    [SerializeField] private AudioClip upClip;
+    [SerializeField] private AudioClip downClip;
+
     [SerializeField] private Vector2 initialPlace;
 
     private void OnEnable()
@@ -50,6 +55,7 @@ public class InventoryManager : MonoBehaviour
 
     private IEnumerator StatusUp()
     {
+        this.audioSource.PlayOneShot(upClip); 
         playerinput.actions.FindActionMap("PlayerInput").Disable();
         StatusUI_Area.DOAnchorPos(new Vector2(0, -180f), resetSpeed);
         yield return new WaitForSeconds(resetSpeed);
@@ -58,11 +64,17 @@ public class InventoryManager : MonoBehaviour
     }
     private IEnumerator StatusDown()
     {
+        this.audioSource.PlayOneShot(downClip);
         playerinput.actions.FindActionMap("PlayerInput").Disable();
         StatusUI_Area.DOAnchorPos(new Vector2(1920, -180f), resetSpeed);
         yield return new WaitForSeconds(resetSpeed);
         this.up = false;
         playerinput.actions.FindActionMap("PlayerInput").Enable();
+    }
+
+    private void Awake()
+    {
+        this.audioSource = this.transform.GetComponent<AudioSource>();
     }
 
     private void Start()

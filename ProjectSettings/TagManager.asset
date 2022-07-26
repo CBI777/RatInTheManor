@@ -7,6 +7,7 @@ TagManager:
   - TokenSlot
   - Hand
   - MainCanvas
+  - Token
   layers:
   - Default
   - TransparentFX

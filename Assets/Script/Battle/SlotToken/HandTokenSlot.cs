@@ -10,7 +10,6 @@ public class HandTokenSlot : MonoBehaviour, SlotInterface, IDropHandler
     {
         if (eventData.pointerDrag != null)
         {
-            Debug.Log("On Drop" + eventData.pointerDrag.name);
             eventData.pointerDrag.GetComponent<TokenDragDrop>().returnParent = this.transform;
         }
     }

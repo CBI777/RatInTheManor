@@ -105,7 +105,7 @@ public class QuirkManager : MonoBehaviour
         FeebleChangedEvent?.Invoke(feebleCount, player_feeble.ToArray());
     }
 
-    private void Start()
+    private void Awake()
     {
         AddWill("Quirk_BasicUpPhys");
         AddWill("Quirk_BasicUpAbhorr");
@@ -113,8 +113,7 @@ public class QuirkManager : MonoBehaviour
         AddFeeble("Quirk_BasicDownFear");
         AddFeeble("Quirk_BasicDownDelus");
         AddFeeble("Quirk_BasicDownPhys");
-        AddFeeble("Quirk_BasicDownAbhorr");
-        RemoveFeeble();
+        AddFeeble("Quirk_TokenDownOne");
 
         checkQuirks();
     }

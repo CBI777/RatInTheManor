@@ -2,61 +2,63 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class SkillManager : MonoBehaviour
 {
     //1. skill을 받아서 skill 들어옴 ㅅㄱ하면서 뿌려줌
     //2. 이 skill을 SlotManager랑 skillBtn이 받아먹음
+
+    //이번 턴의 EnemySkill + Skill 갯수
     public static event Action<List<EnemySkill>, int> SkillAddedEvent;
+    //skillManager가 StageManager한테서 stage를 받으면, 그거에 맞춰서 skillmanager가 enemy를 고르고, 그러면 BattleStart임.
+    private StageVariations vari = new StageVariations();
+    //이 int는 남은 턴을 위한거임.
+    public static event Action<int> BattleStart;
 
-    [SerializeField] private List<EnemySkill> skillList = new List<EnemySkill>();
+    [SerializeField] private Enemy_Base enemy;
+    [SerializeField] private Image enemyPic;
 
-    public void skillSpread()
+
+    private void OnEnable()
     {
-        SkillAddedEvent?.Invoke(skillList, skillList.Count);
+        StageManager.StageSpread += StageManager_StageSpread;
+        TurnManager.TurnStart += TurnManager_TurnStart;
     }
 
-    private void Awake()
+    private void OnDisable()
     {
-        EnemySkill skill1 = new EnemySkill();
-        skill1.skillName = "스킬1";
-        skill1.tokens[0] = 1;
-        skill1.tokens[1] = 2;
-        skill1.tokens[2] = 2;
-        skill1.tokens[3] = 0;
-        skill1.dmgs[0] = 3;
-        skill1.dmgs[1] = 2;
-        skill1.dmgs[2] = 1;
-        skill1.dmgs[3] = 0;
-        skillList.Add(skill1);
-
-        EnemySkill skill2 = new EnemySkill();
-        skill2.skillName = "스킬2";
-        skill2.tokens[0] = 3;
-        skill2.tokens[1] = 0;
-        skill2.tokens[2] = 0;
-        skill2.tokens[3] = 1;
-        skill2.dmgs[0] = 5;
-        skill2.dmgs[1] = 0;
-        skill2.dmgs[2] = 0;
-        skill2.dmgs[3] = 1;
-        skillList.Add(skill2);
-
-        EnemySkill skill3 = new EnemySkill();
-        skill3.skillName = "스킬3";
-        skill3.tokens[0] = 2;
-        skill3.tokens[1] = 1;
-        skill3.tokens[2] = 0;
-        skill3.tokens[3] = 2;
-        skill3.dmgs[0] = 1;
-        skill3.dmgs[1] = 5;
-        skill3.dmgs[2] = 0;
-        skill3.dmgs[3] = 1;
-        skillList.Add(skill3);
+        StageManager.StageSpread -= StageManager_StageSpread;
+        TurnManager.TurnStart -= TurnManager_TurnStart;
     }
 
-    private void Start()
+    private void StageManager_StageSpread(int obj)
     {
-        skillSpread();
+        int temp = UnityEngine.Random.Range(1, 101);
+        List<EnemyVariation> varis = vari.variations[obj];
+        int i = 0;
+
+        while(true)
+        {
+            if(temp < varis[i].num)
+            {
+                this.enemy = ((Enemy_Base)Activator.CreateInstance(Type.GetType(varis[i].realName)));
+                this.enemyPic.sprite = Resources.Load<Sprite>("Sprite/Enemy/" + enemy.realName);
+                BattleStart?.Invoke(this.enemy.turnCount);
+                break;
+            }
+            i++;
+        }
     }
+
+    private void TurnManager_TurnStart(int obj)
+    {
+        skillSpread(obj);
+    }
+
+    public void skillSpread(int count)
+    {
+        SkillAddedEvent?.Invoke(enemy.skillList[count], enemy.skillList[count].Count);
+    }
+
 }
