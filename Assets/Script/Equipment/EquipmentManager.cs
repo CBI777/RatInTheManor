@@ -74,10 +74,10 @@ public class EquipmentManager : MonoBehaviour
         EquipResistChanged?.Invoke(this.equipment[curEquip].resChange);
     }
 
-    public void obtainEquipment(Equipment eq)
+    public void obtainEquipment(string realName)
     {
         //TODO
-
+        this.equipment.Add(Resources.Load<Equipment>("ScriptableObject/Equipment/" + realName));
         this.equipCount = this.equipment.Count;
         EquipChangedEvent?.Invoke(curEquip, equipCount, this.equipment.ToArray());
     }
@@ -87,19 +87,15 @@ public class EquipmentManager : MonoBehaviour
         //TODO and Action
     }
 
-    private void Awake()
-    {   
-        this.equipment.Add((Equipment)Activator.CreateInstance(Type.GetType("Equipment_Blindfold")));
-        this.equipment.Add((Equipment)Activator.CreateInstance(Type.GetType("Equipment_EyeballJar")));
-        this.equipment.Add((Equipment)Activator.CreateInstance(Type.GetType("Equipment_Lantern")));
-        this.equipCount = this.equipment.Count;
-    }
-
     private void Start()
     {
+        this.equipment.Add(Resources.Load<Equipment>("ScriptableObject/Equipment/Equipment_Pistol"));
+        this.equipment.Add(Resources.Load<Equipment>("ScriptableObject/Equipment/Equipment_Blindfold"));
+        this.equipment.Add(Resources.Load<Equipment>("ScriptableObject/Equipment/Equipment_EyeballJar"));
+        this.equipCount = this.equipment.Count;
         this.turnInitEquip = 0;
         setCurEquip(0);
-        EquipChangedEvent.Invoke(this.curEquip, this.equipCount, this.equipment.ToArray());
+        EquipChangedEvent?.Invoke(this.curEquip, this.equipCount, this.equipment.ToArray());
     }
 
 }

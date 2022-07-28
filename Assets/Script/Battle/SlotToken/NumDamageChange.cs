@@ -22,7 +22,7 @@ public class NumDamageChange : MonoBehaviour
         SkillManager.SkillAddedEvent -= SkillManager_SkillAddedEvent;
     }
 
-    private void SkillManager_SkillAddedEvent(List<EnemySkill> arg1, int arg2)
+    private void SkillManager_SkillAddedEvent(ListWrapper<EnemySkill> arg1, int arg2)
     {
         myText.SetText(arg1[0].dmgs[typeNum].ToString());
     }

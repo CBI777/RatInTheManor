@@ -52,13 +52,12 @@ public class DialogueManager : MonoBehaviour
     /// <param name="imgName"></param>
     /// <param name="content"></param>
     /// <param name="isRight">Right, 즉 적이 보내는 것이면 true</param>
-    public void addDialogue(string imgName, string content, bool isRight)
+    public void addDialogue(string imgName, bool isRight, string content)
     {
         GameObject temp = null;
         if (isRight)
         {
             temp = Instantiate(rightDiaWithPortPrefab, keeper.transform);
-
         }
         else
         {
@@ -66,6 +65,14 @@ public class DialogueManager : MonoBehaviour
         }
         temp.GetComponent<DialogueWPort>().setDialogue(imgName, content);
         scrollRect.content.localPosition = SnapTo(temp.GetComponent<RectTransform>());
+    }
+
+    public void clearDialogue()
+    {
+        foreach (Transform child in keeper.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
     }
 
     private Vector2 SnapTo(RectTransform target)

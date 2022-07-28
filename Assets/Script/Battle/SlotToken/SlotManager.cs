@@ -56,7 +56,7 @@ public class SlotManager : MonoBehaviour
         playerSlot[(int)arg1] = arg2;
         reCalcDamage(((int)arg1));
     }
-    private void SkillManager_SkillAddedEvent(List<EnemySkill> arg1, int arg2)
+    private void SkillManager_SkillAddedEvent(ListWrapper<EnemySkill> arg1, int arg2)
     {
         for(int i = 0; i< arg2;i++)
         {

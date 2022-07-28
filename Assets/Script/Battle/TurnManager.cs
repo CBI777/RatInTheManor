@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 using TMPro;
@@ -9,13 +7,14 @@ public class TurnManager : MonoBehaviour
     public static event Action<int> TurnStart;
     public static event Action BattleEnd;
 
-    [SerializeField] private TextMeshProUGUI counter;
+    [SerializeField] private GameObject counter;
 
     [SerializeField] private int turnCount;
     [SerializeField] private int turnLimit;
 
     private void OnEnable()
     {
+        counter.SetActive(false);
         SkillManager.BattleStart += SkillManager_BattleStart;
     }
 
@@ -28,7 +27,8 @@ public class TurnManager : MonoBehaviour
     {
         turnLimit = count;
         turnCount = 0;
-        this.counter.SetText("남은 턴 : " + (this.turnLimit - this.turnCount));
+        counter.SetActive(true);
+        this.counter.GetComponentInChildren<TextMeshProUGUI>().SetText("남은 턴 : " + (this.turnLimit - this.turnCount));
         TurnStart?.Invoke(turnCount);
     }
 

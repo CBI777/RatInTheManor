@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ListWrapper
+public class ListWrapper<T>
 {
-    public List<string> myList;
+    public List<T> myList;
 
-    public string this[int key]
+    public T this[int key]
     {
         get
         {
@@ -17,5 +17,10 @@ public class ListWrapper
         {
             myList[key] = value;
         }
+    }
+
+    public int Count()
+    {
+        return myList.Count;
     }
 }
