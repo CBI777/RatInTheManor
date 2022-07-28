@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c5a8eb96fb1c20f4c86b04255befa23e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - scrollRect: {instanceID: 0}
+  - keeper: {instanceID: 0}
+  - rightDiaPrefab: {fileID: 3067665639676157764, guid: 8f9a3182bb44bdc43a61dc8e6c508337, type: 3}
+  - leftDiaPrefab: {fileID: 3067665639676157764, guid: 5800edc048c2ad441970b010588fa150, type: 3}
+  - rightDiaWithPortPrefab: {fileID: 3067665639676157764, guid: f64e92107e8b14d43a337720d332c506, type: 3}
+  - leftDiaWithPortPrefab: {fileID: 3067665639676157764, guid: cc20d27184ee59b4cb102c59e7375e69, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
