@@ -14,9 +14,6 @@ public class SkillManager : MonoBehaviour
     //이번 턴의 EnemySkill + Skill 갯수
     public static event Action<ListWrapper<EnemySkill>, int> SkillAddedEvent;
 
-    //skillManager가 StageManager한테서 stage를 받으면, 그거에 맞춰서 skillmanager가 enemy를 고르고, 그러면 BattleStart임.
-    private StageVariations vari = new StageVariations();
-
     //이 int는 남은 턴을 위한거임.
     public static event Action<int> BattleStart;
 
@@ -46,7 +43,7 @@ public class SkillManager : MonoBehaviour
     private void StageManager_StageSpread(int obj)
     {
         int temp = UnityEngine.Random.Range(1, 101);
-        List<EnemyVariation> varis = vari.variations[obj];
+        ListWrapper<EnemyVariation> varis = (Resources.Load<StageVariations>("ScriptableObject/StageVariation/Stage" + obj)).variationList;
         int i = 0;
 
         while(true)
@@ -62,12 +59,7 @@ public class SkillManager : MonoBehaviour
         }
     }
 
-    private void TurnManager_TurnStart(int obj)
-    {
-        skillSpread(obj);
-    }
-
-    public void skillSpread(int count)
+    private void TurnManager_TurnStart(int count)
     {
         SkillAddedEvent?.Invoke(enemy.skillList[count], enemy.skillList[count].Count());
     }

@@ -14,12 +14,14 @@ public class NumDamageChange : MonoBehaviour
         myText = this.transform.GetComponent<TextMeshProUGUI>();
         SkillBtn.SkillChanged += SkillBtn_SkillChanged;
         SkillManager.SkillAddedEvent += SkillManager_SkillAddedEvent;
+        SkillBtn.SkillDiaProgress += SkillBtn_SkillChanged;
     }
 
     private void OnDisable()
     {
         SkillBtn.SkillChanged -= SkillBtn_SkillChanged;
         SkillManager.SkillAddedEvent -= SkillManager_SkillAddedEvent;
+        SkillBtn.SkillDiaProgress -= SkillBtn_SkillChanged;
     }
 
     private void SkillManager_SkillAddedEvent(ListWrapper<EnemySkill> arg1, int arg2)

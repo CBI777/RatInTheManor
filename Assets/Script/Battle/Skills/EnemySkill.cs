@@ -9,7 +9,4 @@ public class EnemySkill
 
     public int[] dmgs = new int[4];
     public int[] tokens = new int[4];
-
-    public string Description;
-    //여기 효과음 넣어야됨
 }

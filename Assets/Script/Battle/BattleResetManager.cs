@@ -50,11 +50,11 @@ public class BattleResetManager : MonoBehaviour
     private void Awake()
     {
         this.audioSource = this.transform.GetComponent<AudioSource>();
+        playerinput = GetComponent<PlayerInput>();
     }
 
     private void Start()
     {
         this.initialPlace = this.Play_ResetArea.position;
-        playerinput = GetComponent<PlayerInput>();
     }
 }

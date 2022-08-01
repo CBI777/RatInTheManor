@@ -13,12 +13,20 @@ public class SupplyUIManager : MonoBehaviour
     {
         SupplyManager.CurSupplyChanged += SupplyManager_CurSupplyChanged;
         SupplyManager.SupplyChangedEvent += SupplyManager_SupplyChangedEvent;
+        TurnEndBtn.TurnEndEvent += TurnEndBtn_TurnEndEvent;
     }
 
     private void OnDisable()
     {
         SupplyManager.CurSupplyChanged -= SupplyManager_CurSupplyChanged;
         SupplyManager.SupplyChangedEvent -= SupplyManager_SupplyChangedEvent;
+        TurnEndBtn.TurnEndEvent -= TurnEndBtn_TurnEndEvent;
+    }
+
+    private void TurnEndBtn_TurnEndEvent()
+    {
+        this.nextBtn.SetActive(false);
+        this.prevBtn.SetActive(false);
     }
 
     private void SupplyManager_SupplyChangedEvent(int count, Supply_Base[] arg2)

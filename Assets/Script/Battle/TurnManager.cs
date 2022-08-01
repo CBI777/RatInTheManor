@@ -16,11 +16,33 @@ public class TurnManager : MonoBehaviour
     {
         counter.SetActive(false);
         SkillManager.BattleStart += SkillManager_BattleStart;
+        BattleDialogueProvider.turnStartDiaEnd += BattleDialogueProvider_turnStartDiaEnd;
+        TurnEndBtn.TurnEndEvent += TurnEndBtn_TurnEndEvent;
     }
 
     private void OnDisable()
     {
         SkillManager.BattleStart -= SkillManager_BattleStart;
+        BattleDialogueProvider.turnStartDiaEnd -= BattleDialogueProvider_turnStartDiaEnd;
+        TurnEndBtn.TurnEndEvent -= TurnEndBtn_TurnEndEvent;
+    }
+
+    private void TurnEndBtn_TurnEndEvent()
+    {
+        this.counter.GetComponentInChildren<TextMeshProUGUI>().SetText("≥≤¿∫ ≈œ : " + (this.turnLimit - this.turnCount - 1));
+    }
+
+    private void BattleDialogueProvider_turnStartDiaEnd()
+    {
+        turnCount++;
+        if(turnCount == turnLimit)
+        {
+            //battleEnd
+        }
+        else
+        {
+            TurnStart?.Invoke(turnCount);
+        }
     }
 
     private void SkillManager_BattleStart(int count)

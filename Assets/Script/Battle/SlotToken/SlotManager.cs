@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[Serializable]
 public enum DmgType
 {
     Phys, Fear, Abhorr, Delus
@@ -13,6 +14,7 @@ public class SlotManager : MonoBehaviour
     public static event Action<float, float, float, float> CoefChanged;
     public static event Action<int[]> TotalDmgChanged;
     public static event Action<int, int, int, int, int> FinalDmgChanged;
+    public static event Action<int> TotalDmgPass;
 
     [SerializeField] private int curSkill = 0;
 
@@ -32,6 +34,7 @@ public class SlotManager : MonoBehaviour
         SkillManager.SkillAddedEvent += SkillManager_SkillAddedEvent;
         SkillBtn.SkillChanged += SkillBtn_SkillChanged;
         Player.ResistChangedEvent += Player_ResistChangedEvent;
+        SkillBtn.SkillDiaProgress += SkillBtn_SkillDiaProgress;
     }
 
     private void OnDisable()
@@ -40,8 +43,16 @@ public class SlotManager : MonoBehaviour
         SkillManager.SkillAddedEvent -= SkillManager_SkillAddedEvent;
         SkillBtn.SkillChanged -= SkillBtn_SkillChanged;
         Player.ResistChangedEvent -= Player_ResistChangedEvent;
+        SkillBtn.SkillDiaProgress -= SkillBtn_SkillDiaProgress;
     }
 
+    private void SkillBtn_SkillDiaProgress(EnemySkill arg1, int arg2)
+    {
+        curSkill = arg2;
+        CoefChanged?.Invoke(coef[curSkill, 0], coef[curSkill, 1], coef[curSkill, 2], coef[curSkill, 3]);
+        FinalDmgChanged?.Invoke(finalDmg[curSkill, 0], finalDmg[curSkill, 1], finalDmg[curSkill, 2], finalDmg[curSkill, 3], finalDmg[curSkill, 4]);
+        TotalDmgPass?.Invoke(totalDmg[4]);
+    }
 
     private void Player_ResistChangedEvent(int[] obj)
     {
@@ -58,6 +69,7 @@ public class SlotManager : MonoBehaviour
     }
     private void SkillManager_SkillAddedEvent(ListWrapper<EnemySkill> arg1, int arg2)
     {
+        skillList.Clear();
         for(int i = 0; i< arg2;i++)
         {
             skillList.Add(arg1[i]);

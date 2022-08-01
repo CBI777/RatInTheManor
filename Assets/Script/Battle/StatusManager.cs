@@ -17,6 +17,9 @@ public class StatusManager : MonoBehaviour
     [SerializeField] private int obsession; //(삶에 대한) 집착. 한계 이상으로 쌓이게 되면 의지나 나약이 되어버린다.
     [SerializeField] private int obsessionMax;
 
+    [SerializeField] private int madnessSub; //이성이 광기로 치환되는 양
+    [SerializeField] private int obsessionSub; //이성이 광기로 치환되는 양
+
     [SerializeField] private TextMeshProUGUI sanityText;
     [SerializeField] private TextMeshProUGUI madnessText;
     [SerializeField] private TextMeshProUGUI obsessionText;
@@ -35,15 +38,15 @@ public class StatusManager : MonoBehaviour
     //즉, turn관련 manager들이 주는 action들 내에서 처리가 된다는거임. supply가 뭘 하든 일단 상관이 없음.
     //이건 skill을 하나하나 보면서 처리를 해 줄 때도 상관이 없음.
 
-    public static event Action<int> SanityEmptyEvent; //UI쪽에서 받겠지? 뭐... 소리를 지르고...
     public static event Action<int> MadnessFullEvent; //게임 오버와 관련된 아이가 받을 event
-    public static event Action<int> ObsessionFullEvent; //UI쪽과 기벽쪽에서 받겠지?
 
     private void OnEnable()
     {
         Supply_Base.SupplySanityChange += SanityChange;
         Supply_Base.SupplyMadnessChange += MadnessChange;
         Supply_Base.SupplyObsessionChange += ObsessionChange;
+        SlotManager.TotalDmgPass += SanityChange;
+        TurnManager.TurnStart += TurnManager_TurnStart;
     }
 
     private void OnDisable()
@@ -51,8 +54,33 @@ public class StatusManager : MonoBehaviour
         Supply_Base.SupplySanityChange -= SanityChange;
         Supply_Base.SupplyMadnessChange -= MadnessChange;
         Supply_Base.SupplyObsessionChange -= ObsessionChange;
+        SlotManager.TotalDmgPass -= SanityChange;
+        TurnManager.TurnStart -= TurnManager_TurnStart;
     }
 
+    private void TurnManager_TurnStart(int obj)
+    {
+        if(sanity <= 0)
+        {
+            sanitySubstitution();
+        }
+    }
+
+    private void sanitySubstitution()
+    {
+        if(sanity <= sanityBoundary)
+        {
+            SanityChange(-100);
+        }
+        else
+        {
+            int temp = sanity;
+            SanityChange(-1 * temp);
+        }
+
+        MadnessChange(madnessSub);
+        ObsessionChange(obsessionSub);
+    }
 
     private void ObsessionChange(int n)
     {
@@ -112,6 +140,8 @@ public class StatusManager : MonoBehaviour
         this.sanity = 100;
         this.madness = 0;
         this.obsession = 0;
+        this.madnessSub = 10;
+        this.obsessionSub = 20;
 
         SanityChange(80);
         MadnessChange(40);

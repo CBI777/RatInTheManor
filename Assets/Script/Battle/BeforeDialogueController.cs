@@ -17,19 +17,28 @@ public class BeforeDialogueController : MonoBehaviour
     [SerializeField] private int resetMove = 1920;
     [SerializeField] private float resetSpeed = 1f;
 
+
     private void OnEnable()
     {
         SkillManager.enemyDecidedEvent += SkillManager_enemyDecidedEvent;
-        BattleDialogueProvider.PrevDialogueDone += BattleDialogueProvider_PrevDialogueDone;
+        SkillManager.SkillAddedEvent += SkillManager_SkillAddedEvent;
+        BattleDialogueProvider.betweenTurnDia += BattleDialogueProvider_betweenTurnDia;
     }
 
     private void OnDisable()
     {
         SkillManager.enemyDecidedEvent -= SkillManager_enemyDecidedEvent;
-        BattleDialogueProvider.PrevDialogueDone -= BattleDialogueProvider_PrevDialogueDone;
+        SkillManager.SkillAddedEvent -= SkillManager_SkillAddedEvent;
     }
 
-    private void BattleDialogueProvider_PrevDialogueDone()
+    private void BattleDialogueProvider_betweenTurnDia()
+    {
+        this.audioSource.PlayOneShot(clip);
+        playerinput.actions.FindActionMap("PlayerInput").Disable();
+        Play_CoverArea.DOAnchorPos(new Vector2(0, -180f), resetSpeed);
+    }
+
+    private void SkillManager_SkillAddedEvent(ListWrapper<EnemySkill> arg1, int arg2)
     {
         this.audioSource.PlayOneShot(clip);
         Play_CoverArea.DOAnchorPos(new Vector2(-resetMove, -180f), resetSpeed);
@@ -40,15 +49,10 @@ public class BeforeDialogueController : MonoBehaviour
     {
         playerinput.actions.FindActionMap("PlayerInput").Disable();
     }
-
-
+    
     private void Awake()
     {
         this.audioSource = this.transform.GetComponent<AudioSource>();
-    }
-
-    private void Start()
-    {
         playerinput = GetComponent<PlayerInput>();
     }
 }
