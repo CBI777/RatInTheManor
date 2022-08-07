@@ -5,7 +5,7 @@ using TMPro;
 public class TurnManager : MonoBehaviour
 {
     public static event Action<int> TurnStart;
-    public static event Action BattleEnd;
+    public static event Action BattleEndEvent;
 
     [SerializeField] private GameObject counter;
 
@@ -37,7 +37,7 @@ public class TurnManager : MonoBehaviour
         turnCount++;
         if(turnCount == turnLimit)
         {
-            //battleEnd
+            BattleEndEvent?.Invoke();
         }
         else
         {

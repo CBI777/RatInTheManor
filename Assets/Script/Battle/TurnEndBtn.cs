@@ -20,12 +20,19 @@ public class TurnEndBtn : MonoBehaviour
     private void OnEnable()
     {
         BattleResetManager.ResetBoardEvent += buttonReset;
+        TurnManager.TurnStart += TurnManager_TurnStart;
     }
-
     private void OnDisable()
     {
         BattleResetManager.ResetBoardEvent -= buttonReset;
+        TurnManager.TurnStart -= TurnManager_TurnStart;
     }
+
+    private void TurnManager_TurnStart(int obj)
+    {
+        buttonReset();
+    }
+
 
     public void onClick()
     {

@@ -24,12 +24,12 @@ public class InventoryEquipmentChangeBtn : MonoBehaviour
         changeAction = new UnityAction(clickInventoryEquipment);
         gameObject.GetComponent<Button>().onClick.AddListener(changeAction);
         SkillManager.BattleStart += SkillManager_BattleStart;
-        TurnManager.BattleEnd += TurnManager_BattleEnd;
+        TurnManager.BattleEndEvent += TurnManager_BattleEnd;
     }
 
     private void OnDisable()
     {
-        TurnManager.BattleEnd -= TurnManager_BattleEnd;
+        TurnManager.BattleEndEvent -= TurnManager_BattleEnd;
         SkillManager.BattleStart -= SkillManager_BattleStart;
     }
 

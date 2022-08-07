@@ -1,0 +1,226 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 459efb49695cc6a4c9423b2b0f01aaa6, type: 3}
+  m_Name: Status_Script
+  m_EditorClassIdentifier: 
+  script:
+  - myList:
+    - isRight: 0
+      isPorted: 0
+      line: "\uC774\uC131\uC5D0 \uD55C\uACC4\uAC00 \uC654\uB2E4!"
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uAD11\uAE30\uAC00 \uC99D\uAC00\uD588\uB2E4..."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC9D1\uCC29\uC774 \uC99D\uAC00\uD588\uB2E4..."
+      portName: 
+  - myList:
+    - isRight: 0
+      isPorted: 0
+      line: "\uB1CC\uAC00 \uB4A4\uD2C0\uB9B4 \uC815\uB3C4\uC758 \uAC10\uAC01\uC774
+        \uB1CC\uB97C \uB4A4\uD754\uB4E0\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC774\uC131\uC5D0 \uBC84\uD2F8 \uC218 \uC5C6\uC744 \uC815\uB3C4\uC758
+        \uD55C\uACC4\uAC00 \uC654\uB2E4!"
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uAD11\uAE30\uAC00 \uC99D\uAC00\uD588\uB2E4..."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC9D1\uCC29\uC774 \uC99D\uAC00\uD588\uB2E4..."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC5B4\uB5BB\uAC8C\uB4E0 \uC774\uC131\uC744 \uB418\uCC3E\uC558\uC9C0\uB9CC,
+        \uC644\uC804\uD558\uC9C0 \uBABB\uD558\uB2E4..."
+      portName: 
+  - myList:
+    - isRight: 0
+      isPorted: 1
+      line: "...\uC751? \uC7A0\uAE50..."
+      portName: Dislike
+    - isRight: 0
+      isPorted: 1
+      line: "\uC5B4\uC774! \uC7A1\uB150\uC744 \uBC84\uB9AC\uB77C\uAD6C!"
+      portName: Disappointed
+    - isRight: 0
+      isPorted: 0
+      line: "\uB2F9\uC2E0\uC758 \uBA38\uB9BF\uC18D\uC5D4 \uC774\uBBF8 \uC0B4\uAE30\uC704\uD55C
+        \uC9D1\uCC29\uB9CC\uC774 \uAC00\uB4DD\uCC28\uBC84\uB838\uB2E4..."
+      portName: 
+    - isRight: 0
+      isPorted: 1
+      line: "...\uC774\uAC74 \uAE00\uB800\uAD6C\uB9CC. \uB05D\uB098\uACE0 \uB610
+        \uBB54\uAC00\uC5D0 \uC9D1\uCC29\uD558\uAC8C \uB418\uACA0\uC5B4."
+      portName: Disappointed
+  - myList:
+    - isRight: 0
+      isPorted: 1
+      line: "\uC5B4\uC774- \uAD1C\uCC2E\uB098? \uC544\uC9C1 \uBBF8\uCE58\uBA74 \uC548\uB41C\uB2E4\uACE0."
+      portName: SmirkMild
+    - isRight: 0
+      isPorted: 1
+      line: "\uC544\uC9C1 \uC815\uC2E0 \uB193\uC73C\uBA74 \uC548 \uB41C\uB2E4\uAD6C,
+        \uC54C\uC9C0?"
+      portName: SmirkMild
+    - isRight: 0
+      isPorted: 1
+      line: "\uAD1C\uCC2E\uB098? \uB0B4 \uB9D0 \uB4E4\uB9AC\uC9C0? \uC4F0\uB7EC\uC9C0\uC9C4
+        \uB9D0\uB77C\uAD6C."
+      portName: SmirkLight
+    - isRight: 0
+      isPorted: 1
+      line: "...\uC5B4\uC774- \uB4E4\uB9AC\uB098? \uC815\uC2E0 \uAF49 \uBD99\uB4E4\uB77C\uAD6C-
+        \uCC38\uC544\uBD10-"
+      portName: Disappointed
+    - isRight: 0
+      isPorted: 1
+      line: "(\uC2AC\uC2AC \uC774 \uB140\uC11D\uC744 \uBC84\uB9B4 \uB54C\uAC00 \uC654\uB098...)"
+      portName: Dislike
+  - myList:
+    - isRight: 0
+      isPorted: 1
+      line: "\uC544\uC9C1 \uBC84\uD2F8 \uC218 \uC788\uC9C0? \uC88B\uC544."
+      portName: SmirkMild
+    - isRight: 0
+      isPorted: 1
+      line: "\uD750\uC74C. \uAD1C\uCC2E\uB098? \uC815\uC2E0 \uAF49 \uBD99\uB4E4\uB77C\uAD6C."
+      portName: SmirkLight
+    - isRight: 0
+      isPorted: 1
+      line: "\uC774\uAC70\uC57C \uC6D0. \uB0AF\uBE5B\uC774 \uC5C9\uB9DD\uC774\uAD6C\uB9CC.
+        \uD798 \uB0B4\uB77C\uAD6C."
+      portName: SmirkAru
+    - isRight: 0
+      isPorted: 1
+      line: "\uB208\uC774 \uD750\uB9AC\uBA4D\uD145\uD558\uAD6C\uB9CC. \uC815\uC2E0
+        \uC880 \uCC28\uB824\uBD10!"
+      portName: SmirkSmall
+  - myList:
+    - isRight: 0
+      isPorted: 0
+      line: "\uB2F9\uC2E0\uC740 \uACB0\uAD6D \uBBF8\uCCD0\uBC84\uB838\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uB054\uCC0D\uD55C \uC544\uD514, \uACE0\uD1B5, \uD610\uC624, \uADF8\uB9AC\uACE0
+        \uD604\uD639\uC774 \uB9C8\uC74C\uC744 \uD5E4\uC9D1\uACE0,"
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uBC1B\uC544\uB4E4\uC77C \uC218 \uC5C6\uB294 \uC218\uB9CE\uC740 \uAC83
+        \uB4E4\uC774 \uBA38\uB9AC\uB97C \uD5E4\uC9D1\uB294\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC774\uACF3\uC5D0 \uC624\uB294 \uAC83\uC774 \uC544\uB2C8\uC5C8\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC800 \uBBF8\uCE5C \uAD50\uC218\uB97C \uBBFF\uC5B4\uC11C\uB294 \uC548\uB410\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uB2F9\uC2E0\uC740 \uAC70\uD488\uC744 \uBB3C\uACE0, \uAEBD\uAEBD\uAC70\uB9AC\uBA70
+        \uC6C3\uC5C8\uACE0,"
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC774\uC73D\uACE0 \uC790\uC2E0\uC744 \uBBF8\uCE58\uAC8C \uD55C \uADF8
+        \uC800\uD0DD \uC548\uC73C\uB85C,"
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uB3C4\uB9DD\uCE58\uB4EF, \uD639\uC740 \uB04C\uB9AC\uB4EF \uB6F0\uCCD0
+        \uB4E4\uC5B4\uAC14\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 1
+      line: "...\uC774\uB7F0. \uC774\uBC88 \uB140\uC11D\uC740 \uC5EC\uAE30\uAE4C\uC9C4\uAC00."
+      portName: Disappointed
+    - isRight: 0
+      isPorted: 1
+      line: "...\uCA5D, \uBCC4 \uC218 \uC5C6\uAD6C\uB9CC. \uB3CC\uC544\uAC00\uC57C\uACA0\uC5B4."
+      portName: Dislike
+    - isRight: 0
+      isPorted: 1
+      line: "\uB610 \uAD11\uACE0\uB97C \uB0B4\uC57C\uACA0\uAD6C\uB9CC."
+      portName: MathGaki
+    - isRight: 0
+      isPorted: 1
+      line: "...\uBB50, \uB3C8\uB9CC \uC950\uC5B4\uC8FC\uBA74 \uBBF8\uCCD0\uC8FC\uB294
+        \uBA4D\uCCAD\uC774\uB4E4\uC740 \uAC00\uB4DD\uD558\uB2C8."
+      portName: SmirkSmall
+    - isRight: 0
+      isPorted: 1
+      line: "\uC774\uBC88\uC5D0\uB3C4 \uAE30\uB85D\uC740 \uC5BB\uC5C8\uC73C\uB2C8.
+        \uC5EC\uAE30\uAE4C\uC9C0 \uD574\uB458\uAE4C."
+      portName: SmileDark
+    - isRight: 0
+      isPorted: 0
+      line: "\uAD50\uC218\uB294 \uCF67\uB178\uB798\uB97C \uBD80\uB974\uAE30 \uC2DC\uC791\uD588\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 1
+      line: "\u266C \u266C ~ \u266A~"
+      portName: MathGaki
+    - isRight: 0
+      isPorted: 0
+      line: "\uD53C\uC544\uB178 \uC18C\uB098\uD0C0 11\uBC88 3\uC545\uC7A5."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uACBD\uCF8C\uD55C \uAC78\uC74C\uC73C\uB85C \uB9DD\uC124\uC784 \uC5C6\uC774
+        \uB098\uC544\uAC00\uB294 \uAD50\uC218."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uADF8\uB7F0 \uAD50\uC218\uC5D0\uAC8C \uADF8 \uC5B4\uB5A4 \uAE30\uAD34\uB3C4
+        \uB2EC\uB77C\uBD99\uC9C0 \uBABB\uD588\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uAE30\uAD34\uD55C \uC800\uD0DD\uC758 \uBD84\uC704\uAE30\uC640\uB294
+        \uC5B4\uC6B8\uB9AC\uC9C0 \uC54A\uB294 \uBAA9\uC18C\uB9AC\uAC00"
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uB048\uB355\uD55C \uAD11\uAE30\uC5D0 \uD30C\uBB4D\uD78C \uBCF5\uB3C4\uB97C
+        \uBA54\uC6E0\uACE0,"
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uBC94\uC778\uC744 \uBBF8\uCE58\uAC8C \uB9CC\uB4E0 \uAE30\uAD34\uB4E4\uC744
+        \uACF5\uD3EC\uC5D0 \uB5A8\uAC8C \uD588\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC544\uBB34\uB807\uC9C0 \uC54A\uAC8C \uC800\uD0DD\uC744 \uB098\uC628
+        \uAD50\uC218\uC640 \uD568\uAED8,"
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC800\uD0DD\uC740 \uB2E4\uC2DC\uAE08 \uACE0\uC694\uD55C \uC7A1\uC74C\uC73C\uB85C
+        \uAC00\uB4DD\uCC3C\uB2E4."
+      portName: 
+  - myList:
+    - isRight: 0
+      isPorted: 0
+      line: "\uB2F9\uC2E0\uC740 \uC5B4\uB5BB\uAC8C\uB4E0 \uACF5\uC138\uB97C \uBC84\uD168\uB0C8\uB2E4..."
+      portName: 

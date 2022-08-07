@@ -8,17 +8,17 @@ using TMPro;
 public class StatusManager : MonoBehaviour
 {
     [SerializeField] private int sanity; //이성. 한계 이하로 줄어들면 일정 수준만큼 광기와 집착이 된다.
-    [SerializeField] private int sanityMax; //이성의 최대치. 이성이 전부 줄어들면 여기서부터 다시시작.
-    [SerializeField] private int sanityMin; //이성의 한계.
-    [SerializeField] private int sanityBoundary; //이성이 다음에도 남는 최소 수치
+    private int sanityMax; //이성의 최대치. 이성이 전부 줄어들면 여기서부터 다시시작.
+    private int sanityMin; //이성의 한계.
+    private int sanityBoundary; //이성이 다음에도 남는 최소 수치
 
     [SerializeField] private int madness; //광기. 최대치를 넘어서게 되면 미쳐버린다.
-    [SerializeField] private int madnessMax; //광기의 최대치.
+    private int madnessMax; //광기의 최대치.
     [SerializeField] private int obsession; //(삶에 대한) 집착. 한계 이상으로 쌓이게 되면 의지나 나약이 되어버린다.
-    [SerializeField] private int obsessionMax;
+    private int obsessionMax;
 
-    [SerializeField] private int madnessSub; //이성이 광기로 치환되는 양
-    [SerializeField] private int obsessionSub; //이성이 광기로 치환되는 양
+    private int madnessSub; //이성이 광기로 치환되는 양
+    private int obsessionSub; //이성이 광기로 치환되는 양
 
     [SerializeField] private TextMeshProUGUI sanityText;
     [SerializeField] private TextMeshProUGUI madnessText;
@@ -31,6 +31,8 @@ public class StatusManager : MonoBehaviour
     [SerializeField] private Image MadnessBar;
     [SerializeField] private Image ObsessionBar;
 
+    private int sanityOver; //0이면 안넘음, 1이면 평범하게 넘음, 2라면 boundary를 넘음
+
     //기본적으로 전투 중에는 일단 처리를 한 다음, 턴과 턴 사이에서 확인을 하고 추가적인 무언가를 하도록 되어있기 때문에...
     //일단 sanity가 바닥이 나거나, obsession이 꽉 차거나, Madness가 꽉 차도 '일단은' 아무 문제가 없이 진행이 됨.
 
@@ -38,7 +40,8 @@ public class StatusManager : MonoBehaviour
     //즉, turn관련 manager들이 주는 action들 내에서 처리가 된다는거임. supply가 뭘 하든 일단 상관이 없음.
     //이건 skill을 하나하나 보면서 처리를 해 줄 때도 상관이 없음.
 
-    public static event Action<int> MadnessFullEvent; //게임 오버와 관련된 아이가 받을 event
+    //public static event Action<int> ObsessionFullEvent;
+    public static event Action<int, int, int, int> TurnResultToss;
 
     private void OnEnable()
     {
@@ -46,7 +49,7 @@ public class StatusManager : MonoBehaviour
         Supply_Base.SupplyMadnessChange += MadnessChange;
         Supply_Base.SupplyObsessionChange += ObsessionChange;
         SlotManager.TotalDmgPass += SanityChange;
-        TurnManager.TurnStart += TurnManager_TurnStart;
+        BattleDialogueProvider.betweenTurnDia += BattleDialogueProvider_betweenTurnDia;
     }
 
     private void OnDisable()
@@ -55,29 +58,37 @@ public class StatusManager : MonoBehaviour
         Supply_Base.SupplyMadnessChange -= MadnessChange;
         Supply_Base.SupplyObsessionChange -= ObsessionChange;
         SlotManager.TotalDmgPass -= SanityChange;
-        TurnManager.TurnStart -= TurnManager_TurnStart;
+        BattleDialogueProvider.betweenTurnDia -= BattleDialogueProvider_betweenTurnDia;
     }
 
-    private void TurnManager_TurnStart(int obj)
+    private void BattleDialogueProvider_betweenTurnDia()
     {
-        if(sanity <= 0)
+        //0이면 안넘음, 1이면 평범하게 넘음, 2라면 boundary를 넘음
+        sanityOver = 0;
+        if (sanity <= 0)
         {
             sanitySubstitution();
         }
+        TurnResultToss?.Invoke(sanityOver, sanity, madness, obsession);
     }
 
     private void sanitySubstitution()
     {
-        if(sanity <= sanityBoundary)
+        if((madness + madnessSub) >= 100)
+        {
+            setSanity(0);
+        }
+        else if(sanity <= sanityBoundary)
         {
             SanityChange(-100);
+            sanityOver = 2;
         }
         else
         {
-            int temp = sanity;
-            SanityChange(-1 * temp);
+            setSanity(100);
+            sanityOver = 1;
         }
-
+        
         MadnessChange(madnessSub);
         ObsessionChange(obsessionSub);
     }
@@ -116,6 +127,27 @@ public class StatusManager : MonoBehaviour
 
         this.sanityText.SetText(this.sanity + " / " + sanityMax);
     }
+    private void setSanity(int n)
+    {
+        this.sanity = n;
+
+        if (this.sanity < sanityMin) { this.sanity = sanityMin; }
+        else if (this.sanity > sanityMax) { this.sanity = sanityMax; }
+
+        if (this.sanity <= 0)
+        {
+            this.SanityBar.gameObject.SetActive(false);
+            this.SanityBG.color = new Color(1f, (125 + this.sanity) / 255f, (125 + this.sanity) / 255f);
+        }
+        else
+        {
+            this.SanityBG.color = Color.white;
+            if (!this.SanityBar.gameObject.activeSelf) { this.SanityBar.gameObject.SetActive(true); }
+            this.SanitySlider.value = ((float)this.sanity / sanityMax);
+        }
+
+        this.sanityText.SetText(this.sanity + " / " + sanityMax);
+    }
     private void MadnessChange(int n)
     {
         this.madness += n;
@@ -137,14 +169,15 @@ public class StatusManager : MonoBehaviour
         this.sanityMax = 100;
         this.obsessionMax = 100;
         this.sanityMin = -50;
+        this.sanityBoundary = -30;
         this.sanity = 100;
         this.madness = 0;
         this.obsession = 0;
         this.madnessSub = 10;
         this.obsessionSub = 20;
 
-        SanityChange(80);
-        MadnessChange(40);
-        ObsessionChange(30);
+        SanityChange(40);
+        MadnessChange(70);
+        ObsessionChange(95);
     }
 }

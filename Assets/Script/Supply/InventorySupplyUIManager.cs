@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class InventorySupplyUIManager : MonoBehaviour
 {
+    //일단 이쪽 script를 재사용하기 위해서 처리 안해둠 / 나중에는 처리해야한다.
     //전투 외에서 사용할 수 있으면 참이 된다.
     [SerializeField] private bool[] checkBool = new bool[5];
     [SerializeField] private GameObject[] supply = new GameObject[5];
@@ -16,14 +17,14 @@ public class InventorySupplyUIManager : MonoBehaviour
     {
         SupplyManager.SupplyChangedEvent += SupplyManager_SupplyChangedEvent;
         SkillManager.BattleStart += SkillManager_BattleStart;
-        TurnManager.BattleEnd += TurnManager_BattleEnd;
+        TurnManager.BattleEndEvent += TurnManager_BattleEnd;
     }
 
     private void OnDisable()
     {
         SupplyManager.SupplyChangedEvent -= SupplyManager_SupplyChangedEvent;
         SupplyManager.SupplyChangedEvent -= SupplyManager_SupplyChangedEvent;
-        TurnManager.BattleEnd -= TurnManager_BattleEnd;
+        TurnManager.BattleEndEvent -= TurnManager_BattleEnd;
     }
 
     private void TurnManager_BattleEnd()

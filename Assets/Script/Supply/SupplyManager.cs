@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEngine.UI;
 
 public class SupplyManager : MonoBehaviour
 {
@@ -16,17 +14,38 @@ public class SupplyManager : MonoBehaviour
     public static event Action<int, string, string, string> CurSupplyChanged;
     //Supply 자체에 변화가 있을 경우
     public static event Action<int, Supply_Base[]> SupplyChangedEvent;
+    public static event Action<string> supplyUsed;
 
     private void OnEnable()
     {
         SupplyBtn.SupplyBtnPressed += SupplyBtn_SupplyBtnPressed;
         BattleResetManager.ResetBoardEvent += BattleResetManager_ResetBoardEvent;
+        BattleDialogueProvider.betweenTurnDia += BattleDialogueProvider_betweenTurnDia;
+        TurnEndBtn.TurnEndEvent += TurnEndBtn_TurnEndEvent;
     }
 
     private void OnDisable()
     {
         SupplyBtn.SupplyBtnPressed -= SupplyBtn_SupplyBtnPressed;
         BattleResetManager.ResetBoardEvent -= BattleResetManager_ResetBoardEvent;
+        BattleDialogueProvider.betweenTurnDia -= BattleDialogueProvider_betweenTurnDia;
+        TurnEndBtn.TurnEndEvent -= TurnEndBtn_TurnEndEvent;
+    }
+
+    private void TurnEndBtn_TurnEndEvent()
+    {
+        if(curSupply != 0)
+        {
+            if(supply[curSupply].usage != 0)
+            {
+                supplyUsed?.Invoke(supply[curSupply].supplyName);
+                supply.RemoveAt(curSupply);
+            }
+        }
+    }
+    private void BattleDialogueProvider_betweenTurnDia()
+    {
+        turnStart();
     }
 
     private void BattleResetManager_ResetBoardEvent()
@@ -58,7 +77,9 @@ public class SupplyManager : MonoBehaviour
 
     private void turnStart()
     {
+        //supply에는 noUse가 들어가 있기 때문에 실제로 있는 supply의 갯수는 거기서 -1을 한 것이 된다.
         this.supplyCount = (this.supply.Count - 1);
+        curSupply = 0;
         SupplyChangedEvent?.Invoke(supplyCount, this.supply.ToArray());
         setSupply(0);
     }

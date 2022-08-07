@@ -27,7 +27,7 @@ MonoBehaviour:
         \uC5B4\uB518\uAC00\uB97C \uAC00\uB9AC\uD0A8\uB2E4..."
       sfxName: sfx_swoosh1
       dmgType: 3
-    - dialogue: "\uB9DD\uB839\uC740  \uB2F9\uC2E0\uC744 \uD5A5\uD574 \uC5C9\uC131\uD558\uAC8C
+    - dialogue: "\uB9DD\uB839\uC740 \uB2F9\uC2E0\uC744 \uD5A5\uD574 \uC5C9\uC131\uD558\uAC8C
         \uD314\uC744 \uD5C8\uC6B0\uC801\uAC70\uB838\uB2E4!"
       sfxName: sfx_punch1
       dmgType: 1

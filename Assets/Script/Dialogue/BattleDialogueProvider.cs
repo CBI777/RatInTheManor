@@ -17,13 +17,18 @@ public class BattleDialogueProvider : MonoBehaviour
     [SerializeField] private Button nextBtn;
     [SerializeField] private Button proceedBtn;
 
-    [SerializeField] private Battle_Script batScript;
-    [SerializeField] private EnemySkillDialogue skillScript;
-    //status script
+    private Battle_Script batScript;
+    private EnemySkillDialogue skillScript;
+    [SerializeField] private Battle_Script statusScriptBase;
+    List<scriptClass> realStatusScript = new List<scriptClass>();
 
-    [SerializeField] private int bookmark = 0;
-    [SerializeField] private int batBookmark = 0;
-    [SerializeField] private int skillBookmark = 0;
+    private int bookmark = 0;
+    private int batBookmark = 0;
+    private int skillBookmark = 0;
+
+    private bool isMad = false;
+    private scriptClass supplyDia = new scriptClass(false, false, "", "");
+    private bool supplyUsed = false;
     //bookmark = 각 dialogue 진행시의 책갈피
     //batbookmark = 시작 / 턴 사이에 나오는 enemy 전용 dialogue의 chapter를 찝어두는 책갈피
     //skillScript = 각 skill 발동시에 나오는 enemy의 skill dialogue의 chapter를 찝어두는 책갈피
@@ -43,7 +48,8 @@ public class BattleDialogueProvider : MonoBehaviour
         SkillManager.enemyDecidedEvent += SkillManager_enemyDecidedEvent;
         TurnEndBtn.TurnEndEvent += TurnEndBtn_TurnEndEvent;
         SlotManager.TotalDmgPass += SlotManager_FinalDmgPass;
-        BattleDialogueProvider.betweenTurnDia += BattleDialogueProvider_betweenTurnDia;
+        StatusManager.TurnResultToss += StatusManager_TurnResultToss;
+        SupplyManager.supplyUsed += SupplyManager_supplyUsed;
     }
 
     private void OnDisable()
@@ -51,15 +57,103 @@ public class BattleDialogueProvider : MonoBehaviour
         SkillManager.enemyDecidedEvent -= SkillManager_enemyDecidedEvent;
         TurnEndBtn.TurnEndEvent -= TurnEndBtn_TurnEndEvent;
         SlotManager.TotalDmgPass -= SlotManager_FinalDmgPass;
-        BattleDialogueProvider.betweenTurnDia -= BattleDialogueProvider_betweenTurnDia;
+        StatusManager.TurnResultToss -= StatusManager_TurnResultToss;
+        SupplyManager.supplyUsed -= SupplyManager_supplyUsed;
     }
 
-    private void BattleDialogueProvider_betweenTurnDia()
-    {
-        scriptDisplay(batScript.script[batBookmark][bookmark]);
-        bookmark++;
 
-        if (batScript.script[batBookmark].Count() == 1)
+    private void SupplyManager_supplyUsed(string obj)
+    {
+        this.supplyUsed = true;
+        supplyDia.line = obj + " 를/을 사용했다...";
+    }
+
+    private void StatusManager_TurnResultToss(int over, int san, int mad, int obs)
+    {
+        DialogueManager.Instance.clearDialogue();
+        this.diaProg = DialogueProgress.Status;
+        realStatusScript.Clear();
+        int count = 0;
+
+        //광기가 터졌다면
+        if (mad >= 100)
+        {
+            isMad = true;
+            count = statusScriptBase.script[5].Count();
+            for (int i = 0; i < count; i++)
+            {
+                realStatusScript.Add(statusScriptBase.script[5][i]);
+            }
+        }
+        else
+        {
+            //이성이 안터졌을 때
+            if (over == 0)
+            {
+                if (san >= 80)
+                {
+                    realStatusScript.Add(statusScriptBase.script[4][0]);
+                }
+                else if (san >= 50)
+                {
+                    realStatusScript.Add(statusScriptBase.script[4][1]);
+                }
+                else if (san >= 30)
+                {
+                    realStatusScript.Add(statusScriptBase.script[4][2]);
+                }
+                else
+                {
+                    realStatusScript.Add(statusScriptBase.script[4][3]);
+                }
+                if(supplyUsed)
+                {
+                    realStatusScript.Add(supplyDia);
+                }
+                realStatusScript.Add(statusScriptBase.script[6][0]);
+            }
+            //이성이 터졌을 때
+            else
+            {
+                //문제없이 터졌을 때
+                if (over == 1)
+                {
+                    count = statusScriptBase.script[0].Count();
+                    for (int i = 0; i < count; i++)
+                    {
+                        realStatusScript.Add(statusScriptBase.script[0][i]);
+                    }
+                }
+                //오버해서 터졌을 때
+                else if (over == 2)
+                {
+                    count = statusScriptBase.script[1].Count();
+                    for (int i = 0; i < count; i++)
+                    {
+                        realStatusScript.Add(statusScriptBase.script[1][i]);
+                    }
+                }
+
+                int check = mad / 20;
+                realStatusScript.Add(statusScriptBase.script[3][check]);
+
+                if (obs >= 100)
+                {
+                    count = statusScriptBase.script[2].Count();
+                    for (int i = 0; i < count; i++)
+                    {
+                        realStatusScript.Add(statusScriptBase.script[2][i]);
+                    }
+                }
+                if(supplyUsed) { realStatusScript.Add(supplyDia); }
+                
+                realStatusScript.Add(statusScriptBase.script[6][0]);
+            }
+        }
+
+        supplyUsed = false;
+        scriptDisplay(realStatusScript[bookmark++]);
+        if (realStatusScript.Count == 1)
         {
             proceedBtn.interactable = true;
             nextBtn.interactable = false;
@@ -74,7 +168,6 @@ public class BattleDialogueProvider : MonoBehaviour
     {
         scriptDisplay(skillScript.skillDia[skillBookmark][bookmark]);
         scriptDisplay(false, "이성에 " + obj + "의 피해를 입었다!");
-
 
         if ((skillScript.skillDia[skillBookmark].Count() - 1) == bookmark)
         {
@@ -121,10 +214,16 @@ public class BattleDialogueProvider : MonoBehaviour
     private void SkillManager_enemyDecidedEvent(string obj)
     {
         //이게 들어왔다는 것은 턴 시작 전에 보여줄 것이라는 것
-        this.diaProg = DialogueProgress.Bat;
+        
         this.batScript = Resources.Load<Battle_Script>("ScriptableObject/BattleScript/" + obj);
         this.skillScript = Resources.Load<EnemySkillDialogue>("ScriptableObject/EnemySkillDialogue/" + obj);
+        batDialogueStart();
+        
+    }
 
+    private void batDialogueStart()
+    {
+        this.diaProg = DialogueProgress.Bat;
         scriptDisplay(batScript.script[batBookmark][bookmark]);
         bookmark++;
 
@@ -158,7 +257,12 @@ public class BattleDialogueProvider : MonoBehaviour
         }
         else
         {
-            /*status로 수정*/
+            scriptDisplay(realStatusScript[bookmark++]);
+            if (realStatusScript.Count == bookmark)
+            {
+                proceedBtn.interactable = true;
+                nextBtn.interactable = false;
+            }
         }
     }
     private void diaProceedClicked()
@@ -171,7 +275,6 @@ public class BattleDialogueProvider : MonoBehaviour
             }
             else
             {
-                DialogueManager.Instance.clearDialogue();
                 turnStartDiaEnd?.Invoke();
             }
             //0번이 아니라면 이제 turn이 시작해야함.
@@ -186,8 +289,14 @@ public class BattleDialogueProvider : MonoBehaviour
             bookmark = 0;
             proceedBtn.interactable = false;
 
-            this.diaProg = DialogueProgress.Bat;
             betweenTurnDia?.Invoke();
+        }
+        else
+        {
+            if(isMad) { /*게임오버*/}
+            bookmark = 0;
+            proceedBtn.interactable = false;
+            batDialogueStart();
         }
     }
 }

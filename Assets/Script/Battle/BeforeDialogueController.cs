@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
 using DG.Tweening;
 using UnityEngine.InputSystem;
 
@@ -29,6 +26,7 @@ public class BeforeDialogueController : MonoBehaviour
     {
         SkillManager.enemyDecidedEvent -= SkillManager_enemyDecidedEvent;
         SkillManager.SkillAddedEvent -= SkillManager_SkillAddedEvent;
+        BattleDialogueProvider.betweenTurnDia -= BattleDialogueProvider_betweenTurnDia;
     }
 
     private void BattleDialogueProvider_betweenTurnDia()

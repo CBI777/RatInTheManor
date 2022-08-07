@@ -16,7 +16,7 @@ public class TokenCollector : MonoBehaviour
     private void OnEnable()
     {
         TurnManager.TurnStart += TurnManager_TurnStart;
-        //turnend시에 모든 token을 정리
+        BattleDialogueProvider.betweenTurnDia += BattleDialogueProvider_betweenTurnDia;
         Quirk_Base.TokenChangeEvent += Quirk_Base_TokenChangeEvent;
         TurnEndBtn.TurnEndEvent += TurnEndBtn_TurnEndEvent;
     }
@@ -24,10 +24,19 @@ public class TokenCollector : MonoBehaviour
     private void OnDisable()
     {
         TurnManager.TurnStart -= TurnManager_TurnStart;
+        BattleDialogueProvider.betweenTurnDia -= BattleDialogueProvider_betweenTurnDia;
         Quirk_Base.TokenChangeEvent -= Quirk_Base_TokenChangeEvent;
         TurnEndBtn.TurnEndEvent -= TurnEndBtn_TurnEndEvent;
     }
 
+    private void BattleDialogueProvider_betweenTurnDia()
+    {
+        for (int i = 0; i < tokens.Count; i++)
+        {
+            Destroy(tokens[i]);
+        }
+        tokens.Clear();
+    }
     private void TurnEndBtn_TurnEndEvent()
     {
         TokenDragDrop temp;

@@ -51,7 +51,7 @@ public class SlotManager : MonoBehaviour
         curSkill = arg2;
         CoefChanged?.Invoke(coef[curSkill, 0], coef[curSkill, 1], coef[curSkill, 2], coef[curSkill, 3]);
         FinalDmgChanged?.Invoke(finalDmg[curSkill, 0], finalDmg[curSkill, 1], finalDmg[curSkill, 2], finalDmg[curSkill, 3], finalDmg[curSkill, 4]);
-        TotalDmgPass?.Invoke(totalDmg[4]);
+        TotalDmgPass?.Invoke(finalDmg[curSkill, 4]);
     }
 
     private void Player_ResistChangedEvent(int[] obj)
