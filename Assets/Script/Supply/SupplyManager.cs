@@ -38,6 +38,7 @@ public class SupplyManager : MonoBehaviour
         {
             if(supply[curSupply].usage != 0)
             {
+                //supply[curSupply].onLose();
                 supplyUsed?.Invoke(supply[curSupply].supplyName);
                 supply.RemoveAt(curSupply);
             }

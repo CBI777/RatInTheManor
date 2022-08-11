@@ -33,5 +33,5 @@ MonoBehaviour:
       dmgType: 1
     - dialogue: "\uB9DD\uB839\uC740 \uBAB8\uC744 \uB5A8\uBA70 \uB054\uCC0D\uD55C
         \uBE44\uBA85\uC744 \uB0B4\uC9C8\uB800\uB2E4!"
-      sfxName: sfx_enemyScream2
+      sfxName: sfx_enemyScream4
       dmgType: 1

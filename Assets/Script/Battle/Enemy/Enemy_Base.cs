@@ -7,6 +7,7 @@ public class Enemy_Base : ScriptableObject
     public int turnCount;
     public string enemyName;
     public string realName;
+    public string deathSFX;
 
     public List<ListWrapper<EnemySkill>> skillList = new List<ListWrapper<EnemySkill>>();
 }

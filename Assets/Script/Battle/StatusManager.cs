@@ -41,7 +41,8 @@ public class StatusManager : MonoBehaviour
     //이건 skill을 하나하나 보면서 처리를 해 줄 때도 상관이 없음.
 
     //public static event Action<int> ObsessionFullEvent;
-    public static event Action<int, int, int, int> TurnResultToss;
+    public static event Action<int, int, int, bool> TurnResultToss;
+    public static event Action ObsessionMaxEvent;
 
     private void OnEnable()
     {
@@ -63,13 +64,20 @@ public class StatusManager : MonoBehaviour
 
     private void BattleDialogueProvider_betweenTurnDia()
     {
+        bool temp = false; //집착이 넘치면 true, 아니면 false
         //0이면 안넘음, 1이면 평범하게 넘음, 2라면 boundary를 넘음
         sanityOver = 0;
         if (sanity <= 0)
         {
             sanitySubstitution();
         }
-        TurnResultToss?.Invoke(sanityOver, sanity, madness, obsession);
+        if(obsession >= obsessionMax)
+        {
+            ObsessionChange(-1 * obsession);
+            ObsessionMaxEvent?.Invoke();
+            temp = true;
+        }
+        TurnResultToss?.Invoke(sanityOver, sanity, madness, temp);
     }
 
     private void sanitySubstitution()
@@ -176,7 +184,7 @@ public class StatusManager : MonoBehaviour
         this.madnessSub = 10;
         this.obsessionSub = 20;
 
-        SanityChange(40);
+        SanityChange(95);
         MadnessChange(70);
         ObsessionChange(95);
     }

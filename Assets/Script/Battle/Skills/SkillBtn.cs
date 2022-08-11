@@ -25,6 +25,7 @@ public class SkillBtn : MonoBehaviour
         BattleDialogueProvider.betweenTurnDia += BattleDialogueProvider_betweenTurnDia;
     }
 
+
     private void OnDisable()
     {
         SkillManager.SkillAddedEvent -= SkillManager_SkillAddedEvent;
@@ -32,6 +33,7 @@ public class SkillBtn : MonoBehaviour
         BattleDialogueProvider.skillDiaStart -= BattleDialogueProvider_skillDiaStart;
         SkillBtn.SkillDiaProgress -= SkillBtn_SkillDiaProgress;
     }
+
 
     private void BattleDialogueProvider_betweenTurnDia()
     {

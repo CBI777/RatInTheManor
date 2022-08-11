@@ -43,7 +43,7 @@ public class BeforeDialogueController : MonoBehaviour
         playerinput.actions.FindActionMap("PlayerInput").Enable();
     }
 
-    private void SkillManager_enemyDecidedEvent(string obj)
+    private void SkillManager_enemyDecidedEvent(string obj, string sfx)
     {
         playerinput.actions.FindActionMap("PlayerInput").Disable();
     }

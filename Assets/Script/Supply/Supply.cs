@@ -38,10 +38,10 @@ public class Supply_Base
         this.description = "네가 이걸 보고 있다는 것은 설명이 적히지 않았다는 뜻이겠지... 그래... 그런건가...";
         this.batDescription = "네가 이걸 보고 있다는 것은 게을렀다는 뜻이겠지... 뭘 보고 있는거지? 한가한 것 같군.";
     }
-    public virtual void onObtain() { }
+    //public virtual void onObtain() { }
     public virtual void onUse() { }
     public virtual void onStopUse() { }
-    public virtual void onLose() { }
+    //public virtual void onLose() { }
 
     public void changeMadness(int n)
     {
@@ -113,7 +113,6 @@ public class Supply_Painkiller : Supply_Base
         changeResist_temp(-2, 0, 0, 0);
     }
 }
-
 
 public class Supply_Abhorrpainting : Supply_Base
 {

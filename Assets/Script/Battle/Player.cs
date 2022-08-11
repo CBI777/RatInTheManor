@@ -5,10 +5,14 @@ using System;
 
 public class Player : MonoBehaviour
 {
+    //기본적으로 가지고 있는 resist
     [SerializeField] private int[] naturalResist = new int[4];
 
+    //전체 resist
     [SerializeField] private int[] totalResist = new int[4];
+    //equip으로부터 가져오는 resist
     [SerializeField] private int[] equipResist = new int[4];
+    //supply로부터 가져오는 resist
     [SerializeField] private int[] supplyResist = new int[4];
 
     public static event Action<int[]> ResistChangedEvent;

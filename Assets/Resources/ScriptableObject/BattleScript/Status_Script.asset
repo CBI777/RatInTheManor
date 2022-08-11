@@ -66,8 +66,8 @@ MonoBehaviour:
       portName: 
     - isRight: 0
       isPorted: 1
-      line: "...\uC774\uAC74 \uAE00\uB800\uAD6C\uB9CC. \uB05D\uB098\uACE0 \uB610
-        \uBB54\uAC00\uC5D0 \uC9D1\uCC29\uD558\uAC8C \uB418\uACA0\uC5B4."
+      line: "...\uC774\uAC74 \uAE00\uB800\uAD6C\uB9CC. \uB610 \uBB54\uAC00\uC5D0
+        \uC9D1\uCC29\uD558\uAC8C \uB418\uACA0\uC5B4."
       portName: Disappointed
   - myList:
     - isRight: 0

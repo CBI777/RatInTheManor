@@ -38,7 +38,8 @@ MonoBehaviour:
       portName: 
     - isRight: 0
       isPorted: 1
-      line: "\uD750\uD760. \uC800\uB807\uAC8C \uBD80\uD328\uD588\uB294\uB370 \uC0B4\uC544\uC788\uB2E4\uB2C8."
+      line: "\uC624\uD638! \uC800\uB807\uAC8C \uBD80\uD328\uD588\uB294\uB370 \uBA40\uCA61\uD788
+        \uC6C0\uC9C1\uC774\uB2E4\uB2C8!"
       portName: Curious
     - isRight: 0
       isPorted: 1
@@ -78,11 +79,11 @@ MonoBehaviour:
       isPorted: 1
       line: "\uC54C\uACA0\uC5B4. \uC54C\uACA0\uC73C\uB2C8\uAE4C. \uB450 \uBC88 \uC815\uB3C4\uB9CC
         \uCC38\uC544\uBD10."
-      portName: AngrySmall
+      portName: Pout
     - isRight: 0
       isPorted: 1
       line: "\uADF8 \uC815\uB3C4\uB85C \uD0C0\uD611\uD574\uC8FC\uC9C0."
-      portName: AngrySmall
+      portName: SmirkMild
   - myList:
     - isRight: 0
       isPorted: 1
@@ -91,7 +92,7 @@ MonoBehaviour:
       portName: SmileSmall
     - isRight: 0
       isPorted: 0
-      line: "\uB2F9\uC2E0\uC740 \uD0DC\uD3C9\uD55C \uBC15\uC0AC\uC5D0\uAC8C \uC774\uCBE4\uD558\uBA74
+      line: "\uB2F9\uC2E0\uC740 \uD0DC\uD3C9\uD55C \uAD50\uC218\uC5D0\uAC8C \uC774\uCBE4\uD558\uBA74
         \uB418\uC9C0 \uC54A\uC558\uB0D0\uACE0,"
       portName: 
     - isRight: 0
@@ -102,7 +103,7 @@ MonoBehaviour:
       isPorted: 1
       line: "\uC54C\uC558\uC5B4. \uC54C\uC558\uB2E4\uACE0. \uC870\uAE08\uB9CC \uB354
         \uAE30\uB85D\uD560\uAED8."
-      portName: AngrySmall
+      portName: Pout
     - isRight: 0
       isPorted: 1
       line: "\uD55C \uBC88 \uC815\uB3C4\uB9CC \uB354 \uBC84\uD168\uBD10. \uADF8 \uC815\uB3C8
@@ -130,11 +131,15 @@ MonoBehaviour:
       portName: NoThought
     - isRight: 0
       isPorted: 1
-      line: "\uC5B4\uB77C? \uAD1C\uCC2E\uC544? \uC800\uD0DD\uC740 \uC544\uC9C1 \uC2DC\uC791\uC778\uB370."
+      line: "\uC5B4\uB77C? \uAD1C\uCC2E\uC544? \uC800\uD0DD\uC740 \uC774\uC81C \uC2DC\uC791\uC778\uB370."
       portName: SmirkMild
     - isRight: 0
       isPorted: 1
-      line: "\uBB50, \uC120\uD0DD\uAD8C\uC774 \uC788\uB294 \uAC83\uB3C4 \uC544\uB2C8\uC9C0\uB9CC."
+      line: "\uBB50, \uBB38\uC774 \uC7A0\uACA8\uBC84\uB838\uC73C\uB2C8,"
+      portName: SmirkMild
+    - isRight: 0
+      isPorted: 1
+      line: "\uB2EC\uB9AC \uC120\uD0DD\uAD8C\uC774 \uC788\uB294 \uAC83\uB3C4 \uC544\uB2C8\uC9C0\uB9CC."
       portName: SmirkMild
     - isRight: 0
       isPorted: 1

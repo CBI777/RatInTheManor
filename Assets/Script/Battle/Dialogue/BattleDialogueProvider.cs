@@ -16,6 +16,9 @@ public class BattleDialogueProvider : MonoBehaviour
 
     [SerializeField] private Button nextBtn;
     [SerializeField] private Button proceedBtn;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource nextSource;
+    [SerializeField] private AudioClip nextClip;
 
     private Battle_Script batScript;
     private EnemySkillDialogue skillScript;
@@ -25,6 +28,9 @@ public class BattleDialogueProvider : MonoBehaviour
     private int bookmark = 0;
     private int batBookmark = 0;
     private int skillBookmark = 0;
+
+    private int batBookmarkLimit = 0;
+    private string deathSFX;
 
     private bool isMad = false;
     private scriptClass supplyDia = new scriptClass(false, false, "", "");
@@ -37,6 +43,7 @@ public class BattleDialogueProvider : MonoBehaviour
     public static event Action betweenTurnDia;
     public static event Action turnStartDiaEnd;
 
+    public static event Action FinalDia;
     //이걸로 몇 번째(int) 스킬의 dialogue가 진행될 것인지를 알려줌.
     public static event Action<int> skillDiaStart;
 
@@ -68,7 +75,7 @@ public class BattleDialogueProvider : MonoBehaviour
         supplyDia.line = obj + " 를/을 사용했다...";
     }
 
-    private void StatusManager_TurnResultToss(int over, int san, int mad, int obs)
+    private void StatusManager_TurnResultToss(int over, int san, int mad, bool obs)
     {
         DialogueManager.Instance.clearDialogue();
         this.diaProg = DialogueProgress.Status;
@@ -137,7 +144,7 @@ public class BattleDialogueProvider : MonoBehaviour
                 int check = mad / 20;
                 realStatusScript.Add(statusScriptBase.script[3][check]);
 
-                if (obs >= 100)
+                if (obs)
                 {
                     count = statusScriptBase.script[2].Count();
                     for (int i = 0; i < count; i++)
@@ -166,6 +173,7 @@ public class BattleDialogueProvider : MonoBehaviour
 
     private void SlotManager_FinalDmgPass(int obj)
     {
+        audioSource.PlayOneShot(Resources.Load<AudioClip>("SFX/Battle/" + skillScript.skillDia[skillBookmark][bookmark].sfxName));
         scriptDisplay(skillScript.skillDia[skillBookmark][bookmark]);
         scriptDisplay(false, "이성에 " + obj + "의 피해를 입었다!");
 
@@ -211,19 +219,24 @@ public class BattleDialogueProvider : MonoBehaviour
         DialogueManager.Instance.addDialogue(isRight, line);
     }
 
-    private void SkillManager_enemyDecidedEvent(string obj)
+    private void SkillManager_enemyDecidedEvent(string obj, string sfx)
     {
         //이게 들어왔다는 것은 턴 시작 전에 보여줄 것이라는 것
-        
+        this.deathSFX = sfx;
         this.batScript = Resources.Load<Battle_Script>("ScriptableObject/BattleScript/" + obj);
         this.skillScript = Resources.Load<EnemySkillDialogue>("ScriptableObject/EnemySkillDialogue/" + obj);
+        batBookmarkLimit = batScript.script.Count;
         batDialogueStart();
-        
     }
 
     private void batDialogueStart()
     {
         this.diaProg = DialogueProgress.Bat;
+        if((this.batBookmark + 1) == batBookmarkLimit)
+        {
+            audioSource.PlayOneShot(Resources.Load<AudioClip>("SFX/Battle/" + this.deathSFX));
+            FinalDia?.Invoke();
+        }
         scriptDisplay(batScript.script[batBookmark][bookmark]);
         bookmark++;
 
@@ -240,6 +253,7 @@ public class BattleDialogueProvider : MonoBehaviour
 
     private void diaNextClicked()
     {
+        nextSource.PlayOneShot(nextClip);
         if (this.diaProg == DialogueProgress.Bat)
         {
             scriptDisplay(batScript.script[batBookmark][bookmark]);
@@ -267,6 +281,7 @@ public class BattleDialogueProvider : MonoBehaviour
     }
     private void diaProceedClicked()
     {
+        nextSource.PlayOneShot(nextClip);
         if (this.diaProg == DialogueProgress.Bat)
         {
             if (batBookmark == 0)

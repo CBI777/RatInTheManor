@@ -18,6 +18,7 @@ public class TurnManager : MonoBehaviour
         SkillManager.BattleStart += SkillManager_BattleStart;
         BattleDialogueProvider.turnStartDiaEnd += BattleDialogueProvider_turnStartDiaEnd;
         TurnEndBtn.TurnEndEvent += TurnEndBtn_TurnEndEvent;
+        BattleDialogueProvider.FinalDia += BattleDialogueProvider_FinalDia;
     }
 
     private void OnDisable()
@@ -25,6 +26,12 @@ public class TurnManager : MonoBehaviour
         SkillManager.BattleStart -= SkillManager_BattleStart;
         BattleDialogueProvider.turnStartDiaEnd -= BattleDialogueProvider_turnStartDiaEnd;
         TurnEndBtn.TurnEndEvent -= TurnEndBtn_TurnEndEvent;
+        BattleDialogueProvider.FinalDia -= BattleDialogueProvider_FinalDia;
+    }
+
+    private void BattleDialogueProvider_FinalDia()
+    {
+        counter.SetActive(false);
     }
 
     private void TurnEndBtn_TurnEndEvent()

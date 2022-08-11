@@ -11,6 +11,8 @@ public class TurnEndBtn : MonoBehaviour
     [SerializeField] private TextMeshProUGUI myText;
     [SerializeField] private Button btn;
     [SerializeField] private Image img;
+    [SerializeField] private AudioSource audSource;
+    [SerializeField] private AudioClip audClip;
 
     private Color oriColor = new Color(250f / 255f, 164f / 255f, 131f / 255f);
     private Color selClr = new Color(233f / 255f, 88f / 255f, 43f / 255f);
@@ -36,6 +38,7 @@ public class TurnEndBtn : MonoBehaviour
 
     public void onClick()
     {
+        audSource.PlayOneShot(audClip);
         if (clicked)
         {
             this.img.color = oriColor;

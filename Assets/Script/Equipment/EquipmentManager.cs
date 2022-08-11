@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -7,10 +6,13 @@ public class EquipmentManager : MonoBehaviour
 {
     private List<Equipment> equipment = new List<Equipment>();
 
-    [SerializeField] private int turnInitEquip = 0;
-    [SerializeField] private int curEquip = 0;
-    [SerializeField] private int tempEquip = 0;
-    [SerializeField] private int equipCount;
+    [SerializeField] private ListOfItems equipList;
+
+
+    private int turnInitEquip = 0;
+    private int curEquip = 0;
+    private int tempEquip = 0;
+    private int equipCount;
 
     //'현재' 장착중인 장비가 변화했을 경우
     public static event Action<int, int> CurEquipChanged;
@@ -76,26 +78,28 @@ public class EquipmentManager : MonoBehaviour
 
     public void obtainEquipment(string realName)
     {
-        //TODO
         this.equipment.Add(Resources.Load<Equipment>("ScriptableObject/Equipment/" + realName));
         this.equipCount = this.equipment.Count;
-        EquipChangedEvent?.Invoke(curEquip, equipCount, this.equipment.ToArray());
     }
 
-    public void removeEquipment(int num)
+    private void initEquip(int[] b)
     {
-        //TODO and Action
+        int temp = b.Length;
+        for(int i = 0; i<temp; i++)
+        {
+            obtainEquipment(equipList.items[b[i]]);
+        }
     }
 
     private void Start()
     {
-        this.equipment.Add(Resources.Load<Equipment>("ScriptableObject/Equipment/Equipment_Pistol"));
-        this.equipment.Add(Resources.Load<Equipment>("ScriptableObject/Equipment/Equipment_Blindfold"));
-        this.equipment.Add(Resources.Load<Equipment>("ScriptableObject/Equipment/Equipment_EyeballJar"));
-        this.equipCount = this.equipment.Count;
+        int[] a = { 3, 0, 1 };
+
+        initEquip(a);
         this.turnInitEquip = 0;
+
         setCurEquip(0);
-        EquipChangedEvent?.Invoke(this.curEquip, this.equipCount, this.equipment.ToArray());
+        EquipChangedEvent?.Invoke(curEquip, equipCount, this.equipment.ToArray());
     }
 
 }

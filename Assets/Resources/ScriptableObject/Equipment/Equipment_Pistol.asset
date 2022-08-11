@@ -15,4 +15,5 @@ MonoBehaviour:
   equipName: "\uD53C\uC2A4\uD1A8"
   realName: Equipment_Pistol
   description: "\uACF5\uD3EC \uC800\uD56D + 1\n\uD610\uC624 \uC800\uD56D - 1"
+  index: 3
   resChange: 0000000001000000ffffffff00000000
