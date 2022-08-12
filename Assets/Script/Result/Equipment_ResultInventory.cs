@@ -12,6 +12,8 @@ public class Equipment_ResultInventory : MonoBehaviour
     [SerializeField] private GameObject[] btns = new GameObject[3];
     
     public static event Action<int[]> equipmentChangedEvent;
+    public static event Action<int[]> curEquipPass;
+    public static event Action EquipObtainCompleteFromInventory;
 
     private List<Equipment> equipment = new List<Equipment>();
     [SerializeField] private ListOfItems equipList;
@@ -20,13 +22,43 @@ public class Equipment_ResultInventory : MonoBehaviour
     private int curEquip = 0;
     private int equipCount;
 
+    private string tempEquip = "";
+
     private void OnEnable()
     {
         CurtainsUp.CurtainHasBeenLifted += enableAll;
+        Reward_Equip.EquipObtainComplete += obtainEquipment;
+        Reward_Equip.EquipObtainClicked += Reward_Equip_EquipObtainClicked;
+        Reward_Equip.EquipCancelClicked += enableAll;
+        Reward_Supply.SupplyCancelClicked += enableAll;
+        Reward_Supply.SupplyObtainClicked += Reward_Supply_SupplyObtainClicked;
+        Supply_ResultInventory.SupplyObtainCompleteFromInventory += enableAll;
     }
+
     private void OnDisable()
     {
         CurtainsUp.CurtainHasBeenLifted -= enableAll;
+        Reward_Equip.EquipObtainComplete -= obtainEquipment;
+        Reward_Equip.EquipObtainClicked -= Reward_Equip_EquipObtainClicked;
+        Reward_Equip.EquipCancelClicked -= enableAll;
+        Reward_Supply.SupplyCancelClicked -= enableAll;
+        Reward_Supply.SupplyObtainClicked -= Reward_Supply_SupplyObtainClicked;
+        Supply_ResultInventory.SupplyObtainCompleteFromInventory -= enableAll;
+    }
+
+    private void Reward_Supply_SupplyObtainClicked(string obj)
+    {
+        disableAll();
+    }
+
+    private void Reward_Equip_EquipObtainClicked(string obj)
+    {
+        tempEquip = obj;
+        for (int i = 0; i < equipCount; i++)
+        {
+            btns[i].GetComponent<Button>().interactable = true;
+            btns[i].GetComponentInChildren<TextMeshProUGUI>().SetText("교  환");
+        }
     }
 
     private void CurEquipChange(int a)
@@ -47,6 +79,18 @@ public class Equipment_ResultInventory : MonoBehaviour
                 equipcheck[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/DeselectedEdge");
             }
         }
+        equipmentChangedEvent?.Invoke(equipment[curEquip].resChange);
+    }
+
+    private void EquipmentObtain(int a)
+    {
+        this.equipment.RemoveAt(a);
+        this.equipment.Insert(a, Resources.Load<Equipment>("ScriptableObject/Equipment/" + tempEquip));
+        
+        this.equipCount = this.equipment.Count;
+
+        EquipObtainCompleteFromInventory?.Invoke();
+        EquipChanged();
         equipmentChangedEvent?.Invoke(equipment[curEquip].resChange);
     }
 
@@ -75,7 +119,6 @@ public class Equipment_ResultInventory : MonoBehaviour
                     equipcheck[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/DeselectedEdge");
                 }
                 btns[i].SetActive(true);
-                
             }
             else
             {
@@ -87,7 +130,6 @@ public class Equipment_ResultInventory : MonoBehaviour
 
     private void disableAll()
     {
-
         for (int i = 0; i < equipCount; i++)
         {
             btns[i].GetComponent<Button>().interactable = false;
@@ -98,10 +140,19 @@ public class Equipment_ResultInventory : MonoBehaviour
         CurEquipChange(curEquip);
     }
 
+    private void Reward_EquipmentClicked()
+    {
+        for (int i = 0; i < equipCount; i++)
+        {
+            btns[i].GetComponentInChildren<TextMeshProUGUI>().SetText("교  환");
+        }
+    }
+
     public void obtainEquipment(string realName)
     {
         this.equipment.Add(Resources.Load<Equipment>("ScriptableObject/Equipment/" + realName));
         this.equipCount = this.equipment.Count;
+        EquipChanged();
     }
 
     private void initEquip(int[] b)
@@ -113,15 +164,6 @@ public class Equipment_ResultInventory : MonoBehaviour
         }
     }
 
-    private void initPotenEquip(int[] b)
-    {
-        int temp = b.Length;
-        for (int i = (temp - 1); i >= 0; i--)
-        {
-            potentialEquipment.RemoveAt(b[i]);
-        }
-    }
-
     private void Start()
     {
         for (int i = 0; i < equipList.items.Count; i++)
@@ -129,13 +171,11 @@ public class Equipment_ResultInventory : MonoBehaviour
             this.potentialEquipment.Add(equipList.items[i]);
         }
 
-        int[] a = { 3, 0, 1 };
+        int[] a = { 3, 0};
         initEquip(a);
 
         Array.Sort(a);
-        initPotenEquip(a);
-
-        this.equipCount = this.equipment.Count;
+        curEquipPass?.Invoke(a);
         curEquip = 0;
         CurEquipChange(curEquip);
         EquipChanged();

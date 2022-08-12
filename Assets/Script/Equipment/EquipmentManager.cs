@@ -27,7 +27,6 @@ public class EquipmentManager : MonoBehaviour
         EquipmentChangeBtn.OnECBtnClick += EquipmentChangeBtn_OnECBtnClick;
         EquipmentTokenSlot.EquipSlotDeactivatedEvent += EquipmentTokenSlot_EquipSlotDeactivatedEvent;
         BattleResetManager.ResetBoardEvent += BattleResetManager_ResetBoardEvent;
-        InventoryEquipmentChangeBtn.curEquipChanged += InventoryEquipmentChangeBtn_curEquipChanged;
     }
 
     private void OnDisable()
@@ -36,12 +35,6 @@ public class EquipmentManager : MonoBehaviour
         EquipmentChangeBtn.OnECBtnClick -= EquipmentChangeBtn_OnECBtnClick;
         EquipmentTokenSlot.EquipSlotDeactivatedEvent -= EquipmentTokenSlot_EquipSlotDeactivatedEvent;
         BattleResetManager.ResetBoardEvent -= BattleResetManager_ResetBoardEvent;
-        InventoryEquipmentChangeBtn.curEquipChanged -= InventoryEquipmentChangeBtn_curEquipChanged;
-    }
-
-    private void InventoryEquipmentChangeBtn_curEquipChanged(int obj)
-    {
-        setCurEquip(obj);
     }
 
     private void BattleResetManager_ResetBoardEvent()
