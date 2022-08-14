@@ -12,14 +12,12 @@ public class SupplyUIManager : MonoBehaviour
     private void OnEnable()
     {
         SupplyManager.CurSupplyChanged += SupplyManager_CurSupplyChanged;
-        SupplyManager.SupplyChangedEvent += SupplyManager_SupplyChangedEvent;
         TurnEndBtn.TurnEndEvent += TurnEndBtn_TurnEndEvent;
     }
 
     private void OnDisable()
     {
         SupplyManager.CurSupplyChanged -= SupplyManager_CurSupplyChanged;
-        SupplyManager.SupplyChangedEvent -= SupplyManager_SupplyChangedEvent;
         TurnEndBtn.TurnEndEvent -= TurnEndBtn_TurnEndEvent;
     }
 
@@ -29,26 +27,26 @@ public class SupplyUIManager : MonoBehaviour
         this.prevBtn.SetActive(false);
     }
 
-    private void SupplyManager_SupplyChangedEvent(int count, Supply_Base[] arg2)
-    {
-        if(count == 0)
-        {
-            this.nextBtn.SetActive(false);
-        }
-        this.prevBtn.SetActive(false);
-        this.img.GetComponent<TooltipTrigger>().content = arg2[0].batDescription;
-        this.img.GetComponent<TooltipTrigger>().header = arg2[0].supplyName;
-    }
-
     private void SupplyManager_CurSupplyChanged(int supplyLocation, string realName, string supplyName, string batDescription)
     {
-        if (supplyLocation == 0) { this.prevBtn.SetActive(false); }
-        else { if (!this.prevBtn.activeSelf) { this.prevBtn.SetActive(true); } }
-        if (supplyLocation == 2) { this.nextBtn.SetActive(false); }
-        else { if (!this.nextBtn.activeSelf) { this.nextBtn.SetActive(true); } }
+        Debug.Log(supplyLocation);
+
+        if (supplyLocation > 0) { this.prevBtn.SetActive(true); }
+        else { this.prevBtn.SetActive(false); }
+
+        if(supplyLocation > -1 && supplyLocation < 2) { this.nextBtn.SetActive(true); }
+        else { this.nextBtn.SetActive(false); }
 
         this.img.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/Supply/" + realName);
-        this.img.GetComponent<TooltipTrigger>().content = batDescription;
-        this.img.GetComponent<TooltipTrigger>().header = supplyName;
+        if (supplyLocation == -1)
+        {
+            this.img.GetComponent<TooltipTrigger>().header = "소지중인 소모품 없음";
+            this.img.GetComponent<TooltipTrigger>().content = "소지품 사용 불가";
+        }
+        else
+        {
+            this.img.GetComponent<TooltipTrigger>().content = batDescription;
+            this.img.GetComponent<TooltipTrigger>().header = supplyName;
+        }
     }
 }

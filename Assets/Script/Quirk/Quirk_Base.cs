@@ -118,6 +118,66 @@ public class Quirk_BasicUpDelus : Quirk_Base
     }
 }
 
+public class Quirk_TokenUpOne : Quirk_Base
+{
+    public Quirk_TokenUpOne()
+        : base("신앙심", "Quirk_TokenUpOne", false, 4)
+    {
+        this.quirkDescription = "매 턴 방어 토큰을 한 개 더 얻음";
+    }
+
+    public override void onObtain()
+    {
+        changeToken(1);
+    }
+    public override void onLose()
+    {
+        changeToken(-1);
+    }
+}
+
+public class Quirk_Phys2Abhorr1 : Quirk_Base
+{
+    public Quirk_Phys2Abhorr1()
+        : base("용감무쌍", "Quirk_Phys2Abhorr1", true, 5)
+    {
+        this.quirkDescription = "물리적 피해 저항 + 2\u000a혐오 저항 - 1";
+    }
+
+    public override void onObtain()
+    {
+        changeResist(2, 0, -1, 0);
+    }
+
+    public override void onLose()
+    {
+        changeResist(-2, 0, 1, 0);
+    }
+}
+
+public class Quirk_Fear2Delus1 : Quirk_Base
+{
+    public Quirk_Fear2Delus1()
+        : base("산전수전", "Quirk_Fear2Delus1", true, 6)
+    {
+        this.quirkDescription = "공포 저항 + 2\u000a현혹 저항 - 1";
+    }
+
+    public override void onObtain()
+    {
+        changeResist(0, 2, 0, -1);
+    }
+
+    public override void onLose()
+    {
+        changeResist(0, 2, 0, 1);
+    }
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+
 public class Quirk_BasicDownPhys : Quirk_Base
 {
     public Quirk_BasicDownPhys()
@@ -212,20 +272,40 @@ public class Quirk_TokenDownOne : Quirk_Base
     }
 }
 
-public class Quirk_TokenUpOne : Quirk_Base
+public class Quirk_AllDownOne : Quirk_Base
 {
-    public Quirk_TokenUpOne()
-        : base("신앙심", "Quirk_TokenUpOne", false, 4)
+    public Quirk_AllDownOne()
+        : base("체념", "Quirk_AllDownOne", false, 5)
     {
-        this.quirkDescription = "매 턴 방어 토큰을 한 개 더 얻음";
+        this.quirkDescription = "모든 저항 - 1";
     }
 
     public override void onObtain()
     {
-        changeToken(1);
+        changeResist(-1, -1, -1, -1);
     }
+
     public override void onLose()
     {
-        changeToken(-1);
+        changeResist(1, 1, 1, 1);
+    }
+}
+
+public class Quirk_SevereDownDelus : Quirk_Base
+{
+    public Quirk_SevereDownDelus()
+        : base("주의 산만", "Quirk_SevereDownDelus", false, 6)
+    {
+        this.quirkDescription = "현혹 저항 - 3";
+    }
+
+    public override void onObtain()
+    {
+        changeResist(0, 0, 0, -3);
+    }
+
+    public override void onLose()
+    {
+        changeResist(0, 0, 0, 3);
     }
 }

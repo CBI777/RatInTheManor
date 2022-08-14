@@ -14,6 +14,10 @@ public class BattleDialogueProvider : MonoBehaviour
 {
     [SerializeField] DialogueProgress diaProg;
 
+    [SerializeField] private SaveM_Battle saveManager;
+    private bool startFromMe;
+    private Enemy_Base enemy;
+
     [SerializeField] private Button nextBtn;
     [SerializeField] private Button proceedBtn;
     [SerializeField] private AudioSource audioSource;
@@ -25,11 +29,11 @@ public class BattleDialogueProvider : MonoBehaviour
     [SerializeField] private Battle_Script statusScriptBase;
     List<scriptClass> realStatusScript = new List<scriptClass>();
 
-    private int bookmark = 0;
-    private int batBookmark = 0;
-    private int skillBookmark = 0;
+    private int bookmark;
+    private int batBookmark;
+    private int skillBookmark;
 
-    private int batBookmarkLimit = 0;
+    private int batBookmarkLimit;
     private string deathSFX;
 
     private bool isMad = false;
@@ -47,6 +51,8 @@ public class BattleDialogueProvider : MonoBehaviour
     //이걸로 몇 번째(int) 스킬의 dialogue가 진행될 것인지를 알려줌.
     public static event Action<int> skillDiaStart;
 
+    public static event Action beforeTurnEvent;
+
     private void OnEnable()
     {
         nextBtn.interactable = false;
@@ -57,6 +63,7 @@ public class BattleDialogueProvider : MonoBehaviour
         SlotManager.TotalDmgPass += SlotManager_FinalDmgPass;
         StatusManager.TurnResultToss += StatusManager_TurnResultToss;
         SupplyManager.supplyUsed += SupplyManager_supplyUsed;
+        SaveM_Battle.middleSaveFinished += batDialogueStart;
     }
 
     private void OnDisable()
@@ -66,6 +73,7 @@ public class BattleDialogueProvider : MonoBehaviour
         SlotManager.TotalDmgPass -= SlotManager_FinalDmgPass;
         StatusManager.TurnResultToss -= StatusManager_TurnResultToss;
         SupplyManager.supplyUsed -= SupplyManager_supplyUsed;
+        SaveM_Battle.middleSaveFinished -= batDialogueStart;
     }
 
 
@@ -308,9 +316,51 @@ public class BattleDialogueProvider : MonoBehaviour
         }
         else
         {
-            if(isMad) { /*게임오버*/}
-            bookmark = 0;
-            proceedBtn.interactable = false;
+            if(isMad)
+            {
+                /*게임오버, 즉, killPlayer해야됨.*/
+            }
+            else
+            {
+                bookmark = 0;
+                proceedBtn.interactable = false;
+                beforeTurnEvent?.Invoke();
+            }
+        }
+    }
+
+    private void Awake()
+    {
+        startFromMe = false;
+        //save되어있는 것이 battle 상황에서 저장된 것이라면
+        if (saveManager.saving.isBattle)
+        {
+            if(saveManager.saving.turn != -1)
+            {
+                startFromMe = true;
+
+                this.enemy = Resources.Load<Enemy_Base>("ScriptableObject/Enemy/" + saveManager.saving.selEnemy);
+                this.deathSFX = this.enemy.deathSFX;
+                this.batScript = Resources.Load<Battle_Script>("ScriptableObject/BattleScript/" + enemy.realName);
+                this.skillScript = Resources.Load<EnemySkillDialogue>("ScriptableObject/EnemySkillDialogue/" + enemy.realName);
+                batBookmarkLimit = batScript.script.Count;
+                this.batBookmark = (saveManager.saving.turn + 1);
+                skillBookmark = saveManager.saving.turn;
+            }
+        }
+        else
+        {
+            batBookmark = 0;
+            skillBookmark = 0;
+            batBookmarkLimit = 0;
+        }
+        bookmark = 0;
+    }
+
+    private void Start()
+    {
+        if(startFromMe)
+        {
             batDialogueStart();
         }
     }

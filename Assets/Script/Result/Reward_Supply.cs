@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
@@ -20,6 +19,15 @@ public class Reward_Supply : MonoBehaviour
     [SerializeField] private ListOfItems supplyList;
     private Supply_Base presentSupply;
 
+    public string getEarnSupply()
+    {
+        return this.presentSupply.realName;
+    }
+    public bool getObtained()
+    {
+        return obtained;
+    }
+
     public static event Action<string> SupplyObtainClicked;
     public static event Action SupplyCancelClicked;
 
@@ -30,21 +38,33 @@ public class Reward_Supply : MonoBehaviour
     {
         CurtainsUp.CurtainHasBeenLifted += enableBtn;
         Equipment_ResultInventory.EquipObtainCompleteFromInventory += enableBtn;
-        Reward_Equip.EquipObtainClicked += Reward_Equip_EquipObtainClicked;
+        Reward_Equip.EquipObtainClicked += disableBtn;
         Reward_Equip.EquipCancelClicked += enableBtn;
         Supply_ResultInventory.SupplyReady += initPotenEquip;
         Supply_ResultInventory.SupplyObtainCompleteFromInventory += Supply_ResultInventory_SupplyObtainCompleteFromInventory;
+        Supply_ResultInventory.SupplyUsedInventory += Supply_ResultInventory_SupplyUsedInventory;
+        Reward_Hallucination.HalluObtainClicked += disableBtn;
+        Reward_Hallucination.HalluCancelClicked += enableBtn;
+        PackComplete.CompletePressed += disableBtn;
     }
 
     private void OnDisable()
     {
         CurtainsUp.CurtainHasBeenLifted -= enableBtn;
         Equipment_ResultInventory.EquipObtainCompleteFromInventory -= enableBtn;
-        Reward_Equip.EquipObtainClicked -= Reward_Equip_EquipObtainClicked;
+        Reward_Equip.EquipObtainClicked -= disableBtn;
         Reward_Equip.EquipCancelClicked -= enableBtn;
         Supply_ResultInventory.SupplyReady -= initPotenEquip;
         Supply_ResultInventory.SupplyObtainCompleteFromInventory -= Supply_ResultInventory_SupplyObtainCompleteFromInventory;
+        Supply_ResultInventory.SupplyUsedInventory -= Supply_ResultInventory_SupplyUsedInventory;
+        Reward_Hallucination.HalluObtainClicked -= disableBtn;
+        Reward_Hallucination.HalluCancelClicked -= enableBtn;
+        PackComplete.CompletePressed -= disableBtn;
+    }
 
+    private void Supply_ResultInventory_SupplyUsedInventory()
+    {
+        this.trouble = false;
     }
 
     private void Supply_ResultInventory_SupplyObtainCompleteFromInventory()
@@ -55,29 +75,21 @@ public class Reward_Supply : MonoBehaviour
         this.check.SetActive(true);
     }
 
-    private void Reward_Equip_EquipObtainClicked(string obj)
-    {
-        this.btn.GetComponent<Button>().interactable = false;
-    }
-
     private void disableBtn()
     {
         this.btn.GetComponent<Button>().interactable = false;
     }
+    private void disableBtn(string obj)
+    {
+        this.btn.GetComponent<Button>().interactable = false;
+    }
+
     private void enableBtn()
     {
         if(!obtained)
         {
             this.btn.GetComponent<Button>().interactable = true;
         }
-    }
-
-    private void Supply_ResultInventory_SupplyObtainComplete()
-    {
-        this.btn.GetComponent<Button>().interactable = false;
-        obtained = true;
-        this.btn.GetComponentInChildren<TextMeshProUGUI>().SetText("획득 완료");
-        this.check.SetActive(true);
     }
 
     private void initPotenEquip(int b)
@@ -122,6 +134,7 @@ public class Reward_Supply : MonoBehaviour
                 situ = true;
                 //이걸로 일단 다른 애들을 다 잠그고,
                 SupplyObtainClicked?.Invoke(presentSupply.realName);
+                this.btn.GetComponent<Image>().color = new Color32(165, 255, 235, 255);
                 this.btn.GetComponentInChildren<TextMeshProUGUI>().SetText("획득 보류");
             }
             //취소를 클릭했다면
@@ -129,6 +142,7 @@ public class Reward_Supply : MonoBehaviour
             {
                 situ = false;
                 SupplyCancelClicked?.Invoke();
+                this.btn.GetComponent<Image>().color = Color.white;
                 this.btn.GetComponentInChildren<TextMeshProUGUI>().SetText("획  득");
             }
         }

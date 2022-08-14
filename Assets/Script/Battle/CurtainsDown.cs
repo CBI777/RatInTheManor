@@ -2,7 +2,6 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.InputSystem;
 using System.Collections;
-using System;
 
 public class CurtainsDown : MonoBehaviour
 {
@@ -31,7 +30,6 @@ public class CurtainsDown : MonoBehaviour
 
     private void SkillManager_enemyDecidedEvent(string arg1, string arg2)
     {
-        playerinput.actions.FindActionMap("PlayerInput").Disable();
         Curtain.DOAnchorPos(new Vector2(0, 1100f), resetSpeed);
         StartCoroutine(PlaySound());
     }
@@ -43,6 +41,7 @@ public class CurtainsDown : MonoBehaviour
 
     private void TurnEndBtn_TurnEndEvent()
     {
+        //esc빼고 잠금?
         playerinput.actions.FindActionMap("PlayerInput").Disable();
     }
 
@@ -54,6 +53,7 @@ public class CurtainsDown : MonoBehaviour
     }
     private IEnumerator PlaySound()
     {
+        //enemyDecided에서 왔으면 esc빼고 잠금?
         this.audioSource.Play();
         yield return new WaitForSeconds(resetSpeed);
         this.audioSource.Stop();
@@ -62,5 +62,6 @@ public class CurtainsDown : MonoBehaviour
     private void Awake()
     {
         playerinput = GetComponent<PlayerInput>();
+        playerinput.actions.FindActionMap("PlayerInput").Disable();
     }
 }

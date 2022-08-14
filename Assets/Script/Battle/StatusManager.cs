@@ -17,8 +17,14 @@ public class StatusManager : MonoBehaviour
     [SerializeField] private int obsession; //(삶에 대한) 집착. 한계 이상으로 쌓이게 되면 의지나 나약이 되어버린다.
     private int obsessionMax;
 
+    public int getSanity() { return sanity; }
+    public int getMadness() { return madness; }
+    public int getObsession() { return obsession; }
+
     private int madnessSub; //이성이 광기로 치환되는 양
     private int obsessionSub; //이성이 광기로 치환되는 양
+
+    [SerializeField] private SaveM_Battle saveManager;
 
     [SerializeField] private TextMeshProUGUI sanityText;
     [SerializeField] private TextMeshProUGUI madnessText;
@@ -88,12 +94,12 @@ public class StatusManager : MonoBehaviour
         }
         else if(sanity <= sanityBoundary)
         {
-            SanityChange(-100);
+            SanityChange((-1 * sanityMax));
             sanityOver = 2;
         }
         else
         {
-            setSanity(100);
+            setSanity(sanityMax);
             sanityOver = 1;
         }
         
@@ -171,21 +177,21 @@ public class StatusManager : MonoBehaviour
         this.MadnessBar.color = new Color((200 - (70 * temp)) / 255f, (150 - (150 * temp)) / 255f, 1f);
     }
 
-    private void Start()
+    private void Awake()
     {
         this.madnessMax = 100;
         this.sanityMax = 100;
         this.obsessionMax = 100;
         this.sanityMin = -50;
         this.sanityBoundary = -30;
-        this.sanity = 100;
-        this.madness = 0;
-        this.obsession = 0;
+        this.sanity = this.saveManager.saving.sanity;
+        this.madness = this.saveManager.saving.madness;
+        this.obsession = this.saveManager.saving.obsession;
         this.madnessSub = 10;
         this.obsessionSub = 20;
 
-        SanityChange(95);
-        MadnessChange(70);
-        ObsessionChange(95);
+        SanityChange(0);
+        ObsessionChange(0);
+        MadnessChange(0);
     }
 }

@@ -7,8 +7,38 @@ public class QuirkManager : MonoBehaviour
 {
     private int quirkLimit = 5;
 
+    [SerializeField] private SaveM_Battle saveManager;
+
     [SerializeField] private ListOfItems willList;
     [SerializeField] private ListOfItems feebleList;
+
+    public int[] getWillNum()
+    {
+        int[] willNum = new int[quirkLimit];
+        for (int i = 0; i < this.quirkLimit; i++)
+        {
+            if (i >= this.willCount) { willNum[i] = -1; }
+            else
+            {
+                willNum[i] = player_will[i].index;
+            }
+        }
+
+        return willNum;
+    }
+    public int[] getFeebleNum()
+    {
+        int[] feebleNum = new int[quirkLimit];
+        for (int i = 0; i < this.quirkLimit; i++)
+        {
+            if (i >= this.feebleCount) { feebleNum[i] = -1; }
+            else
+            {
+                feebleNum[i] = player_feeble[i].index;
+            }
+        }
+        return feebleNum;
+    }
 
     private List<string> potentialWill = new List<string>();
     private List<string> potentialFeeble = new List<string>();
@@ -62,14 +92,8 @@ public class QuirkManager : MonoBehaviour
 
     private void AddWill(string name)
     {
-        if(this.willCount == quirkLimit)
-        {
-            RemoveWill();
-        }
-
         this.player_will.Add((Quirk_Base)Activator.CreateInstance(Type.GetType(name)));
         this.willCount = this.player_will.Count;
-        this.player_will[willCount - 1].onObtain();
     }
 
     private void RemoveWill()
@@ -110,14 +134,8 @@ public class QuirkManager : MonoBehaviour
 
     private void AddFeeble(string name)
     {
-        if (this.feebleCount == quirkLimit)
-        {
-            RemoveFeeble();
-        }
-
         this.player_feeble.Add((Quirk_Base)Activator.CreateInstance(Type.GetType(name)));
         this.feebleCount = this.player_feeble.Count;
-        this.player_feeble[feebleCount - 1].onObtain();
     }
 
     private void RemoveFeeble()
@@ -142,6 +160,19 @@ public class QuirkManager : MonoBehaviour
     }
     */
 
+    private void QuirkInitialize()
+    {
+        for(int i = 0; i < willCount; i++)
+        {
+            this.player_will[i].onObtain();
+        }
+        for(int j = 0; j < feebleCount; j++)
+        {
+            this.player_feeble[j].onObtain();
+        }
+    }
+
+
     private void checkQuirks()
     {
         this.willCount = this.player_will.Count;
@@ -156,13 +187,18 @@ public class QuirkManager : MonoBehaviour
         int temp2 = initFeeb.Length;
         for(int i = 0; i< temp1; i++)
         {
-            AddWill(potentialWill[initWill[i]]);
+            if (initWill[i] != -1)
+            {
+                AddWill(potentialWill[initWill[i]]);
+            }
         }
         for (int j = 0; j < temp2; j++)
         {
-            AddFeeble(potentialFeeble[initFeeb[j]]);
+            if (initFeeb[j] != -1)
+            {
+                AddFeeble(potentialFeeble[initFeeb[j]]);
+            }
         }
-        checkQuirks();
     }
 
     private void initPotenQuirk(int[] initWill, int[] initFeeb)
@@ -171,15 +207,21 @@ public class QuirkManager : MonoBehaviour
         int temp2 = initFeeb.Length;
         for (int i = (temp1 - 1); i >= 0; i--)
         {
-            potentialWill.RemoveAt(initWill[i]);
+            if (initWill[i] != -1)
+            {
+                potentialWill.RemoveAt(initWill[i]);
+            }
         }
         for (int j = (temp2 - 1); j >= 0; j--)
         {
-            potentialFeeble.RemoveAt(initFeeb[j]);
+            if (initFeeb[j] != -1)
+            {
+                potentialFeeble.RemoveAt(initFeeb[j]);
+            }
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         int temp1 = willList.items.Count;
         int temp2 = feebleList.items.Count;
@@ -192,13 +234,19 @@ public class QuirkManager : MonoBehaviour
             this.potentialFeeble.Add(feebleList.items[j]);
         }
 
-        int[] a = { 0, 2, 3 };
-        int[] b = { 1, 3, 4, 0 };
+        int[] a = this.saveManager.saving.will;
+        int[] b = this.saveManager.saving.feeble;
         initQuirk(a, b);
 
         Array.Sort(b);
         Array.Sort(a);
         initPotenQuirk(a, b);
+    }
+
+    private void Start()
+    {
+        QuirkInitialize();
+        checkQuirks();
     }
 
 }

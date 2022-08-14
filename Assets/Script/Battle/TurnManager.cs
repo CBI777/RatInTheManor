@@ -6,19 +6,25 @@ public class TurnManager : MonoBehaviour
 {
     public static event Action<int> TurnStart;
     public static event Action BattleEndEvent;
+    public static event Action BatEndReached;
+
+    [SerializeField] private SaveM_Battle saveManager;
+    private Enemy_Base enemy;
 
     [SerializeField] private GameObject counter;
 
     [SerializeField] private int turnCount;
     [SerializeField] private int turnLimit;
 
+    public int getTurnCount() { return turnCount; }
+
     private void OnEnable()
     {
-        counter.SetActive(false);
         SkillManager.BattleStart += SkillManager_BattleStart;
         BattleDialogueProvider.turnStartDiaEnd += BattleDialogueProvider_turnStartDiaEnd;
         TurnEndBtn.TurnEndEvent += TurnEndBtn_TurnEndEvent;
         BattleDialogueProvider.FinalDia += BattleDialogueProvider_FinalDia;
+        SaveM_Battle.finalSaveFinished += SaveM_Battle_finalSaveFinished;
     }
 
     private void OnDisable()
@@ -27,6 +33,12 @@ public class TurnManager : MonoBehaviour
         BattleDialogueProvider.turnStartDiaEnd -= BattleDialogueProvider_turnStartDiaEnd;
         TurnEndBtn.TurnEndEvent -= TurnEndBtn_TurnEndEvent;
         BattleDialogueProvider.FinalDia -= BattleDialogueProvider_FinalDia;
+        SaveM_Battle.finalSaveFinished -= SaveM_Battle_finalSaveFinished;
+    }
+
+    private void SaveM_Battle_finalSaveFinished()
+    {
+        BattleEndEvent?.Invoke();
     }
 
     private void BattleDialogueProvider_FinalDia()
@@ -44,7 +56,7 @@ public class TurnManager : MonoBehaviour
         turnCount++;
         if(turnCount == turnLimit)
         {
-            BattleEndEvent?.Invoke();
+            BatEndReached?.Invoke();
         }
         else
         {
@@ -55,11 +67,21 @@ public class TurnManager : MonoBehaviour
     private void SkillManager_BattleStart(int count)
     {
         turnLimit = count;
-        turnCount = 0;
+        this.turnCount = 0;
         counter.SetActive(true);
         this.counter.GetComponentInChildren<TextMeshProUGUI>().SetText("남은 턴 : " + (this.turnLimit - this.turnCount));
         TurnStart?.Invoke(turnCount);
     }
 
-    //turnEnd를 받아서 일 처리 중에 turncount와 limit이 같아진다면 battleend
+    private void Awake()
+    {
+        this.turnCount = this.saveManager.saving.turn;
+        if(this.saveManager.saving.isBattle)
+        {
+            this.enemy = Resources.Load<Enemy_Base>("ScriptableObject/Enemy/" + saveManager.saving.selEnemy);
+            this.turnLimit = this.enemy.turnCount;
+        }
+
+        counter.SetActive(false);
+    }
 }

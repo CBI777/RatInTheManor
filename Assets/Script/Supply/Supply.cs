@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
 
 public class Supply_Base
@@ -81,8 +78,8 @@ public class Supply_Opium : Supply_Base
     public Supply_Opium()
         : base("아편 한 포", "Supply_Opium", true, 2)
     {
-        this.batDescription = "소모품. 광기를 10만큼 잠재웁니다.";
-        this.description = "소모품. 광기를 10만큼 잠재웁니다.";
+        this.batDescription = "소모품.\u000a" + "광기를 10만큼 잠재웁니다.";
+        this.description = "전투에 관계없이 사용 가능.\u000a" + "광기를 10만큼 잠재웁니다.";
     }
 
     public override void onUse()
@@ -100,7 +97,7 @@ public class Supply_Painkiller : Supply_Base
     public Supply_Painkiller()
         : base("진통제", "Supply_Painkiller", true, 1)
     {
-        this.batDescription = "소모품. 이번 턴, 물리적 피해 저항을 2만큼 상승시킵니다.";
+        this.batDescription = "소모품.\u000a" + "이번 턴, 물리적 피해 저항을 2만큼 상승시킵니다.";
         this.description = "전투에서만 사용 가능.\u000a" + "소모품. 사용한 턴, 물리적 피해 저항을 2만큼 상승시킵니다.";
     }
 

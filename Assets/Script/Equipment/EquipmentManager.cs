@@ -6,13 +6,34 @@ public class EquipmentManager : MonoBehaviour
 {
     private List<Equipment> equipment = new List<Equipment>();
 
-    [SerializeField] private ListOfItems equipList;
+    [SerializeField] private SaveM_Battle saveManager;
 
+    [SerializeField] private ListOfItems equipList;
 
     private int turnInitEquip = 0;
     private int curEquip = 0;
     private int tempEquip = 0;
     private int equipCount;
+
+    public int[] getEquipNum()
+    {
+        int[] equipNum = new int[3];
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (i >= equipCount)
+            {
+                equipNum[i] = -1;
+            }
+            else
+            {
+                equipNum[i] = equipment[i].index;
+            }
+        }
+
+        return equipNum;
+    }
+    public int getCurEquip() { return curEquip; }
 
     //'현재' 장착중인 장비가 변화했을 경우
     public static event Action<int, int> CurEquipChanged;
@@ -80,18 +101,25 @@ public class EquipmentManager : MonoBehaviour
         int temp = b.Length;
         for(int i = 0; i<temp; i++)
         {
-            obtainEquipment(equipList.items[b[i]]);
+            if (b[i] != -1)
+            {
+                obtainEquipment(equipList.items[b[i]]);
+            }
         }
     }
 
-    private void Start()
+    private void Awake()
     {
-        int[] a = { 3, 0, 1 };
+        int[] a = this.saveManager.saving.equip;
 
         initEquip(a);
         this.turnInitEquip = 0;
 
         setCurEquip(0);
+
+    }
+    private void Start()
+    {
         EquipChangedEvent?.Invoke(curEquip, equipCount, this.equipment.ToArray());
     }
 

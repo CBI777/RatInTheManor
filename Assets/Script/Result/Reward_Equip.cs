@@ -21,6 +21,15 @@ public class Reward_Equip : MonoBehaviour
     private List<string> potentialEquipment = new List<string>();
     private Equipment presentEquip;
 
+    public int getEarnEquip()
+    {
+        return this.presentEquip.index;
+    }
+    public bool getObtained()
+    {
+        return obtained;
+    }
+
     public static event Action<string> EquipObtainClicked;
     public static event Action EquipCancelClicked;
 
@@ -33,8 +42,11 @@ public class Reward_Equip : MonoBehaviour
         Equipment_ResultInventory.EquipObtainCompleteFromInventory += Equipment_ResultInventory_EquipmentObtainComplete;
         CurtainsUp.CurtainHasBeenLifted += enableBtn;
         Reward_Supply.SupplyCancelClicked += enableBtn;
-        Reward_Supply.SupplyObtainClicked += Reward_Supply_SupplyObtainClicked;
+        Reward_Supply.SupplyObtainClicked += disableBtn;
         Supply_ResultInventory.SupplyObtainCompleteFromInventory += enableBtn;
+        Reward_Hallucination.HalluObtainClicked += disableBtn;
+        Reward_Hallucination.HalluCancelClicked += enableBtn;
+        PackComplete.CompletePressed += disableBtn;
     }
     private void OnDisable()
     {
@@ -42,13 +54,20 @@ public class Reward_Equip : MonoBehaviour
         Equipment_ResultInventory.EquipObtainCompleteFromInventory -= Equipment_ResultInventory_EquipmentObtainComplete;
         CurtainsUp.CurtainHasBeenLifted -= enableBtn;
         Reward_Supply.SupplyCancelClicked -= enableBtn;
-        Reward_Supply.SupplyObtainClicked -= Reward_Supply_SupplyObtainClicked;
+        Reward_Supply.SupplyObtainClicked -= disableBtn;
         Supply_ResultInventory.SupplyObtainCompleteFromInventory -= enableBtn;
+        Reward_Hallucination.HalluObtainClicked -= disableBtn;
+        Reward_Hallucination.HalluCancelClicked -= enableBtn;
+        PackComplete.CompletePressed -= disableBtn;
     }
 
-    private void Reward_Supply_SupplyObtainClicked(string obj)
+    private void disableBtn()
     {
-        disableBtn();
+        this.btn.GetComponent<Button>().interactable = false;
+    }
+    private void disableBtn(string obj)
+    {
+        this.btn.GetComponent<Button>().interactable = false;
     }
 
     private void enableBtn()
@@ -57,10 +76,6 @@ public class Reward_Equip : MonoBehaviour
         {
             this.btn.GetComponent<Button>().interactable = true;
         }
-    }
-    private void disableBtn()
-    {
-        this.btn.GetComponent<Button>().interactable = false;
     }
 
     private void Equipment_ResultInventory_EquipmentObtainComplete()
@@ -123,6 +138,7 @@ public class Reward_Equip : MonoBehaviour
                 situ = true;
                 //이걸로 일단 다른 애들을 다 잠그고,
                 EquipObtainClicked?.Invoke(presentEquip.realName);
+                this.btn.GetComponent<Image>().color = new Color32(165, 255, 235, 255);
                 this.btn.GetComponentInChildren<TextMeshProUGUI>().SetText("획득 보류");
             }
             //취소를 클릭했다면
@@ -130,6 +146,7 @@ public class Reward_Equip : MonoBehaviour
             {
                 situ = false;
                 EquipCancelClicked?.Invoke();
+                this.btn.GetComponent<Image>().color = Color.white;
                 this.btn.GetComponentInChildren<TextMeshProUGUI>().SetText("획  득");
             }
         }

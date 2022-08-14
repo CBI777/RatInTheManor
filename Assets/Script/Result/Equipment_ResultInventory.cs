@@ -10,7 +10,27 @@ public class Equipment_ResultInventory : MonoBehaviour
     [SerializeField] private GameObject[] equips = new GameObject[3];
     [SerializeField] private GameObject[] equipcheck = new GameObject[3];
     [SerializeField] private GameObject[] btns = new GameObject[3];
-    
+
+    public int[] getEquipNum()
+    {
+        int[] equipNum = new int[3];
+
+        for (int i = 0; i < 3; i++)
+        {
+            if (i > equipCount)
+            {
+                equipNum[i] = -1;
+            }
+            else
+            {
+                equipNum[i] = equipment[i].index;
+            }
+        }
+
+        return equipNum;
+    }
+    public int getCurEquip() { return curEquip; }
+
     public static event Action<int[]> equipmentChangedEvent;
     public static event Action<int[]> curEquipPass;
     public static event Action EquipObtainCompleteFromInventory;
@@ -31,8 +51,11 @@ public class Equipment_ResultInventory : MonoBehaviour
         Reward_Equip.EquipObtainClicked += Reward_Equip_EquipObtainClicked;
         Reward_Equip.EquipCancelClicked += enableAll;
         Reward_Supply.SupplyCancelClicked += enableAll;
-        Reward_Supply.SupplyObtainClicked += Reward_Supply_SupplyObtainClicked;
+        Reward_Supply.SupplyObtainClicked += disableAll;
         Supply_ResultInventory.SupplyObtainCompleteFromInventory += enableAll;
+        Reward_Hallucination.HalluObtainClicked += disableAll;
+        Reward_Hallucination.HalluCancelClicked += enableAll;
+        PackComplete.CompletePressed += disableAll;
     }
 
     private void OnDisable()
@@ -42,13 +65,26 @@ public class Equipment_ResultInventory : MonoBehaviour
         Reward_Equip.EquipObtainClicked -= Reward_Equip_EquipObtainClicked;
         Reward_Equip.EquipCancelClicked -= enableAll;
         Reward_Supply.SupplyCancelClicked -= enableAll;
-        Reward_Supply.SupplyObtainClicked -= Reward_Supply_SupplyObtainClicked;
+        Reward_Supply.SupplyObtainClicked -= disableAll;
         Supply_ResultInventory.SupplyObtainCompleteFromInventory -= enableAll;
+        Reward_Hallucination.HalluObtainClicked += disableAll;
+        Reward_Hallucination.HalluCancelClicked += enableAll;
+        PackComplete.CompletePressed -= disableAll;
     }
 
-    private void Reward_Supply_SupplyObtainClicked(string obj)
+    private void disableAll()
     {
-        disableAll();
+        for (int i = 0; i < equipCount; i++)
+        {
+            btns[i].GetComponent<Button>().interactable = false;
+        }
+    }
+    private void disableAll(string obj)
+    {
+        for (int i = 0; i < equipCount; i++)
+        {
+            btns[i].GetComponent<Button>().interactable = false;
+        }
     }
 
     private void Reward_Equip_EquipObtainClicked(string obj)
@@ -128,13 +164,6 @@ public class Equipment_ResultInventory : MonoBehaviour
         }
     }
 
-    private void disableAll()
-    {
-        for (int i = 0; i < equipCount; i++)
-        {
-            btns[i].GetComponent<Button>().interactable = false;
-        }
-    }
     private void enableAll()
     {
         CurEquipChange(curEquip);

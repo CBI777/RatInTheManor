@@ -8,6 +8,27 @@ public class SupplyManager : MonoBehaviour
     [SerializeField] private int curSupply = 0;
     [SerializeField] private int supplyCount;
 
+    [SerializeField] private SaveM_Battle saveManager;
+
+    public string[] getSupplyString()
+    {
+        string[] supplyString = new string[6];
+
+        for(int i = 0; i < 6; i++)
+        {
+            if(i > supplyCount)
+            {
+                supplyString[i] = "NA";
+            }
+            else
+            {
+                supplyString[i] = this.supply[i].realName;
+            }
+        }
+
+        return supplyString;
+    }
+
     //현재 supply가 바뀌었음을 이야기해줌. 이건 UI쪽에서 사용
     //처음 int의 경우에는 양 끝인지 아닌지를 알려주기 위함. 0이면 prev를 없애고, 1이면 그냥 두고,
     //2면은 next를 없애야한다.
@@ -70,7 +91,8 @@ public class SupplyManager : MonoBehaviour
         this.curSupply = n;
         if (this.supply[curSupply].usage != 0) { this.supply[curSupply].onUse(); }
 
-        if(curSupply == 0) { temp = 0; }
+        if(this.supplyCount == 0) {temp = -1; }
+        else if(curSupply == 0) { temp = 0; }
         else if (curSupply == this.supplyCount) { temp = 2; }
         else { temp = 1; }
         CurSupplyChanged?.Invoke(temp, this.supply[curSupply].realName, this.supply[curSupply].supplyName, this.supply[curSupply].batDescription);
@@ -85,13 +107,21 @@ public class SupplyManager : MonoBehaviour
         setSupply(0);
     }
 
+    private void Awake()
+    {
+        string[] temp = this.saveManager.saving.supply;
+
+        for(int i = 0; i < temp.Length; i++)
+        {
+            if (temp[i] != "NA")
+            {
+                this.supply.Add((Supply_Base)Activator.CreateInstance(Type.GetType(temp[i])));
+            }
+        }
+    }
+
     private void Start()
     {
-        //소모품은 반드시 NoUse 하나 이상을 가지고 있어야한다.
-        this.supply.Add((Supply_Base)Activator.CreateInstance(Type.GetType("Supply_NoUse")));
-        this.supply.Add((Supply_Base)Activator.CreateInstance(Type.GetType("Supply_Opium")));
-        this.supply.Add((Supply_Base)Activator.CreateInstance(Type.GetType("Supply_Painkiller")));
-        this.supply.Add((Supply_Base)Activator.CreateInstance(Type.GetType("Supply_Abhorrpainting")));
         turnStart();
     }
 }

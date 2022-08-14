@@ -15,13 +15,32 @@ public class CurtainsUp : MonoBehaviour
 
     public static event Action CurtainHasBeenLifted;
 
-    private IEnumerator CurtainLift()
+    private void OnEnable()
+    {
+        PackComplete.CompletePressed += CurtainDown;
+    }
+    private void OnDisable()
+    {
+        PackComplete.CompletePressed -= CurtainDown;
+    }
+
+    private IEnumerator CurtainLift(bool isUp)
     {
         this.audioSource.Play();
         yield return new WaitForSeconds(resetSpeed);
         this.audioSource.Stop();
-        playerinput.actions.FindActionMap("PlayerInput").Enable();
-        CurtainHasBeenLifted?.Invoke();
+        if(isUp)
+        {
+            CurtainHasBeenLifted?.Invoke();
+            playerinput.actions.FindActionMap("PlayerInput").Enable();
+        }
+    }
+
+    private void CurtainDown()
+    {
+        playerinput.actions.FindActionMap("PlayerInput").Disable();
+        Curtain.DOAnchorPos(new Vector2(0, -120f), resetSpeed);
+        StartCoroutine(CurtainLift(false));
     }
 
     private void Awake()
@@ -34,6 +53,6 @@ public class CurtainsUp : MonoBehaviour
         //start말고 ???이 신호를 보내주면 그 때 시작
         playerinput.actions.FindActionMap("PlayerInput").Disable();
         Curtain.DOAnchorPos(new Vector2(0, 1100f), resetSpeed);
-        StartCoroutine(CurtainLift());
+        StartCoroutine(CurtainLift(true));
     }
 }

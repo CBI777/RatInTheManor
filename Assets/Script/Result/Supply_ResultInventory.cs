@@ -17,8 +17,28 @@ public class Supply_ResultInventory : MonoBehaviour
 
     private string tempSupply = "";
 
+    public string[] getSupplyString()
+    {
+        string[] supplyString = new string[6];
+
+        for (int i = 0; i < 6; i++)
+        {
+            if (i > supplyCount)
+            {
+                supplyString[i] = "NA";
+            }
+            else
+            {
+                supplyString[i] = this.supply[i].realName;
+            }
+        }
+
+        return supplyString;
+    }
+
     public static event Action<int> SupplyReady;
     public static event Action SupplyObtainCompleteFromInventory;
+    public static event Action SupplyUsedInventory;
 
     private void OnEnable()
     {
@@ -26,9 +46,12 @@ public class Supply_ResultInventory : MonoBehaviour
         Reward_Supply.SupplyCancelClicked += enableAll;
         Reward_Supply.SupplyObtainClicked += Reward_Supply_SupplyObtainClicked;
         Reward_Supply.SupplyObtainComplete += Reward_Supply_SupplyObtainComplete;
-        Reward_Equip.EquipObtainClicked += Reward_Equip_EquipObtainClicked;
+        Reward_Equip.EquipObtainClicked += disableAll;
         Reward_Equip.EquipCancelClicked += enableAll;
         Equipment_ResultInventory.EquipObtainCompleteFromInventory += disableAll;
+        Reward_Hallucination.HalluObtainClicked += disableAll;
+        Reward_Hallucination.HalluCancelClicked += enableAll;
+        PackComplete.CompletePressed += disableAll;
     }
 
     private void OnDisable()
@@ -37,15 +60,12 @@ public class Supply_ResultInventory : MonoBehaviour
         Reward_Supply.SupplyCancelClicked -= enableAll;
         Reward_Supply.SupplyObtainClicked -= Reward_Supply_SupplyObtainClicked;
         Reward_Supply.SupplyObtainComplete -= Reward_Supply_SupplyObtainComplete;
-        Reward_Equip.EquipObtainClicked -= Reward_Equip_EquipObtainClicked;
+        Reward_Equip.EquipObtainClicked -= disableAll;
         Reward_Equip.EquipCancelClicked -= enableAll;
         Equipment_ResultInventory.EquipObtainCompleteFromInventory -= disableAll;
-    }
-
-
-    private void Reward_Equip_EquipObtainClicked(string obj)
-    {
-        disableAll();
+        Reward_Hallucination.HalluObtainClicked -= disableAll;
+        Reward_Hallucination.HalluCancelClicked -= enableAll;
+        PackComplete.CompletePressed -= disableAll;
     }
 
     private void Reward_Supply_SupplyObtainComplete(string obj)
@@ -107,6 +127,14 @@ public class Supply_ResultInventory : MonoBehaviour
             btn[i-1].GetComponent<Button>().interactable = false;
         }
     }
+    private void disableAll(string n)
+    {
+        for (int i = 1; i <= supplyCount; i++)
+        {
+            btn[i - 1].GetComponent<Button>().interactable = false;
+        }
+    }
+    
     private void enableAll()
     {
         int j = 0;
@@ -127,6 +155,7 @@ public class Supply_ResultInventory : MonoBehaviour
 
     private void UseSupply(int a)
     {
+        if(supplyCount == 5) { SupplyUsedInventory?.Invoke();  }
         if (supply[a].usage != 1)//사실 usage가 1인데 발동이 될 가능성은 전무하지만 일단 오류처리
         {
             supply[a].onUse();
