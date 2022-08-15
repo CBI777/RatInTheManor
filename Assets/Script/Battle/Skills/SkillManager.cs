@@ -34,6 +34,7 @@ public class SkillManager : MonoBehaviour
         TurnManager.TurnStart += TurnManager_TurnStart;
         BattleDialogueProvider.PrevDialogueDone += BattleDialogueProvider_PrevDialogueDone;
         BattleDialogueProvider.FinalDia += BattleDialogueProvider_FinalDia;
+        BattleDialogueProvider.startFromDialogue += showEnemyPic;
     }
 
     private void OnDisable()
@@ -43,6 +44,13 @@ public class SkillManager : MonoBehaviour
         TurnManager.TurnStart -= TurnManager_TurnStart;
         BattleDialogueProvider.PrevDialogueDone -= BattleDialogueProvider_PrevDialogueDone;
         BattleDialogueProvider.FinalDia -= BattleDialogueProvider_FinalDia;
+        BattleDialogueProvider.startFromDialogue -= showEnemyPic;
+    }
+
+    private void showEnemyPic()
+    {
+        this.enemyPic.SetActive(true);
+        this.enemyPic.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/Enemy/" + enemy.realName);
     }
 
     private void SaveM_Battle_firstSaveFinished()
@@ -75,8 +83,7 @@ public class SkillManager : MonoBehaviour
             }
             i++;
         }
-        this.enemyPic.SetActive(true);
-        this.enemyPic.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/Enemy/" + enemy.realName);
+        showEnemyPic();
         enemySetEvent?.Invoke();
     }
         
@@ -107,8 +114,7 @@ public class SkillManager : MonoBehaviour
         //startFromMe가 아니라는 건 아예 저장이 안 되었었거나, 아니면 턴 -1이 아닐경우니까 문제 없음.
         if(startFromMe)
         {
-            this.enemyPic.SetActive(true);
-            this.enemyPic.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/Enemy/" + enemy.realName);
+            showEnemyPic();
             enemyDecidedEvent?.Invoke(this.enemy.realName, this.enemy.deathSFX);
         }
     }

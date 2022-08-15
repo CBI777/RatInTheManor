@@ -29,8 +29,6 @@ public class SupplyUIManager : MonoBehaviour
 
     private void SupplyManager_CurSupplyChanged(int supplyLocation, string realName, string supplyName, string batDescription)
     {
-        Debug.Log(supplyLocation);
-
         if (supplyLocation > 0) { this.prevBtn.SetActive(true); }
         else { this.prevBtn.SetActive(false); }
 

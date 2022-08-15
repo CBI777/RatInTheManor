@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < n.Length; i++)
         {
-            this.quirkResist[i] = n[i];
+            this.quirkResist[i] += n[i];
         }
         RecalcResist();
         RecalcDisplayResist();

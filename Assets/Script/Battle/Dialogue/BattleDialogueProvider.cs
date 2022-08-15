@@ -46,6 +46,7 @@ public class BattleDialogueProvider : MonoBehaviour
     public static event Action PrevDialogueDone;
     public static event Action betweenTurnDia;
     public static event Action turnStartDiaEnd;
+    public static event Action startFromDialogue;
 
     public static event Action FinalDia;
     //이걸로 몇 번째(int) 스킬의 dialogue가 진행될 것인지를 알려줌.
@@ -64,6 +65,7 @@ public class BattleDialogueProvider : MonoBehaviour
         StatusManager.TurnResultToss += StatusManager_TurnResultToss;
         SupplyManager.supplyUsed += SupplyManager_supplyUsed;
         SaveM_Battle.middleSaveFinished += batDialogueStart;
+        CurtainsDown.CurtainCall += batDialogueStart;
     }
 
     private void OnDisable()
@@ -74,6 +76,7 @@ public class BattleDialogueProvider : MonoBehaviour
         StatusManager.TurnResultToss -= StatusManager_TurnResultToss;
         SupplyManager.supplyUsed -= SupplyManager_supplyUsed;
         SaveM_Battle.middleSaveFinished -= batDialogueStart;
+        CurtainsDown.CurtainCall -= batDialogueStart;
     }
 
 
@@ -234,7 +237,6 @@ public class BattleDialogueProvider : MonoBehaviour
         this.batScript = Resources.Load<Battle_Script>("ScriptableObject/BattleScript/" + obj);
         this.skillScript = Resources.Load<EnemySkillDialogue>("ScriptableObject/EnemySkillDialogue/" + obj);
         batBookmarkLimit = batScript.script.Count;
-        batDialogueStart();
     }
 
     private void batDialogueStart()
@@ -345,7 +347,7 @@ public class BattleDialogueProvider : MonoBehaviour
                 this.skillScript = Resources.Load<EnemySkillDialogue>("ScriptableObject/EnemySkillDialogue/" + enemy.realName);
                 batBookmarkLimit = batScript.script.Count;
                 this.batBookmark = (saveManager.saving.turn + 1);
-                skillBookmark = saveManager.saving.turn;
+                skillBookmark = (saveManager.saving.turn + 1);
             }
         }
         else
@@ -361,7 +363,7 @@ public class BattleDialogueProvider : MonoBehaviour
     {
         if(startFromMe)
         {
-            batDialogueStart();
+            startFromDialogue?.Invoke();
         }
     }
 }

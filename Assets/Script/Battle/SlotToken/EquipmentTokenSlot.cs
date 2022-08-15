@@ -14,11 +14,18 @@ public class EquipmentTokenSlot : MonoBehaviour, SlotInterface, IDropHandler
     private void OnEnable()
     {
         EquipmentChangeBtn.OnEquipChange += EquipmentChangeBtn_OnEquipChange;
+        TurnManager.TurnStart += TurnManager_TurnStart;
     }
 
     private void OnDisable()
     {
         EquipmentChangeBtn.OnEquipChange -= EquipmentChangeBtn_OnEquipChange;
+        TurnManager.TurnStart -= TurnManager_TurnStart;
+    }
+
+    private void TurnManager_TurnStart(int obj)
+    {
+        slotEnabled = true;
     }
 
     private void EquipmentChangeBtn_OnEquipChange(int obj)

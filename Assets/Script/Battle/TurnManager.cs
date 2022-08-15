@@ -20,6 +20,7 @@ public class TurnManager : MonoBehaviour
 
     private void OnEnable()
     {
+        BattleDialogueProvider.startFromDialogue += TurnEndBtn_TurnEndEvent;
         SkillManager.BattleStart += SkillManager_BattleStart;
         BattleDialogueProvider.turnStartDiaEnd += BattleDialogueProvider_turnStartDiaEnd;
         TurnEndBtn.TurnEndEvent += TurnEndBtn_TurnEndEvent;
@@ -29,6 +30,7 @@ public class TurnManager : MonoBehaviour
 
     private void OnDisable()
     {
+        BattleDialogueProvider.startFromDialogue -= TurnEndBtn_TurnEndEvent;
         SkillManager.BattleStart -= SkillManager_BattleStart;
         BattleDialogueProvider.turnStartDiaEnd -= BattleDialogueProvider_turnStartDiaEnd;
         TurnEndBtn.TurnEndEvent -= TurnEndBtn_TurnEndEvent;
@@ -48,6 +50,7 @@ public class TurnManager : MonoBehaviour
 
     private void TurnEndBtn_TurnEndEvent()
     {
+        counter.SetActive(true);
         this.counter.GetComponentInChildren<TextMeshProUGUI>().SetText("≥≤¿∫ ≈œ : " + (this.turnLimit - this.turnCount - 1));
     }
 
@@ -75,9 +78,10 @@ public class TurnManager : MonoBehaviour
 
     private void Awake()
     {
-        this.turnCount = this.saveManager.saving.turn;
+        this.turnCount = -1;
         if(this.saveManager.saving.isBattle)
         {
+            this.turnCount = this.saveManager.saving.turn;
             this.enemy = Resources.Load<Enemy_Base>("ScriptableObject/Enemy/" + saveManager.saving.selEnemy);
             this.turnLimit = this.enemy.turnCount;
         }

@@ -2,6 +2,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.InputSystem;
 using System.Collections;
+using System;
 
 public class CurtainsDown : MonoBehaviour
 {
@@ -12,12 +13,15 @@ public class CurtainsDown : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private float resetSpeed = 4f;
 
+    public static event Action CurtainCall;
+
     private void OnEnable()
     {
         SkillManager.enemyDecidedEvent += SkillManager_enemyDecidedEvent;
         TurnEndBtn.TurnEndEvent += TurnEndBtn_TurnEndEvent;
         TurnManager.TurnStart += TurnManager_TurnStart;
         TurnManager.BattleEndEvent += TurnManager_BattleEndEvent;
+        BattleDialogueProvider.startFromDialogue += BattleDialogueProvider_startFromDialogue;
     }
 
     private void OnDisable()
@@ -26,12 +30,19 @@ public class CurtainsDown : MonoBehaviour
         TurnEndBtn.TurnEndEvent -= TurnEndBtn_TurnEndEvent;
         TurnManager.TurnStart -= TurnManager_TurnStart;
         TurnManager.BattleEndEvent -= TurnManager_BattleEndEvent;
+        BattleDialogueProvider.startFromDialogue -= BattleDialogueProvider_startFromDialogue;
+    }
+
+    private void BattleDialogueProvider_startFromDialogue()
+    {
+        Curtain.DOAnchorPos(new Vector2(0, 1100f), resetSpeed);
+        StartCoroutine(DialogueCall());
     }
 
     private void SkillManager_enemyDecidedEvent(string arg1, string arg2)
     {
         Curtain.DOAnchorPos(new Vector2(0, 1100f), resetSpeed);
-        StartCoroutine(PlaySound());
+        StartCoroutine(DialogueCall());
     }
 
     private void TurnManager_TurnStart(int obj)
@@ -57,6 +68,16 @@ public class CurtainsDown : MonoBehaviour
         this.audioSource.Play();
         yield return new WaitForSeconds(resetSpeed);
         this.audioSource.Stop();
+    }
+
+    private IEnumerator DialogueCall()
+    {
+        //enemyDecided에서 왔으면 esc빼고 잠금?
+        this.audioSource.Play();
+        yield return new WaitForSeconds(resetSpeed);
+        this.audioSource.Stop();
+        yield return new WaitForSeconds(0.3f);
+        CurtainCall?.Invoke();
     }
 
     private void Awake()

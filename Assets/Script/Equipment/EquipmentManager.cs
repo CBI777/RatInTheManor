@@ -48,6 +48,7 @@ public class EquipmentManager : MonoBehaviour
         EquipmentChangeBtn.OnECBtnClick += EquipmentChangeBtn_OnECBtnClick;
         EquipmentTokenSlot.EquipSlotDeactivatedEvent += EquipmentTokenSlot_EquipSlotDeactivatedEvent;
         BattleResetManager.ResetBoardEvent += BattleResetManager_ResetBoardEvent;
+        TurnManager.TurnStart += TurnManager_TurnStart;
     }
 
     private void OnDisable()
@@ -58,9 +59,13 @@ public class EquipmentManager : MonoBehaviour
         BattleResetManager.ResetBoardEvent -= BattleResetManager_ResetBoardEvent;
     }
 
+    private void TurnManager_TurnStart(int obj)
+    {
+        turnInitEquip = curEquip;
+    }
+
     private void BattleResetManager_ResetBoardEvent()
     {
-        CurEquipChanged?.Invoke(curEquip, equipCount);
         setCurEquip(turnInitEquip);
     }
 
@@ -111,15 +116,15 @@ public class EquipmentManager : MonoBehaviour
     private void Awake()
     {
         int[] a = this.saveManager.saving.equip;
+        this.curEquip = this.saveManager.saving.curEquip;
 
         initEquip(a);
         this.turnInitEquip = 0;
-
-        setCurEquip(0);
-
     }
     private void Start()
     {
+        setCurEquip(curEquip);
+        this.turnInitEquip = curEquip;
         EquipChangedEvent?.Invoke(curEquip, equipCount, this.equipment.ToArray());
     }
 
