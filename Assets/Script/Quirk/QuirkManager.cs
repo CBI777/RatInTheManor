@@ -102,7 +102,7 @@ public class QuirkManager : MonoBehaviour
         if (willCount == 0) { return; }
 
         this.player_will[temp].onLose();
-        potentialWill.Add(player_will[temp].quirkName);
+        potentialWill.Add(player_will[temp].realName);
         this.player_will.RemoveAt(temp);
         this.willCount = this.player_will.Count;
     }
@@ -144,7 +144,7 @@ public class QuirkManager : MonoBehaviour
         if (feebleCount == 0) { return; }
 
         this.player_feeble[temp].onLose();
-        potentialFeeble.Add(player_feeble[temp].quirkName);
+        potentialFeeble.Add(player_feeble[temp].realName);
         this.player_feeble.RemoveAt(temp);
         this.feebleCount = this.player_feeble.Count;
     }
@@ -199,6 +199,7 @@ public class QuirkManager : MonoBehaviour
                 AddFeeble(potentialFeeble[initFeeb[j]]);
             }
         }
+        checkQuirks();
     }
 
     private void initPotenQuirk(int[] initWill, int[] initFeeb)

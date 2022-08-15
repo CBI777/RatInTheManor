@@ -108,7 +108,10 @@ public class Player : MonoBehaviour
         {
             this.naturalResist[i] = temp[i];
         }
+    }
 
+    private void Start()
+    {
         RecalcResist();
         RecalcDisplayResist();
     }

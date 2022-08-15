@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 
@@ -17,6 +15,7 @@ public class Player_Result : MonoBehaviour
 
     public int[] getResist() { return naturalResist; }
 
+    [SerializeField] private SaveM_Result saveManager;
     [SerializeField] private GameObject[] invenResist = new GameObject[4];
 
     //인벤토리 창에 나올 저항. 원래 저항 + 장비 저항
@@ -58,7 +57,7 @@ public class Player_Result : MonoBehaviour
     {
         for (int i = 0; i < n.Length; i++)
         {
-            this.quirkResist[i] = n[i];
+            this.quirkResist[i] += n[i];
         }
         RecalcResist();
     }
@@ -77,10 +76,11 @@ public class Player_Result : MonoBehaviour
 
     private void Awake()
     {
-        this.naturalResist[0] = 1;
-        this.naturalResist[1] = 1;
-        this.naturalResist[2] = 0;
-        this.naturalResist[3] = -1;
+        int[] temp = this.saveManager.saving.resist;
+        for (int i = 0; i < temp.Length; i++)
+        {
+            this.naturalResist[i] = temp[i];
+        }
     }
 
     private void Start()

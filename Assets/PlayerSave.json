@@ -1,24 +1,24 @@
 {
-    "madness": 80,
-    "sanity": 50,
-    "obsession": 40,
+    "madness": 10,
+    "sanity": 100,
+    "obsession": 20,
     "will": [
-        0,
-        2,
-        3,
+        6,
         5,
-        -1
+        4,
+        1,
+        2
     ],
     "feeble": [
         1,
+        5,
+        0,
         3,
-        4,
-        -1,
-        -1
+        2
     ],
     "supply": [
         "Supply_NoUse",
-        "Supply_Abhorrpainting",
+        "NA",
         "NA",
         "NA",
         "NA",
@@ -33,23 +33,23 @@
     "resist": [
         1,
         1,
-        0,
+        1,
         -1
     ],
     "stageNum": 1,
-    "isBattle": true,
-    "turn": 0,
+    "isBattle": false,
+    "turn": -1,
     "selEnemy": "Enemy_Ghost",
-    "earnEquip": -1,
+    "earnEquip": 2,
     "equipIsEarned": false,
-    "earnSupply": "NA",
+    "earnSupply": "Supply_Painkiller",
     "supplyIsEarned": false,
     "halluList": [
-        -1,
-        -1,
-        -1
+        10,
+        1,
+        4
     ],
-    "halluIsEarned": false,
-    "earnedHalluIs": -1,
-    "toBattle": true
+    "halluIsEarned": true,
+    "earnedHalluIs": 1,
+    "toBattle": false
 }

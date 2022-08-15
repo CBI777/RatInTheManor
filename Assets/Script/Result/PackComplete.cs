@@ -2,10 +2,15 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class PackComplete : MonoBehaviour
 {
+    [SerializeField] private SaveM_Result saveManager;
     public static event Action CompletePressed;
+    public static event Action SafeToGo;
+
+
     [SerializeField] private GameObject tooltip;
 
     private bool isComplete = false;
@@ -13,7 +18,6 @@ public class PackComplete : MonoBehaviour
 
     private void OnEnable()
     {
-        Reward_Hallucination.HallusPickComplete += Reward_Hallucination_HallusPickComplete;
         Reward_Equip.EquipObtainClicked += disableBtn;
         Reward_Equip.EquipCancelClicked += enableBtn;
         Equipment_ResultInventory.EquipObtainCompleteFromInventory += enableBtn;
@@ -22,11 +26,12 @@ public class PackComplete : MonoBehaviour
         Supply_ResultInventory.SupplyObtainCompleteFromInventory += enableBtn;
         Reward_Hallucination.HalluObtainClicked += disableBtn;
         Reward_Hallucination.HalluCancelClicked += enableBtn;
+        SaveM_Result.finalSaveFinished += SaveM_Result_finalSaveFinished;
+        SaveM_Result.middleSaveFinished += SaveM_Result_middleSaveFinished;
     }
 
     private void OnDisable()
     {
-        Reward_Hallucination.HallusPickComplete -= Reward_Hallucination_HallusPickComplete;
         Reward_Equip.EquipObtainClicked -= disableBtn;
         Reward_Equip.EquipCancelClicked -= enableBtn;
         Equipment_ResultInventory.EquipObtainCompleteFromInventory -= enableBtn;
@@ -35,6 +40,21 @@ public class PackComplete : MonoBehaviour
         Supply_ResultInventory.SupplyObtainCompleteFromInventory -= enableBtn;
         Reward_Hallucination.HalluObtainClicked -= disableBtn;
         Reward_Hallucination.HalluCancelClicked -= enableBtn;
+        SaveM_Result.finalSaveFinished -= SaveM_Result_finalSaveFinished;
+        SaveM_Result.middleSaveFinished += SaveM_Result_middleSaveFinished;
+    }
+
+
+    private void SaveM_Result_middleSaveFinished()
+    {
+        isComplete = true;
+        transform.GetComponent<Button>().interactable = true;
+        tooltip.SetActive(false);
+    }
+
+    private void SaveM_Result_finalSaveFinished()
+    {
+        SafeToGo?.Invoke();
     }
 
     private void disableBtn()
@@ -57,15 +77,6 @@ public class PackComplete : MonoBehaviour
         }
     }
 
-    private void Reward_Hallucination_HallusPickComplete()
-    {
-        isComplete = true;
-        transform.GetComponent<Button>().interactable = true;
-        tooltip.SetActive(false);
-    }
-
-
-
     public void onClick()
     {
         if(isSure)
@@ -76,6 +87,14 @@ public class PackComplete : MonoBehaviour
         {
             isSure = true;
             transform.GetComponentInChildren<TextMeshProUGUI>().SetText("저택\u000a안으로");
+        }
+    }
+
+    private void Start()
+    {
+        if((!saveManager.saving.isBattle) && saveManager.saving.halluIsEarned)
+        {
+            SaveM_Result_middleSaveFinished();
         }
     }
 }

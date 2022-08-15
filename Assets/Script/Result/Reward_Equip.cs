@@ -6,6 +6,8 @@ using TMPro;
 
 public class Reward_Equip : MonoBehaviour
 {
+    [SerializeField] private SaveM_Result saveManager;
+
     [SerializeField] private GameObject equipImage;
     [SerializeField] private GameObject check;
     [SerializeField] private GameObject btn;
@@ -32,13 +34,13 @@ public class Reward_Equip : MonoBehaviour
 
     public static event Action<string> EquipObtainClicked;
     public static event Action EquipCancelClicked;
+    public static event Action presentComplete;
 
     //빈 자리가 있을 때 얻었다면?
     public static event Action<string> EquipObtainComplete;
 
     private void OnEnable()
     {
-        Equipment_ResultInventory.curEquipPass += initPotenEquip;
         Equipment_ResultInventory.EquipObtainCompleteFromInventory += Equipment_ResultInventory_EquipmentObtainComplete;
         CurtainsUp.CurtainHasBeenLifted += enableBtn;
         Reward_Supply.SupplyCancelClicked += enableBtn;
@@ -50,7 +52,6 @@ public class Reward_Equip : MonoBehaviour
     }
     private void OnDisable()
     {
-        Equipment_ResultInventory.curEquipPass -= initPotenEquip;
         Equipment_ResultInventory.EquipObtainCompleteFromInventory -= Equipment_ResultInventory_EquipmentObtainComplete;
         CurtainsUp.CurtainHasBeenLifted -= enableBtn;
         Reward_Supply.SupplyCancelClicked -= enableBtn;
@@ -91,6 +92,7 @@ public class Reward_Equip : MonoBehaviour
         string realName;
 
         int temp = b.Length;
+        Array.Sort(b);
         if (temp == 3)
         {
             trouble = true;
@@ -107,8 +109,6 @@ public class Reward_Equip : MonoBehaviour
         realName = potentialEquipment[(UnityEngine.Random.Range(0, potentialEquipment.Count))];
 
         presentEquip = Resources.Load<Equipment>("ScriptableObject/Equipment/" + realName);
-
-        presentEquipment();
     }
 
     private void presentEquipment()
@@ -119,7 +119,7 @@ public class Reward_Equip : MonoBehaviour
         equipImage.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/Equipment/" + presentEquip.realName);
     }
 
-    public void RewardEquip_onClick()
+    private void RewardEquip_onClick()
     {
         //만약 3개의 equip을 가지고 있지 않으면,
         if(!trouble)
@@ -150,6 +150,38 @@ public class Reward_Equip : MonoBehaviour
                 this.btn.GetComponentInChildren<TextMeshProUGUI>().SetText("획  득");
             }
         }
-        
+    }
+
+    private void Awake()
+    {
+        if(saveManager.saving.isBattle)
+        {
+            initPotenEquip(saveManager.saving.equip);
+        }
+        else
+        {
+            presentEquip = Resources.Load<Equipment>("ScriptableObject/Equipment/" + equipList.items[saveManager.saving.earnEquip]);
+            if (saveManager.saving.equip.Length == 3)
+            {
+                trouble = true;
+            }
+            this.obtained = saveManager.saving.equipIsEarned;
+        }
+    }
+
+    private void Start()
+    {
+        presentEquipment();
+        if (saveManager.saving.isBattle)
+        {
+            presentComplete?.Invoke();
+        }
+        else
+        {
+            if (obtained)
+            {
+                Equipment_ResultInventory_EquipmentObtainComplete();
+            }
+        }
     }
 }

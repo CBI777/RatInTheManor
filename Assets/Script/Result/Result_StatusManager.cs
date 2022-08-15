@@ -24,6 +24,8 @@ public class Result_StatusManager : MonoBehaviour
     private int madnessSub; //이성이 광기로 치환되는 양
     private int obsessionSub; //이성이 광기로 치환되는 양
 
+    [SerializeField] private SaveM_Result saveManager;
+
     [SerializeField] private TextMeshProUGUI sanityText;
     [SerializeField] private TextMeshProUGUI madnessText;
     [SerializeField] private TextMeshProUGUI obsessionText;
@@ -149,21 +151,21 @@ public class Result_StatusManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         this.madnessMax = 100;
         this.sanityMax = 100;
         this.obsessionMax = 100;
         this.sanityMin = -50;
         this.sanityBoundary = -30;
-        this.sanity = 100;
-        this.madness = 0;
-        this.obsession = 0;
+        this.sanity = this.saveManager.saving.sanity;
+        this.madness = this.saveManager.saving.madness;
+        this.obsession = this.saveManager.saving.obsession;
         this.madnessSub = 10;
         this.obsessionSub = 20;
 
-        SanityChange(95);
-        MadnessChange(70);
-        ObsessionChange(95);
+        SanityChange(0);
+        ObsessionChange(0);
+        MadnessChange(0);
     }
 }

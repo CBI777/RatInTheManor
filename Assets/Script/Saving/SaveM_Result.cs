@@ -1,5 +1,7 @@
 using System.IO;
 using UnityEngine;
+using System;
+using System.Collections;
 
 public class SaveM_Result : MonoBehaviour
 {
@@ -22,13 +24,47 @@ public class SaveM_Result : MonoBehaviour
     private bool wasBattle;
     public bool getWasBattle() { return wasBattle; }
 
+    public static event Action firstSaveFinished;
+    public static event Action middleSaveFinished;
+    public static event Action finalSaveFinished;
+
     private void OnEnable()
     {
-
+        initialSaveCounter.InitialSavePlz += InitialSaveCounter_InitialSavePlz;
+        PackComplete.CompletePressed += PackComplete_CompletePressed;
+        Reward_Hallucination.HallusPickComplete += Reward_Hallucination_HallusPickComplete;
     }
+
     private void OnDisable()
     {
+        initialSaveCounter.InitialSavePlz -= InitialSaveCounter_InitialSavePlz;
+        PackComplete.CompletePressed -= PackComplete_CompletePressed;
+        Reward_Hallucination.HallusPickComplete -= Reward_Hallucination_HallusPickComplete;
+    }
 
+
+    private void PackComplete_CompletePressed()
+    {
+        SavePlayer(true);
+        finalSaveFinished?.Invoke();
+    }
+
+    private void Reward_Hallucination_HallusPickComplete()
+    {
+        StartCoroutine(MiddleSave());
+    }
+
+    private IEnumerator MiddleSave()
+    {
+        yield return new WaitForFixedUpdate();
+        SavePlayer(false);
+        middleSaveFinished?.Invoke();
+    }
+
+    private void InitialSaveCounter_InitialSavePlz()
+    {
+        SavePlayer(false);
+        firstSaveFinished?.Invoke();
     }
 
     //Player의 data를 awake시에 load하고 이걸 다른 아이들은 start시에 확인하도록

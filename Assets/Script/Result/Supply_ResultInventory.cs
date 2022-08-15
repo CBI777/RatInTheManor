@@ -9,7 +9,7 @@ public class Supply_ResultInventory : MonoBehaviour
     private List<Supply_Base> supply = new List<Supply_Base>();
     [SerializeField] private int supplyCount;
 
-
+    [SerializeField] private SaveM_Result saveManager;
     [SerializeField] private GameObject[] supplyImg = new GameObject[5];
     [SerializeField] private GameObject[] bg = new GameObject[5];
     [SerializeField] private GameObject[] btn = new GameObject[5];
@@ -36,7 +36,6 @@ public class Supply_ResultInventory : MonoBehaviour
         return supplyString;
     }
 
-    public static event Action<int> SupplyReady;
     public static event Action SupplyObtainCompleteFromInventory;
     public static event Action SupplyUsedInventory;
 
@@ -174,18 +173,22 @@ public class Supply_ResultInventory : MonoBehaviour
         SupplyObtainCompleteFromInventory?.Invoke();
     }
 
+    private void Awake()
+    {
+        string[] temp = this.saveManager.saving.supply;
+
+        for (int i = 0; i < temp.Length; i++)
+        {
+            if (temp[i] != "NA")
+            {
+                this.supply.Add((Supply_Base)Activator.CreateInstance(Type.GetType(temp[i])));
+            }
+        }
+    }
+
     private void Start()
     {
-        //소모품은 반드시 NoUse 하나 이상을 가지고 있어야한다.
-        this.supply.Add((Supply_Base)Activator.CreateInstance(Type.GetType("Supply_NoUse")));
-        this.supply.Add((Supply_Base)Activator.CreateInstance(Type.GetType("Supply_Opium")));
-        this.supply.Add((Supply_Base)Activator.CreateInstance(Type.GetType("Supply_Painkiller")));
-        this.supply.Add((Supply_Base)Activator.CreateInstance(Type.GetType("Supply_Abhorrpainting")));
-        this.supply.Add((Supply_Base)Activator.CreateInstance(Type.GetType("Supply_Opium")));
-        this.supply.Add((Supply_Base)Activator.CreateInstance(Type.GetType("Supply_Opium")));
         SupplyChanged();
         disableAll();
-
-        SupplyReady?.Invoke(supplyCount);
     }
 }

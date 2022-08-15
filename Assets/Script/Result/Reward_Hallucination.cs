@@ -6,6 +6,7 @@ using TMPro;
 
 public class Reward_Hallucination : MonoBehaviour
 {
+    [SerializeField] SaveM_Result saveManager;
     [SerializeField] private GameObject[] halluImage;
     [SerializeField] private GameObject[] check;
     [SerializeField] private GameObject[] btn;
@@ -40,6 +41,7 @@ public class Reward_Hallucination : MonoBehaviour
     public static event Action HalluObtainClicked;
     public static event Action HalluCancelClicked;
     public static event Action HallusPickComplete;
+    public static event Action presentComplete;
 
     private void OnEnable()
     {
@@ -51,7 +53,9 @@ public class Reward_Hallucination : MonoBehaviour
         Reward_Supply.SupplyObtainClicked += disableBtn;
         Supply_ResultInventory.SupplyObtainCompleteFromInventory += enableBtn;
         PackComplete.CompletePressed += disableBtn;
+        SaveM_Result.middleSaveFinished += SaveM_Result_middleSaveFinished;
     }
+
     private void OnDisable()
     {
         CurtainsUp.CurtainHasBeenLifted -= enableBtn;
@@ -62,8 +66,13 @@ public class Reward_Hallucination : MonoBehaviour
         Reward_Supply.SupplyObtainClicked -= disableBtn;
         Supply_ResultInventory.SupplyObtainCompleteFromInventory -= enableBtn;
         PackComplete.CompletePressed -= disableBtn;
+        SaveM_Result.middleSaveFinished -= SaveM_Result_middleSaveFinished;
     }
 
+    private void SaveM_Result_middleSaveFinished()
+    {
+        HalluCancelClicked?.Invoke(); //어차피 이 신호가 모두에게는 activate 신호니까, 굳이 halluspickcomplete를 또 줄 필요는 없지
+    }
 
     private void showHallucination()
     {
@@ -115,14 +124,13 @@ public class Reward_Hallucination : MonoBehaviour
                         btn[i].GetComponentInChildren<TextMeshProUGUI>().SetText("받아들임");
                         check[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/check");
                     }
-                    else if (i != num)
+                    else
                     {
                         btn[i].GetComponentInChildren<TextMeshProUGUI>().SetText("외 면 됨");
                         check[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/xMark");
                     }
                 }
                 pickComplete = true;
-                HalluCancelClicked?.Invoke(); //어차피 이 신호가 모두에게는 activate 신호니까, 굳이 halluspickcomplete를 또 줄 필요는 없지
                 HallusPickComplete?.Invoke();
             }
             //확정이 아닐 경우, 즉 보류를 했을 때
@@ -171,28 +179,69 @@ public class Reward_Hallucination : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        if (saveManager.saving.isBattle)
+        {
+            int num;
+            int pos;
+            int halluNum = halluList.items.Count / 2;
+
+            List<int> temp = new List<int>();
+            for (int i = 0; i < 10; i++)
+            {
+                temp.Add(i);
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                num = temp[UnityEngine.Random.Range(0, temp.Count)];
+                pos = UnityEngine.Random.Range(0, 2);
+
+                presentHallu[i] =
+                    (Hallucination_Base)Activator.CreateInstance(Type.GetType(halluList.items[(2 * num) + pos]));
+                temp.Remove(num);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                presentHallu[i] =
+                    (Hallucination_Base)Activator.CreateInstance(Type.GetType(halluList.items[saveManager.saving.halluList[i]]));
+                this.pickComplete = saveManager.saving.halluIsEarned;
+            }
+        }
+    }
+
     private void Start()
     {
-        int num;
-        int pos;
-        int halluNum = halluList.items.Count / 2;
-
-        List<int> temp = new List<int>();
-        for (int i = 0; i < 10; i++)
-        {
-            temp.Add(i);
-        }
-
-        for (int i = 0; i < 3; i++)
-        {
-            num = temp[UnityEngine.Random.Range(0, temp.Count)];
-            pos = UnityEngine.Random.Range(0, 2);
-
-            presentHallu[i] =
-                (Hallucination_Base)Activator.CreateInstance(Type.GetType(halluList.items[(2 * num) + pos]));
-            temp.Remove(num);
-        }
-
         showHallucination();
+        if(saveManager.saving.isBattle)
+        {
+            presentComplete?.Invoke();
+        }
+        else
+        {
+            if(pickComplete)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    btn[i].GetComponent<Button>().interactable = false;
+                    check[i].SetActive(true);
+
+                    if (i == saveManager.saving.earnedHalluIs)
+                    {
+                        btn[i].GetComponentInChildren<TextMeshProUGUI>().SetText("받아들임");
+                        check[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/check");
+                    }
+                    else
+                    {
+                        btn[i].GetComponentInChildren<TextMeshProUGUI>().SetText("외 면 됨");
+                        check[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/xMark");
+                    }
+                }
+            }
+        }
     }
 }

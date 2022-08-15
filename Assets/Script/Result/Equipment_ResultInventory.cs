@@ -6,6 +6,8 @@ using System;
 
 public class Equipment_ResultInventory : MonoBehaviour
 {
+    [SerializeField] private SaveM_Result saveManager;
+
     [SerializeField] private GameObject[] bg = new GameObject[3];
     [SerializeField] private GameObject[] equips = new GameObject[3];
     [SerializeField] private GameObject[] equipcheck = new GameObject[3];
@@ -32,12 +34,10 @@ public class Equipment_ResultInventory : MonoBehaviour
     public int getCurEquip() { return curEquip; }
 
     public static event Action<int[]> equipmentChangedEvent;
-    public static event Action<int[]> curEquipPass;
     public static event Action EquipObtainCompleteFromInventory;
 
     private List<Equipment> equipment = new List<Equipment>();
     [SerializeField] private ListOfItems equipList;
-    private List<string> potentialEquipment = new List<string>();
 
     private int curEquip = 0;
     private int equipCount;
@@ -181,7 +181,6 @@ public class Equipment_ResultInventory : MonoBehaviour
     {
         this.equipment.Add(Resources.Load<Equipment>("ScriptableObject/Equipment/" + realName));
         this.equipCount = this.equipment.Count;
-        EquipChanged();
     }
 
     private void initEquip(int[] b)
@@ -189,23 +188,21 @@ public class Equipment_ResultInventory : MonoBehaviour
         int temp = b.Length;
         for (int i = 0; i < temp; i++)
         {
-            obtainEquipment(potentialEquipment[b[i]]);
+            if (b[i] != -1)
+            {
+                obtainEquipment(equipList.items[b[i]]);
+            }
         }
+    }
+
+    private void Awake()
+    {
+        this.curEquip = this.saveManager.saving.curEquip;
+        initEquip(this.saveManager.saving.equip);
     }
 
     private void Start()
     {
-        for (int i = 0; i < equipList.items.Count; i++)
-        {
-            this.potentialEquipment.Add(equipList.items[i]);
-        }
-
-        int[] a = { 3, 0};
-        initEquip(a);
-
-        Array.Sort(a);
-        curEquipPass?.Invoke(a);
-        curEquip = 0;
         CurEquipChange(curEquip);
         EquipChanged();
         disableAll();

@@ -2832,6 +2832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d6ff5e0721d3e34d85ab09e4309a687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 1167555198}
   bg:
   - {fileID: 1660457046}
   - {fileID: 1473107406}
@@ -6065,6 +6066,7 @@ MonoBehaviour:
   sanity: 0
   madness: 0
   obsession: 0
+  saveManager: {fileID: 1167555198}
   sanityText: {fileID: 1494658703}
   madnessText: {fileID: 1594983268}
   obsessionText: {fileID: 1868975118}
@@ -7732,6 +7734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   supplyCount: 0
+  saveManager: {fileID: 1167555198}
   supplyImg:
   - {fileID: 1908945727}
   - {fileID: 1604382660}
@@ -8469,6 +8472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20b4ae9b3f3ff9647b7bb7139a2050c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 1167555198}
   willList: {fileID: 11400000, guid: 9e21e9d0a40b2594b9ec72ab85ebdfa3, type: 2}
   feebleList: {fileID: 11400000, guid: dfb6cb498ebdaf54dbe0ba1b27f829bc, type: 2}
 --- !u!1 &1115645451
@@ -8564,6 +8568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c9dbd03bd49ea4ab77852ea29ec300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 1167555198}
   supplyImage: {fileID: 1915664043}
   check: {fileID: 1982986030}
   btn: {fileID: 1601656121}
@@ -9083,7 +9088,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1826656255}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1167555198
 MonoBehaviour:
@@ -9646,6 +9651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e425d3dcaac5f448b6ef5178b089c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 1167555198}
   invenResist:
   - {fileID: 1003665509}
   - {fileID: 957033514}
@@ -10056,51 +10062,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251508988}
   m_CullTransparentMesh: 1
---- !u!1 &1260174868
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1260174869}
-  - component: {fileID: 1260174870}
-  m_Layer: 0
-  m_Name: StageManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1260174869
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260174868}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1826656255}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1260174870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1260174868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeb9564a7b7e85b468786d205b073204, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stageNum: 0
 --- !u!1 &1267651637
 GameObject:
   m_ObjectHideFlags: 0
@@ -11080,6 +11041,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1403246792}
   m_CullTransparentMesh: 1
+--- !u!1 &1412936263
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1412936264}
+  - component: {fileID: 1412936265}
+  m_Layer: 0
+  m_Name: SaveSecr
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1412936264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412936263}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1826656255}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1412936265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412936263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ee6d86a203d0d4b90e98573482a457, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveManager: {fileID: 1167555198}
 --- !u!1 &1415470137
 GameObject:
   m_ObjectHideFlags: 0
@@ -11352,6 +11358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553a6864472231047ae7fbc7e6136761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 1167555198}
   Curtain: {fileID: 2083625510}
   audioSource: {fileID: 2077522977}
   resetSpeed: 4
@@ -12904,6 +12911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2432ced90a211a4ca73527eb3783748, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 1167555198}
   tooltip: {fileID: 1415470137}
 --- !u!1 &1594983266
 GameObject:
@@ -14316,8 +14324,8 @@ Transform:
   - {fileID: 1222004095}
   - {fileID: 1443349900}
   - {fileID: 1097590569}
-  - {fileID: 1260174869}
   - {fileID: 1167555197}
+  - {fileID: 1412936264}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15594,6 +15602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca4a1ba7916ae9346af564c5688d7e0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 1167555198}
   halluImage:
   - {fileID: 38529254}
   - {fileID: 1873237996}
@@ -17223,6 +17232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b362e0a939eee94d9deaea3b5fa9557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 1167555198}
   equipImage: {fileID: 736083896}
   check: {fileID: 672719615}
   btn: {fileID: 1061781163}

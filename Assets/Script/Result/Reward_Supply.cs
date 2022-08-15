@@ -5,6 +5,8 @@ using TMPro;
 
 public class Reward_Supply : MonoBehaviour
 {
+
+    [SerializeField] private SaveM_Result saveManager;
     [SerializeField] private GameObject supplyImage;
     [SerializeField] private GameObject check;
     [SerializeField] private GameObject btn;
@@ -30,6 +32,7 @@ public class Reward_Supply : MonoBehaviour
 
     public static event Action<string> SupplyObtainClicked;
     public static event Action SupplyCancelClicked;
+    public static event Action presentComplete;
 
     //ºó ÀÚ¸®°¡ ÀÖÀ» ¶§ ¾ò¾ú´Ù¸é?
     public static event Action<string> SupplyObtainComplete;
@@ -40,7 +43,6 @@ public class Reward_Supply : MonoBehaviour
         Equipment_ResultInventory.EquipObtainCompleteFromInventory += enableBtn;
         Reward_Equip.EquipObtainClicked += disableBtn;
         Reward_Equip.EquipCancelClicked += enableBtn;
-        Supply_ResultInventory.SupplyReady += initPotenEquip;
         Supply_ResultInventory.SupplyObtainCompleteFromInventory += Supply_ResultInventory_SupplyObtainCompleteFromInventory;
         Supply_ResultInventory.SupplyUsedInventory += Supply_ResultInventory_SupplyUsedInventory;
         Reward_Hallucination.HalluObtainClicked += disableBtn;
@@ -54,7 +56,6 @@ public class Reward_Supply : MonoBehaviour
         Equipment_ResultInventory.EquipObtainCompleteFromInventory -= enableBtn;
         Reward_Equip.EquipObtainClicked -= disableBtn;
         Reward_Equip.EquipCancelClicked -= enableBtn;
-        Supply_ResultInventory.SupplyReady -= initPotenEquip;
         Supply_ResultInventory.SupplyObtainCompleteFromInventory -= Supply_ResultInventory_SupplyObtainCompleteFromInventory;
         Supply_ResultInventory.SupplyUsedInventory -= Supply_ResultInventory_SupplyUsedInventory;
         Reward_Hallucination.HalluObtainClicked -= disableBtn;
@@ -92,9 +93,10 @@ public class Reward_Supply : MonoBehaviour
         }
     }
 
-    private void initPotenEquip(int b)
+    private void initPotenSupply(int b)
     {
         string realName;
+
         if(b == 5)
         {
             trouble = true;
@@ -103,8 +105,6 @@ public class Reward_Supply : MonoBehaviour
         realName = supplyList.items[(UnityEngine.Random.Range(0, supplyList.items.Count))];
 
         presentSupply = (Supply_Base)Activator.CreateInstance(Type.GetType(realName));
-
-        showSupply();
     }
 
     private void showSupply()
@@ -144,6 +144,39 @@ public class Reward_Supply : MonoBehaviour
                 SupplyCancelClicked?.Invoke();
                 this.btn.GetComponent<Image>().color = Color.white;
                 this.btn.GetComponentInChildren<TextMeshProUGUI>().SetText("È¹  µæ");
+            }
+        }
+    }
+
+    private void Awake()
+    {
+        if (saveManager.saving.isBattle)
+        {
+            initPotenSupply(saveManager.saving.earnSupply.Length);
+        }
+        else
+        {
+            presentSupply = (Supply_Base)Activator.CreateInstance(Type.GetType(saveManager.saving.earnSupply));
+            if (saveManager.saving.supply.Length == 5)
+            {
+                trouble = true;
+            }
+            this.obtained = saveManager.saving.supplyIsEarned;
+        }
+    }
+
+    private void Start()
+    {
+        showSupply();
+        if (saveManager.saving.isBattle)
+        {
+            presentComplete?.Invoke();
+        }
+        else
+        {
+            if (obtained)
+            {
+                Supply_ResultInventory_SupplyObtainCompleteFromInventory();
             }
         }
     }

@@ -8,6 +8,7 @@ public class CurtainsUp : MonoBehaviour
 {
     private PlayerInput playerinput;
 
+    [SerializeField] private SaveM_Result saveManager;
     [SerializeField] private RectTransform Curtain;
 
     [SerializeField] private AudioSource audioSource;
@@ -17,11 +18,20 @@ public class CurtainsUp : MonoBehaviour
 
     private void OnEnable()
     {
-        PackComplete.CompletePressed += CurtainDown;
+        PackComplete.SafeToGo += CurtainDown;
+        SaveM_Result.firstSaveFinished += SaveM_Result_firstSaveFinished;
     }
+
     private void OnDisable()
     {
-        PackComplete.CompletePressed -= CurtainDown;
+        PackComplete.SafeToGo -= CurtainDown;
+        SaveM_Result.firstSaveFinished -= SaveM_Result_firstSaveFinished;
+    }
+
+    private void SaveM_Result_firstSaveFinished()
+    {
+        Curtain.DOAnchorPos(new Vector2(0, 1100f), resetSpeed);
+        StartCoroutine(CurtainLift(true));
     }
 
     private IEnumerator CurtainLift(bool isUp)
@@ -46,13 +56,13 @@ public class CurtainsUp : MonoBehaviour
     private void Awake()
     {
         playerinput = GetComponent<PlayerInput>();
+        playerinput.actions.FindActionMap("PlayerInput").Disable();
     }
-
     private void Start()
     {
-        //start말고 ???이 신호를 보내주면 그 때 시작
-        playerinput.actions.FindActionMap("PlayerInput").Disable();
-        Curtain.DOAnchorPos(new Vector2(0, 1100f), resetSpeed);
-        StartCoroutine(CurtainLift(true));
+        if(!saveManager.saving.isBattle)
+        {
+            SaveM_Result_firstSaveFinished();
+        }
     }
 }
