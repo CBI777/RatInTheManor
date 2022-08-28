@@ -3,6 +3,7 @@ using DG.Tweening;
 using UnityEngine.InputSystem;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 public class CurtainsUp : MonoBehaviour
 {
@@ -10,11 +11,13 @@ public class CurtainsUp : MonoBehaviour
 
     [SerializeField] private SaveM_Result saveManager;
     [SerializeField] private RectTransform Curtain;
+    [SerializeField] GameObject blackOut;
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private float resetSpeed = 4f;
 
     public static event Action CurtainHasBeenLifted;
+    public static event Action CurtainDownComplete;
 
     private void OnEnable()
     {
@@ -32,6 +35,7 @@ public class CurtainsUp : MonoBehaviour
     {
         Curtain.DOAnchorPos(new Vector2(0, 1100f), resetSpeed);
         StartCoroutine(CurtainLift(true));
+        StartCoroutine(BackGroundLight());
     }
 
     private IEnumerator CurtainLift(bool isUp)
@@ -44,6 +48,33 @@ public class CurtainsUp : MonoBehaviour
             CurtainHasBeenLifted?.Invoke();
             playerinput.actions.FindActionMap("PlayerInput").Enable();
         }
+        else
+        {
+            CurtainDownComplete?.Invoke();
+        }
+    }
+    IEnumerator BackGroundFade()
+    {
+        blackOut.gameObject.SetActive(true);
+        Color c = new Color(0f, 0f, 0f, 0f);
+        for (int i = 0; i <= 400; i++)
+        {
+            c.a = i / 400f;
+            blackOut.GetComponent<Image>().color = c;
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
+    IEnumerator BackGroundLight()
+    {
+        Color c = new Color(0f, 0f, 0f, 0f);
+        for (int i = 400; i >= 0; i--)
+        {
+            c.a = i / 400f;
+            blackOut.GetComponent<Image>().color = c;
+            yield return new WaitForSeconds(0.01f);
+        }
+        blackOut.gameObject.SetActive(false);
     }
 
     private void CurtainDown()
@@ -51,6 +82,7 @@ public class CurtainsUp : MonoBehaviour
         playerinput.actions.FindActionMap("PlayerInput").Disable();
         Curtain.DOAnchorPos(new Vector2(0, -120f), resetSpeed);
         StartCoroutine(CurtainLift(false));
+        StartCoroutine(BackGroundFade());
     }
 
     private void Awake()

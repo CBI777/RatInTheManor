@@ -10,7 +10,7 @@ public class SkillManager : MonoBehaviour
     //저장을 위해서
     public static event Action enemySetEvent;
     //적이 결정되면 조우 다이얼로그를 위해서 한 번 이벤트를 쏴준다.
-    public static event Action<string, string> enemyDecidedEvent;
+    public static event Action<string, string, string> enemyDecidedEvent;
 
     //1. skill을 받아서 skill 들어옴 ㅅㄱ하면서 뿌려줌
     //2. 이 skill을 SlotManager랑 skillBtn이 받아먹음
@@ -55,7 +55,7 @@ public class SkillManager : MonoBehaviour
 
     private void SaveM_Battle_firstSaveFinished()
     {
-        enemyDecidedEvent?.Invoke(this.enemy.realName, this.enemy.deathSFX);
+        enemyDecidedEvent?.Invoke(this.enemy.realName, this.enemy.deathSFX, this.enemy.bgm);
     }
 
     private void BattleDialogueProvider_FinalDia()
@@ -115,7 +115,7 @@ public class SkillManager : MonoBehaviour
         if(startFromMe)
         {
             showEnemyPic();
-            enemyDecidedEvent?.Invoke(this.enemy.realName, this.enemy.deathSFX);
+            enemyDecidedEvent?.Invoke(this.enemy.realName, this.enemy.deathSFX, this.enemy.bgm);
         }
     }
 

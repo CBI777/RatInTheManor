@@ -15,5 +15,5 @@ MonoBehaviour:
   equipName: "\uAE30\uBB18\uD55C \uB4F1\uBD88"
   realName: Equipment_Lantern
   description: "\uACF5\uD3EC \uC800\uD56D - 1\n\uD604\uD639 \uC800\uD56D + 1"
-  index: 2
+  index: 6
   resChange: 00000000ffffffff0000000001000000

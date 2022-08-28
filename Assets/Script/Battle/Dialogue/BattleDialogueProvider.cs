@@ -47,6 +47,8 @@ public class BattleDialogueProvider : MonoBehaviour
     public static event Action betweenTurnDia;
     public static event Action turnStartDiaEnd;
     public static event Action startFromDialogue;
+    public static event Action<DmgType> DmgTypeShow;
+    public static event Action YouAreMad;
 
     public static event Action FinalDia;
     //이걸로 몇 번째(int) 스킬의 dialogue가 진행될 것인지를 알려줌.
@@ -185,6 +187,7 @@ public class BattleDialogueProvider : MonoBehaviour
     private void SlotManager_FinalDmgPass(int obj)
     {
         audioSource.PlayOneShot(Resources.Load<AudioClip>("SFX/Battle/" + skillScript.skillDia[skillBookmark][bookmark].sfxName));
+        DmgTypeShow?.Invoke(skillScript.skillDia[skillBookmark][bookmark].dmgType);
         scriptDisplay(skillScript.skillDia[skillBookmark][bookmark]);
         scriptDisplay(false, "이성에 " + obj + "의 피해를 입었다!");
 
@@ -230,7 +233,7 @@ public class BattleDialogueProvider : MonoBehaviour
         DialogueManager.Instance.addDialogue(isRight, line);
     }
 
-    private void SkillManager_enemyDecidedEvent(string obj, string sfx)
+    private void SkillManager_enemyDecidedEvent(string obj, string sfx, string bgm)
     {
         //이게 들어왔다는 것은 턴 시작 전에 보여줄 것이라는 것
         this.deathSFX = sfx;
@@ -320,14 +323,14 @@ public class BattleDialogueProvider : MonoBehaviour
         {
             if(isMad)
             {
-                /*게임오버, 즉, killPlayer해야됨.*/
+                YouAreMad?.Invoke();
             }
             else
             {
                 bookmark = 0;
-                proceedBtn.interactable = false;
                 beforeTurnEvent?.Invoke();
             }
+            proceedBtn.interactable = false;
         }
     }
 

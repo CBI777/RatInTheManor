@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b2e22e1d75c3984fbdd454ae330d0f5, type: 3}
+  m_Name: Equipment_WornOutSigil
+  m_EditorClassIdentifier: 
+  equipName: "\uB2F3\uC544\uBC84\uB9B0 \uD6C8\uC7A5"
+  realName: Equipment_WornOutSigil
+  description: "[\uAE30\uBCF8 \uC7A5\uBE44]\n\uD604\uD639 \uC800\uD56D + 1\n\uAD6D\uAC00\uB3C4
+    \uAE30\uC5B5\uD574\uC8FC\uC9C0 \uC54A\uB294 \uB2F9\uC2E0\uC758 \uC80A\uC740 \uB0A0\uC744
+    \uAE30\uC5B5\uD574\uC8FC\uB294 \uC720\uC77C\uD55C \uAC83."
+  index: 1
+  resChange: 00000000000000000000000001000000

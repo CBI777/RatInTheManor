@@ -8,6 +8,7 @@ public class Enemy_Base : ScriptableObject
     public string enemyName;
     public string realName;
     public string deathSFX;
+    public string bgm;
 
     public List<ListWrapper<EnemySkill>> skillList = new List<ListWrapper<EnemySkill>>();
 }

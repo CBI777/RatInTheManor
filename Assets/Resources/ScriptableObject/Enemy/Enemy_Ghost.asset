@@ -16,6 +16,7 @@ MonoBehaviour:
   enemyName: "\uB9DD\uB839"
   realName: Enemy_Ghost
   deathSFX: sfx_crumble
+  bgm: Corridor
   skillList:
   - myList:
     - skillName: "\uD5C8\uACF5 \uAC00\uB9AC\uD0A4\uAE30"

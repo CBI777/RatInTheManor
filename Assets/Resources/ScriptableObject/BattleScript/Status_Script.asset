@@ -178,7 +178,7 @@ MonoBehaviour:
       portName: 
     - isRight: 0
       isPorted: 1
-      line: "\u266C \u266C ~ \u266A~"
+      line: ~ ~ ~
       portName: MathGaki
     - isRight: 0
       isPorted: 0

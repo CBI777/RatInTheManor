@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: List__Equipment
   m_EditorClassIdentifier: 
   items:
+  - Equipment_SurvivalKnife
+  - Equipment_WornOutSigil
+  - Equipment_Specimen
+  - Equipment_SmallCross
   - Equipment_Blindfold
   - Equipment_EyeballJar
   - Equipment_Lantern

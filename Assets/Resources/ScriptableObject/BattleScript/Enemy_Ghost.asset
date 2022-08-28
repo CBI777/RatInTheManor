@@ -16,8 +16,13 @@ MonoBehaviour:
   - myList:
     - isRight: 1
       isPorted: 0
-      line: "\uB11D\uB9C8\uB97C \uAC78\uCE5C \uC0AC\uB78C\uC774 \uBCF5\uB3C4 \uB108\uBA38\uC5D0\uC11C
-        \uAC78\uC5B4\uC654\uB2E4."
+      line: "\uC74C\uC0B0\uD55C \uC800\uD0DD \uC548\uC73C\uB85C \uBC1C\uC744 \uC62E\uAE30\uB294
+        \uB2F9\uC2E0."
+      portName: 
+    - isRight: 1
+      isPorted: 0
+      line: "\uADF8 \uC55E\uC5D0 \uB11D\uB9C8\uB97C \uAC78\uCE5C \uC0AC\uB78C\uC774
+        \uC5B4\uAE30\uC801\uAC70\uB9AC\uBA70 \uB2E4\uAC00\uC654\uB2E4."
       portName: 
     - isRight: 1
       isPorted: 0

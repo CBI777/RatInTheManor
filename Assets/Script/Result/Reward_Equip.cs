@@ -89,10 +89,23 @@ public class Reward_Equip : MonoBehaviour
 
     private void initPotenEquip(int[] b)
     {
+        List<int> a = new List<int>();
         string realName;
-
-        int temp = b.Length;
+        int lim = 0;
         Array.Sort(b);
+        for (int i = 0; i < 3; i++)
+        {
+            if (b[i] != -1)
+            {
+                a.Add(b[i]);
+            }
+        }
+        int temp = a.Count;
+        
+        if (b[0] <= 3)
+        {
+            lim = 1;
+        }
         if (temp == 3)
         {
             trouble = true;
@@ -101,9 +114,13 @@ public class Reward_Equip : MonoBehaviour
         {
             potentialEquipment.Add(equipList.items[i]);
         }
-        for (int i = (temp - 1); i >= 0; i--)
+        for (int i = (temp - 1); i >= lim; i--)
         {
             potentialEquipment.RemoveAt(b[i]);
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            potentialEquipment.RemoveAt(0);
         }
 
         realName = potentialEquipment[(UnityEngine.Random.Range(0, potentialEquipment.Count))];
@@ -154,6 +171,7 @@ public class Reward_Equip : MonoBehaviour
 
     private void Awake()
     {
+        int temp = 0;
         if(saveManager.saving.isBattle)
         {
             initPotenEquip(saveManager.saving.equip);
@@ -161,10 +179,14 @@ public class Reward_Equip : MonoBehaviour
         else
         {
             presentEquip = Resources.Load<Equipment>("ScriptableObject/Equipment/" + equipList.items[saveManager.saving.earnEquip]);
-            if (saveManager.saving.equip.Length == 3)
+            for(int i =0; i<3;i++)
             {
-                trouble = true;
+                if (saveManager.saving.equip[i] != -1)
+                {
+                    temp++;
+                }
             }
+            if(temp == 3) { trouble = true; }
             this.obtained = saveManager.saving.equipIsEarned;
         }
     }

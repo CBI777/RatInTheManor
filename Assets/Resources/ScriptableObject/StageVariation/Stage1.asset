@@ -15,4 +15,4 @@ MonoBehaviour:
   variationList:
     myList:
     - realName: Enemy_Ghost
-      num: 100
+      num: 101

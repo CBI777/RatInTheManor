@@ -150,11 +150,11 @@ public class SaveM_Result : MonoBehaviour
         ////////////////////
         for (int i = 0; i < 4; i++) { saving.resist[i] = 0; }
         ////////////////////
-        saving.stageNum = 0;
+        saving.stageNum = -2;
         ////////////////////
         saving.isBattle = false;
         ////////////////////
-        saving.turn = -1;
+        saving.turn = -2;
         ////////////////////
         saving.selEnemy = "NA";
         ////////////////////

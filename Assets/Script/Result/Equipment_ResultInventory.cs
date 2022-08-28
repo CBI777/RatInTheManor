@@ -19,7 +19,7 @@ public class Equipment_ResultInventory : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            if (i > equipCount)
+            if (i >= equipCount)
             {
                 equipNum[i] = -1;
             }
@@ -181,6 +181,7 @@ public class Equipment_ResultInventory : MonoBehaviour
     {
         this.equipment.Add(Resources.Load<Equipment>("ScriptableObject/Equipment/" + realName));
         this.equipCount = this.equipment.Count;
+        EquipChanged();
     }
 
     private void initEquip(int[] b)

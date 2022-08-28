@@ -103,7 +103,7 @@ public class Reward_Supply : MonoBehaviour
         }
 
         realName = supplyList.items[(UnityEngine.Random.Range(0, supplyList.items.Count))];
-
+        Debug.Log(realName);
         presentSupply = (Supply_Base)Activator.CreateInstance(Type.GetType(realName));
     }
 
