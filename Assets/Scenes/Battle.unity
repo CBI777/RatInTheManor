@@ -10022,6 +10022,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c66c7fdcab1d93646a3d855ba4ccd71f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  saveManager: {fileID: 758356554}
 --- !u!1 &638126287
 GameObject:
   m_ObjectHideFlags: 0
@@ -11525,7 +11526,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -20233,7 +20234,7 @@ MonoBehaviour:
   audioSource: {fileID: 1243421097}
   nextSource: {fileID: 1893215864}
   nextClip: {fileID: 8300000, guid: 5d02c9da9f25ab84db331d1ba1056425, type: 3}
-  statusScriptBase: {fileID: 11400000, guid: 1878014a761279e4c8a52715a32e9c95, type: 2}
+  statusScriptBase: {fileID: 11400000, guid: e0395701f43925f428a95f2d373261db, type: 2}
 --- !u!82 &1243421097
 AudioSource:
   m_ObjectHideFlags: 0
@@ -21251,7 +21252,7 @@ MonoBehaviour:
   keeper: {fileID: 770293380}
   rightDiaPrefab: {fileID: 3067665639676157764, guid: 8f9a3182bb44bdc43a61dc8e6c508337, type: 3}
   leftDiaPrefab: {fileID: 3067665639676157764, guid: 5800edc048c2ad441970b010588fa150, type: 3}
-  rightDiaWithPortPrefab: {fileID: 0}
+  rightDiaWithPortPrefab: {fileID: 3067665639676157764, guid: f64e92107e8b14d43a337720d332c506, type: 3}
   leftDiaWithPortPrefab: {fileID: 3067665639676157764, guid: cc20d27184ee59b4cb102c59e7375e69, type: 3}
 --- !u!1 &1295915246
 GameObject:
@@ -27715,7 +27716,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -910.00006, y: 0}
+  m_AnchoredPosition: {x: -910, y: 0}
   m_SizeDelta: {x: -1860, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1814116053
@@ -33060,7 +33061,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -606.50006, y: 0}
+  m_AnchoredPosition: {x: -606.5, y: 0}
   m_SizeDelta: {x: -1393, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2130113543

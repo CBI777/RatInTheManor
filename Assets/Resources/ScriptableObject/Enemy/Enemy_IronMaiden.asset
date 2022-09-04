@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567363da27686ca4ca98169bdd5b6e0d, type: 3}
+  m_Name: Enemy_IronMaiden
+  m_EditorClassIdentifier: 
+  turnCount: 3
+  enemyName: "\uC544\uC774\uC5B8\uBA54\uC774\uB4E0"
+  realName: Enemy_IronMaiden
+  deathSFX: sfx_destroy1
+  bgm: Grayscale_Scenery
+  skillList:
+  - myList:
+    - skillName: "\uD53C\uD22C\uC131\uC774 \uAC00\uC2DC"
+      dmgs: 1e000000000000000000000000000000
+      tokens: 04000000000000000000000000000000
+    - skillName: "\uC2DD\uC0AC \uC2DC\uAC04"
+      dmgs: 140000000f0000000a00000000000000
+      tokens: 03000000020000000100000000000000
+  - myList:
+    - skillName: "\uB2E4\uC9C0\uAE30"
+      dmgs: 1e000000000000000000000000000000
+      tokens: 04000000000000000000000000000000
+    - skillName: "\uC704\uD611"
+      dmgs: 05000000140000000f00000000000000
+      tokens: 01000000020000000200000000000000
+    - skillName: "\uC2DD\uC0AC \uC2DC\uAC04"
+      dmgs: 140000000f0000000a00000000000000
+      tokens: 03000000020000000100000000000000
+  - myList:
+    - skillName: "\uC548\uC73C\uB85C\uC758 \uCD08\uB300"
+      dmgs: 00000000000000000000000014000000
+      tokens: 00000000000000000000000002000000
+    - skillName: "\uB2E4\uC9C0\uAE30"
+      dmgs: 1e000000000000000000000000000000
+      tokens: 04000000000000000000000000000000
+    - skillName: "\uC2DD\uC0AC \uC2DC\uAC04"
+      dmgs: 140000000f0000000a00000000000000
+      tokens: 03000000020000000100000000000000

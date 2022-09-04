@@ -9,7 +9,7 @@ public class PackComplete : MonoBehaviour
     [SerializeField] private SaveM_Result saveManager;
     public static event Action CompletePressed;
     public static event Action SafeToGo;
-
+    [SerializeField] private Button btn;
 
     [SerializeField] private GameObject tooltip;
 
@@ -41,15 +41,15 @@ public class PackComplete : MonoBehaviour
         Reward_Hallucination.HalluObtainClicked -= disableBtn;
         Reward_Hallucination.HalluCancelClicked -= enableBtn;
         SaveM_Result.finalSaveFinished -= SaveM_Result_finalSaveFinished;
-        SaveM_Result.middleSaveFinished += SaveM_Result_middleSaveFinished;
+        SaveM_Result.middleSaveFinished -= SaveM_Result_middleSaveFinished;
     }
 
 
     private void SaveM_Result_middleSaveFinished()
     {
         isComplete = true;
-        transform.GetComponent<Button>().interactable = true;
-        tooltip.SetActive(false);
+        btn.interactable = true;
+        tooltip.GetComponent<TooltipTrigger>().enabled = false;
     }
 
     private void SaveM_Result_finalSaveFinished()
@@ -61,19 +61,19 @@ public class PackComplete : MonoBehaviour
     {
         isSure = false;
         transform.GetComponentInChildren<TextMeshProUGUI>().SetText("정비\u000a완료");
-        transform.GetComponent<Button>().interactable = false;
+        btn.interactable = false;
     }
     private void disableBtn(string n)
     {
         isSure = false;
         transform.GetComponentInChildren<TextMeshProUGUI>().SetText("정비\u000a완료");
-        transform.GetComponent<Button>().interactable = false;
+        btn.interactable = false;
     }
     private void enableBtn()
     {
         if(isComplete)
         {
-            transform.GetComponent<Button>().interactable = true;
+            btn.interactable = true;
         }
     }
 

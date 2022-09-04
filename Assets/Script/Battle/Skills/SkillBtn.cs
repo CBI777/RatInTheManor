@@ -32,6 +32,7 @@ public class SkillBtn : MonoBehaviour
         SkillBtn.SkillChanged -= SkillBtn_SkillChanged;
         BattleDialogueProvider.skillDiaStart -= BattleDialogueProvider_skillDiaStart;
         SkillBtn.SkillDiaProgress -= SkillBtn_SkillDiaProgress;
+        BattleDialogueProvider.betweenTurnDia -= BattleDialogueProvider_betweenTurnDia;
     }
 
 
@@ -39,8 +40,11 @@ public class SkillBtn : MonoBehaviour
     {
         for (int i = 0; i < btns.Length; i++)
         {
-            highlights[i].SetActive(false);
-            btns[i].SetActive(false);
+            if(btns[i] != null)
+            {
+                highlights[i].SetActive(false);
+                btns[i].SetActive(false);
+            }
         }
     }
 

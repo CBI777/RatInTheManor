@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f369edf649457ac41b95a1a85ca79ca3, type: 3}
+  m_Name: Enemy_Gazer
+  m_EditorClassIdentifier: 
+  skillDia:
+  - myList:
+    - dialogue: "\uC0DD\uBA85\uC744 \uACBD\uC2DC\uD558\uB294 \uC2DC\uC120\uC774 \uB2F9\uC2E0\uC744
+        \uC751\uC2DC\uD55C\uB2E4..."
+      sfxName: sfx_glassBreak1
+      dmgType: 1
+    - dialogue: "\uC0DD\uBA85\uC744 \uD0D0\uD558\uB294 \uC2DC\uC120\uC774 \uB2F9\uC2E0\uC744
+        \uC751\uC2DC\uD55C\uB2E4..."
+      sfxName: sfx_flyingDemonic
+      dmgType: 0
+    - dialogue: "\uB2F9\uC2E0\uC758 \uC815\uC2E0\uC744 \uD0D0\uD558\uB294 \uC2DC\uC120\uC774
+        \uB2F9\uC2E0\uC744 \uC720\uD639\uD55C\uB2E4..."
+      sfxName: sfx_SlowMotionEnd
+      dmgType: 3
+  - myList:
+    - dialogue: "\uC0DD\uBA85\uC744 \uB04A\uC73C\uB824\uB294 \uC2DC\uC120\uC774 \uB2F9\uC2E0\uC744
+        \uC9C0\uCF1C\uBCF8\uB2E4..."
+      sfxName: sfx_violin3
+      dmgType: 1
+    - dialogue: "\uBE44\uD2C0\uB9B0 \uBC29\uD5A5\uC73C\uB85C \uC0DD\uBA85\uC744 \uC7AC\uAC74\uD558\uB294
+        \uC2DC\uC120\uC774 \uB290\uAEF4\uC9C4\uB2E4..."
+      sfxName: sfx_strike1
+      dmgType: 2
+  - myList:
+    - dialogue: "\uB208\uC54C\uC774 \uBCF4\uB294 \uC2DC\uAC04\uC774 \uB2E8\uD3B8\uC801\uC73C\uB85C
+        \uBA38\uB9AC\uB85C \uB4E4\uC5B4\uC628\uB2E4."
+      sfxName: sfx_allure
+      dmgType: 1
+    - dialogue: "\uB208\uC54C\uC758 \uC2DC\uAC04\uC774 \uD558\uB098\uC758 \uC0AC\uAC74\uC73C\uB85C
+        \uC870\uB9BD\uB41C\uB2E4..."
+      sfxName: sfx_flyingDemonic
+      dmgType: 3

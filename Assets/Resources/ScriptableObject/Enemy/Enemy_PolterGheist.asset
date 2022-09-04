@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567363da27686ca4ca98169bdd5b6e0d, type: 3}
+  m_Name: Enemy_PolterGheist
+  m_EditorClassIdentifier: 
+  turnCount: 2
+  enemyName: "\uD3F4\uD130 \uAC00\uC774\uC2A4\uD2B8"
+  realName: Enemy_PolterGheist
+  deathSFX: sfx_SlowMotionEnd
+  bgm: Halloween_Monsters
+  skillList:
+  - myList:
+    - skillName: "\uBD88\uAE38\uD55C \uC6C0\uC9C1\uC784"
+      dmgs: 05000000050000000000000000000000
+      tokens: 01000000020000000000000000000000
+    - skillName: "\uD754\uB4E4\uB9AC\uB294 \uAC00\uAD6C\uB4E4"
+      dmgs: 0a0000000a0000000000000000000000
+      tokens: 02000000010000000000000000000000
+  - myList:
+    - skillName: "\uC720\uD639\uD558\uB294 \uAC00\uAD6C\uB4E4"
+      dmgs: 000000000a000000000000000a000000
+      tokens: 00000000010000000000000002000000
+    - skillName: "\uD769\uB0A0\uB9AC\uB294 \uC2E0\uCCB4\uB4E4"
+      dmgs: 00000000050000000a00000000000000
+      tokens: 00000000010000000200000000000000
+    - skillName: "\uAD00\uD1B5 \uBE44\uD589"
+      dmgs: 0a0000000a0000000a0000000a000000
+      tokens: 00000000000000000000000000000000

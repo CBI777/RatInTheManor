@@ -13,9 +13,18 @@ public class Result_SceneTrans : MonoBehaviour
         CurtainsUp.CurtainDownComplete -= CurtainsDown_CurtainDownComplete;
     }
 
-    private void CurtainsDown_CurtainDownComplete()
+    private void CurtainsDown_CurtainDownComplete(bool isMad)
     {
-        LoadScene("Battle");
+        if(isMad)
+        {
+            LoadScene("Story_BadEnd");
+        }
+        else
+        {
+            LoadScene("Battle");
+
+        }
+        
     }
 
     public async void LoadScene(string sceneName)

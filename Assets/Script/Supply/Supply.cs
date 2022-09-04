@@ -73,6 +73,8 @@ public class Supply_NoUse : Supply_Base
     }
 }
 
+/////////////////////////////
+
 public class Supply_Opium : Supply_Base
 {
     public Supply_Opium()
@@ -92,24 +94,85 @@ public class Supply_Opium : Supply_Base
     }
 }
 
+/////////////////////////////
+
 public class Supply_Painkiller : Supply_Base
 {
     public Supply_Painkiller()
         : base("진통제", "Supply_Painkiller", true, 1)
     {
-        this.batDescription = "소모품.\u000a" + "이번 턴, 물리적 피해 저항을 2만큼 상승시킵니다.";
-        this.description = "전투에서만 사용 가능.\u000a" + "소모품. 사용한 턴, 물리적 피해 저항을 2만큼 상승시킵니다.";
+        this.batDescription = "소모품.\u000a" + "이번 턴, 물리적 피해 저항을 4만큼 상승시킵니다.";
+        this.description = "전투에서만 사용 가능.\u000a" + "소모품. 사용한 턴, 물리적 피해 저항을 4만큼 상승시킵니다.";
     }
 
     public override void onUse()
     {
-        changeResist_temp(2, 0, 0, 0);
+        changeResist_temp(4, 0, 0, 0);
     }
     public override void onStopUse()
     {
-        changeResist_temp(-2, 0, 0, 0);
+        changeResist_temp(-4, 0, 0, 0);
     }
 }
+
+public class Supply_CircularPills : Supply_Base
+{
+    public Supply_CircularPills()
+        : base("쓴 환약", "Supply_CircularPills", true, 1)
+    {
+        this.batDescription = "소모품.\u000a" + "이번 턴, 혐오 저항을 4만큼 상승시킵니다.";
+        this.description = "전투에서만 사용 가능.\u000a" + "소모품. 사용한 턴, 혐오 저항을 4만큼 상승시킵니다.";
+    }
+
+    public override void onUse()
+    {
+        changeResist_temp(0, 0, 4, 0);
+    }
+    public override void onStopUse()
+    {
+        changeResist_temp(0, 0, -4, 0);
+    }
+}
+
+public class Supply_Omamori : Supply_Base
+{
+    public Supply_Omamori()
+        : base("동양식 부적", "Supply_Omamori", true, 1)
+    {
+        this.batDescription = "소모품.\u000a" + "이번 턴, 공포 저항을 4만큼 상승시킵니다.";
+        this.description = "전투에서만 사용 가능.\u000a" + "소모품. 사용한 턴, 공포 저항을 4만큼 상승시킵니다.";
+    }
+
+    public override void onUse()
+    {
+        changeResist_temp(0, 4, 0, 0);
+    }
+    public override void onStopUse()
+    {
+        changeResist_temp(0, -4, 0, 0);
+    }
+}
+
+public class Supply_Perfume : Supply_Base
+{
+    public Supply_Perfume()
+        : base("향기병", "Supply_Perfume", true, 1)
+    {
+        this.batDescription = "소모품.\u000a" + "이번 턴, 현혹 저항을 4만큼 상승시킵니다.";
+        this.description = "전투에서만 사용 가능.\u000a" + "소모품. 사용한 턴, 현혹 저항을 4만큼 상승시킵니다.";
+    }
+
+    public override void onUse()
+    {
+        changeResist_temp(0, 0, 0, 4);
+    }
+    public override void onStopUse()
+    {
+        changeResist_temp(0, 0, 0, -4);
+    }
+}
+
+/////////////////////////////
 
 public class Supply_Abhorrpainting : Supply_Base
 {
@@ -117,10 +180,52 @@ public class Supply_Abhorrpainting : Supply_Base
         : base("역겨운 그림", "Supply_Abhorrpainting", true, 0)
     {
         this.batDescription = "전투중에는 사용할 수 없습니다.";
-        this.description = "전투중에는 사용 불가.\u000a" + "소모품. 사용하면 혐오 저항이 영구적으로 1상승하고, 현혹 저항이 영구적으로 1감소합니다.";
+        this.description = "전투중에는 사용 불가.\u000a" + "소모품. 사용하면 혐오 저항이 영구적으로 2 상승하고, 현혹 저항이 영구적으로 1 감소합니다.";
     }
     public override void onUse()
     {
-        changeResist_eter(0, 0, 1, -1);
+        changeResist_eter(0, 0, 2, -1);
+    }
+}
+
+public class Supply_WaistBand : Supply_Base
+{
+    public Supply_WaistBand()
+        : base("복대", "Supply_WaistBand", true, 0)
+    {
+        this.batDescription = "전투중에는 사용할 수 없습니다.";
+        this.description = "전투중에는 사용 불가.\u000a" + "소모품. 사용하면 물리적 피해 저항이 영구적으로 2 상승하고, 혐오 저항이 영구적으로 1 감소합니다.";
+    }
+    public override void onUse()
+    {
+        changeResist_eter(2, 0, -1, 0);
+    }
+}
+
+public class Supply_StoneSlate : Supply_Base
+{
+    public Supply_StoneSlate()
+        : base("불길한 석판", "Supply_StoneSlate", true, 0)
+    {
+        this.batDescription = "전투중에는 사용할 수 없습니다.";
+        this.description = "전투중에는 사용 불가.\u000a" + "소모품. 사용하면 공포 저항이 영구적으로 2 상승하고, 물리적 피해 저항이 영구적으로 1 감소합니다.";
+    }
+    public override void onUse()
+    {
+        changeResist_eter(-1, 2, 0, 0);
+    }
+}
+
+public class Supply_TwistedHandkerchief : Supply_Base
+{
+    public Supply_TwistedHandkerchief()
+        : base("뒤틀린 손수건", "Supply_TwistedHandkerchief", true, 0)
+    {
+        this.batDescription = "전투중에는 사용할 수 없습니다.";
+        this.description = "전투중에는 사용 불가.\u000a" + "소모품. 사용하면 현혹 저항이 영구적으로 2 상승하고, 공포 저항이 영구적으로 1 감소합니다.";
+    }
+    public override void onUse()
+    {
+        changeResist_eter(0, -1, 0, 2);
     }
 }

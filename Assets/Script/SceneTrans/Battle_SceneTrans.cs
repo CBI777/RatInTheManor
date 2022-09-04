@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Battle_SceneTrans : MonoBehaviour
 {
+    [SerializeField] SaveM_Battle saveManager;
     private void OnEnable()
     {
         CurtainsDown.CurtainDownComplete += CurtainsDown_CurtainDownComplete;
@@ -23,7 +24,14 @@ public class Battle_SceneTrans : MonoBehaviour
 
     private void CurtainsDown_CurtainDownComplete()
     {
-        LoadScene("Result");
+        if(saveManager.saving.stageNum == 8)
+        {
+            LoadScene("Story_GoodEnd");
+        }
+        else
+        {
+            LoadScene("Result");
+        }
     }
 
     public async void LoadScene(string sceneName)

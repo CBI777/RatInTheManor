@@ -116,7 +116,7 @@ public class Reward_Equip : MonoBehaviour
         }
         for (int i = (temp - 1); i >= lim; i--)
         {
-            potentialEquipment.RemoveAt(b[i]);
+            potentialEquipment.RemoveAt(a[i]);
         }
         for (int i = 0; i < 4; i++)
         {

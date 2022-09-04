@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipName: "\uD53C\uC2A4\uD1A8"
   realName: Equipment_Pistol
-  description: "\uACF5\uD3EC \uC800\uD56D + 1\n\uD610\uC624 \uC800\uD56D - 1"
+  description: "<color=blue>\uBB3C\uB9AC\uC801 \uD53C\uD574 \uC800\uD56D + 2</color>\n<color=blue>\uACF5\uD3EC
+    \uC800\uD56D + 2</color>\n<color=red>\uD610\uC624 \uC800\uD56D - 3</color>"
   index: 7
-  resChange: 0000000001000000ffffffff00000000
+  resChange: 0200000002000000fdffffff00000000

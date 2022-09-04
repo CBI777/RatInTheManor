@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567363da27686ca4ca98169bdd5b6e0d, type: 3}
+  m_Name: Enemy_Succubus
+  m_EditorClassIdentifier: 
+  turnCount: 3
+  enemyName: "\uC11C\uD050\uBC84\uC2A4"
+  realName: Enemy_Succubus
+  deathSFX: sfx_enemyScream1
+  bgm: Cerberus
+  skillList:
+  - myList:
+    - skillName: "\uCC30\uB098\uC758 \uC720\uD639"
+      dmgs: 000000000f0000000f0000001e000000
+      tokens: 00000000010000000200000003000000
+    - skillName: "\uD669\uD640\uD55C \uD761\uD608"
+      dmgs: 1e000000000000000a0000001e000000
+      tokens: 02000000000000000200000003000000
+    - skillName: "\uC5F4\uC815\uC801\uC778 \uC190\uC9D3"
+      dmgs: 050000001e000000050000000a000000
+      tokens: 01000000030000000100000001000000
+  - myList:
+    - skillName: "\uB2EC\uCF64\uD55C \uC720\uD639"
+      dmgs: 00000000000000000000000028000000
+      tokens: 00000000000000000000000004000000
+    - skillName: "\uD608\uC561 \uAC08\uCDE8"
+      dmgs: 28000000000000000000000000000000
+      tokens: 05000000000000000000000000000000
+  - myList:
+    - skillName: "\uD658\uD76C"
+      dmgs: 0f0000000f0000000f0000000f000000
+      tokens: 02000000020000000200000002000000
+    - skillName: "\uC218\uC90D\uC740 \uACE0\uBC31"
+      dmgs: 14000000140000001400000014000000
+      tokens: 00000000000000000000000000000000

@@ -12,7 +12,7 @@ public class Supply_ResultInventory : MonoBehaviour
     [SerializeField] private SaveM_Result saveManager;
     [SerializeField] private GameObject[] supplyImg = new GameObject[5];
     [SerializeField] private GameObject[] bg = new GameObject[5];
-    [SerializeField] private GameObject[] btn = new GameObject[5];
+    private GameObject[] btn = new GameObject[5];
     [SerializeField] private GameObject myText;
 
     private string tempSupply = "";
@@ -175,6 +175,12 @@ public class Supply_ResultInventory : MonoBehaviour
 
     private void Awake()
     {
+        this.btn[0] = GameObject.FindWithTag("SBtn1");
+        this.btn[1] = GameObject.FindWithTag("SBtn2");
+        this.btn[2] = GameObject.FindWithTag("SBtn3");
+        this.btn[3] = GameObject.FindWithTag("SBtn4");
+        this.btn[4] = GameObject.FindWithTag("SBtn5");
+
         string[] temp = this.saveManager.saving.supply;
 
         for (int i = 0; i < temp.Length; i++)

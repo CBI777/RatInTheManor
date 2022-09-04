@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567363da27686ca4ca98169bdd5b6e0d, type: 3}
+  m_Name: Enemy_Beelzebub
+  m_EditorClassIdentifier: 
+  turnCount: 4
+  enemyName: "\uB192\uC740 \uAC70\uCC98\uC758 \uC8FC\uC778"
+  realName: Enemy_Beelzebub
+  deathSFX: sfx_Kick1
+  bgm: Cyber_Dust
+  skillList:
+  - myList:
+    - skillName: "\uB0B4\uC7A5 \uC65C\uACE1"
+      dmgs: 50000000000000000000000000000000
+      tokens: 08000000000000000000000000000000
+  - myList:
+    - skillName: "\uAD6C\uB354\uAE30\uC758 \uC7A5\uC1A1\uACE1"
+      dmgs: 00000000500000000000000000000000
+      tokens: 00000000080000000000000000000000
+  - myList:
+    - skillName: "\uD30C\uB9AC\uC758 \uC5ED\uB958"
+      dmgs: 00000000000000005000000000000000
+      tokens: 00000000000000000800000000000000
+  - myList:
+    - skillName: "'\uC545\uB9C8'\uC758 \uD638\uC758"
+      dmgs: 00000000000000000000000050000000
+      tokens: 00000000000000000000000008000000

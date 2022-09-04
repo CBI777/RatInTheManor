@@ -129,7 +129,7 @@ MonoBehaviour:
       isPorted: 1
       line: "\uC74C\uC74C... \uC601\uCCB4\uCC98\uB7FC \uBCF4\uC774\uC9C0\uB9CC \uBB3C\uB9AC\uC801\uC778...
         \uD760."
-      portName: Disappointed
+      portName: Focused
     - isRight: 0
       isPorted: 1
       line: "...\uD760?"

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567363da27686ca4ca98169bdd5b6e0d, type: 3}
+  m_Name: Enemy_Obelisk
+  m_EditorClassIdentifier: 
+  turnCount: 2
+  enemyName: "\uB0A0\uC544\uB2E4\uB2C8\uB294 \uACE0\uC11C"
+  realName: Enemy_Obelisk
+  deathSFX: sfx_stoneBreak
+  bgm: Restricted_Area
+  skillList:
+  - myList:
+    - skillName: "\uACC4\uC2B9\uB41C \uBBF8\uB798"
+      dmgs: 28000000000000000a00000000000000
+      tokens: 04000000000000000100000000000000
+    - skillName: "\uC704\uB300\uD558\uC2E0 \uADF8\uBD84"
+      dmgs: 0a000000280000000000000000000000
+      tokens: 01000000040000000000000000000000
+  - myList:
+    - skillName: "\uC2B9\uCC9C\uACFC \uC21C\uAD50"
+      dmgs: 1e000000050000000a0000001e000000
+      tokens: 03000000000000000000000003000000
+    - skillName: "\uB108\uC5D0\uAC8C \uC804\uB2EC\uD558\uB178\uB77C"
+      dmgs: 3c000000000000000000000000000000
+      tokens: 04000000000000000000000000000000

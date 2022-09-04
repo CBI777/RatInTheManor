@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567363da27686ca4ca98169bdd5b6e0d, type: 3}
+  m_Name: Enemy_BrainJar
+  m_EditorClassIdentifier: 
+  turnCount: 3
+  enemyName: "\uD1B5\uC18D\uC758 \uB1CC"
+  realName: Enemy_BrainJar
+  deathSFX: sfx_GlassBreak
+  bgm: Betrayal
+  skillList:
+  - myList:
+    - skillName: "\uC18C\uB9AC\uC5C6\uB294 \uBE44\uBA85"
+      dmgs: 000000000a0000000a00000000000000
+      tokens: 00000000020000000200000000000000
+    - skillName: "\uACF5\uD5C8\uD55C \uC758\uBB38"
+      dmgs: 000000000a000000000000000a000000
+      tokens: 00000000020000000000000002000000
+  - myList:
+    - skillName: "\uC18C\uB9AC\uC5C6\uB294 \uBE44\uBA85"
+      dmgs: 000000000a0000000a00000000000000
+      tokens: 00000000020000000200000000000000
+    - skillName: "\uB450\uB824\uC6C0\uACFC \uC808\uB9DD"
+      dmgs: 000000000f0000000000000000000000
+      tokens: 00000000040000000000000000000000
+    - skillName: "\uD610\uC624\uC640 \uC88C\uC808"
+      dmgs: 00000000000000000f00000000000000
+      tokens: 00000000000000000400000000000000
+  - myList:
+    - skillName: "\uACF5\uD5C8\uD55C \uC758\uBB38"
+      dmgs: 000000000a000000000000000a000000
+      tokens: 00000000020000000000000002000000
+    - skillName: "\uC8FD\uC74C\uC73C\uB85C\uC758 \uC720\uD639"
+      dmgs: 0000000000000000000000000f000000
+      tokens: 00000000000000000000000004000000

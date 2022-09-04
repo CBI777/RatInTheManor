@@ -1,0 +1,280 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 459efb49695cc6a4c9423b2b0f01aaa6, type: 3}
+  m_Name: Enemy_Beelzebub
+  m_EditorClassIdentifier: 
+  script:
+  - myList:
+    - isRight: 0
+      isPorted: 0
+      line: "\uAD50\uC218\uC758 \uC870\uADF8\uB9C8\uD55C \uBAB8\uC740 \uACBD\uB828\uD558\uACE0
+        \uC788\uC5C8\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uADF8\uB7EC\uB098 \uADF8\uB140\uB294 \uAF3F\uAF3F\uC774 \uC11C\uC11C,
+        \uC774\uCABD\uC744 \uD5A5\uD574..."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "...\uC774\uCABD\uC744 \uD5A5\uD574 '\uC6C3\uACE0'\uC788\uC5C8\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uAD50\uC218\uC758 \uC5BC\uAD74\uC774 \uCC22\uC5B4\uC9C0\uBA70 \uD749\uD3EC\uD55C
+        \uC774\uBE68\uC774 \uB4DC\uB7EC\uB0AC\uACE0,"
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "...\uC874\uC7AC\uC870\uCC28 \uBD88\uBD84\uBA85\uD55C \uB208\uB3D9\uC790\uAC00
+        \uAFC8\uD2C0\uB314\uB2E4."
+      portName: 
+    - isRight: 1
+      isPorted: 1
+      line: "...\uC2AC\uC2AC \uC7AC\uBBF8\uAC00 \uC5C6\uC5B4\uC838\uC11C \uB9D0\uC774\uC57C."
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "\uBB50, \uC801\uB2F9\uD788 \uBC84\uD168\uC900 \uAC83 \uAC19\uC9C0\uB9CC..."
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "\uBAB8\uBD80\uB9BC\uCE58\uB294 \uAF34\uC744 \uBCF4\uACE0 \uC990\uAE30\uB294
+        \uAC83\uB3C4..."
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "...\uC774\uC820 \uC9C8\uB838\uB2E4."
+      portName: Beelzebub
+    - isRight: 0
+      isPorted: 0
+      line: "\uB192\uC740 \uAC70\uCC98\uC758 \uC8FC\uC778\uACFC \uC870\uC6B0\uD588\uB2E4."
+      portName: 
+    - isRight: 1
+      isPorted: 1
+      line: "\uBC8C\uB808\uB97C \uAC00\uC9C0\uACE0 \uB178\uB294\uAC8C \uC7AC\uBBF8\uC788\uB2E4\uACE0
+        \uD55C\uB4E4."
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "\uBE44\uB8CC\uB97C \uC369\uD790 \uC218\uB294 \uC5C6\uB294 \uB178\uB987\uC774\uB2C8\uB77C."
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "\uC544\uC9C1 \uAFC8\uC2E4\uAC70\uB9AC\uB294 \uB124\uB188\uC5D0\uAC8C
+        \uD558\uC0AC\uD574\uC8FC\uB9C8."
+      portName: Beelzebub_Smile
+    - isRight: 1
+      isPorted: 1
+      line: "\uB0B4 \uC740\uCD1D\uC744."
+      portName: Beelzebub_Smile
+    - isRight: 1
+      isPorted: 1
+      line: "\uB108\uC5D0\uAC8C \uC54C\uB824\uC8FC\uB9C8."
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "\uC778\uAC04\uC774\uAE38 \uD3EC\uAE30\uD55C \uC790\uB4E4\uC774 \uC6D0\uD558\uB294
+        \uACE0\uD1B5\uC744."
+      portName: Beelzebub
+  - myList:
+    - isRight: 1
+      isPorted: 1
+      line: "\uC774\uC0C1\uD558\uB2E4\uACE0 \uC0DD\uAC01\uD558\uC9C4 \uC54A\uC558\uB098?"
+      portName: Beelzebub_Smile
+    - isRight: 1
+      isPorted: 1
+      line: "\uBC29\uC774 \uC5C6\uACE0 \uB05D\uC5C6\uC774 \uBED7\uC740 \uBCF5\uB3C4."
+      portName: Beelzebub_Smile
+    - isRight: 1
+      isPorted: 1
+      line: "\uB05D\uC774 \uBCF4\uC774\uC9C0 \uC54A\uB294 \uC800\uD0DD."
+      portName: Beelzebub_Smile
+    - isRight: 1
+      isPorted: 1
+      line: "\uB108\uB97C \uC9D1\uC5B4\uC0BC\uD0A4\uB824\uB2E4\uAC00\uB3C4 \uC18C\uBA78\uD558\uB294
+        \uAD34\uC774\uB4E4."
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "\uC791\uC740 \uC5EC\uC790\uC544\uC774\uAC00 \uB0B4\uB9AC\uB294 \uBA85\uB839\uC5D0
+        \uBCF5\uC885\uD558\uBA70,"
+      portName: Beelzebub_Smile
+    - isRight: 1
+      isPorted: 1
+      line: "\uB4A4\uB85C \uAC08 \uC0DD\uAC01\uC870\uCC28 \uD560 \uC218 \uC5C6\uB294
+        \uB108\uB97C."
+      portName: Beelzebub_Smile
+    - isRight: 1
+      isPorted: 1
+      line: "\uC815\uB9D0 \uB098\uAC08 \uC218 \uC5C6\uB2E4\uACE0 \uC0DD\uAC01\uD55C\uAC8C\uB0D0?"
+      portName: Beelzebub_Smile
+    - isRight: 1
+      isPorted: 1
+      line: "\uC560\uCD08\uC5D0 \uB0B4\uAC00 \uB098\uAC00\uC9C0 \uBABB\uD55C\uB2E4\uACE0
+        \uB9D0\uD588\uB358 \uAC83\uC744..."
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "...\uACE7\uC774 \uACE7\uB300\uB85C \uBBFF\uC5B4\uBC84\uB9B0\uAC8C\uB0D0?"
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "\uB108\uC5D0\uAC8C \uC54C\uB824\uC8FC\uB9C8."
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "\uC544\uB294 \uAC83\uC744 \uAC70\uBD80\uD558\uB294, \uC624\uB9CC\uD558\uAE30
+        \uC9DD\uC774\uC5C6\uB294 \uACF5\uD3EC\uB97C."
+      portName: Beelzebub
+  - myList:
+    - isRight: 1
+      isPorted: 1
+      line: "\uB098\uB294 \uB108\uD76C\uB4E4\uC774 \uBC14\uC54C\uC138\uBD88\uC774\uB77C
+        \uBD80\uB974\uB294 \uC874\uC7AC\uB2E4."
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "\uC778\uB958\uAC00 \uB4E4\uB053\uAE30 \uC804\uBD80\uD130 \uC874\uC7AC\uD574\uC628,"
+      portName: Beelzebub_Smirk
+    - isRight: 1
+      isPorted: 1
+      line: "\uADF8\uB807\uB2E4. \uB124\uB188\uB4E4\uC774..."
+      portName: Beelzebub_Smirk
+    - isRight: 1
+      isPorted: 1
+      line: "\uD30C\uB9AC\uB300\uC655\uC774\uB77C \uBD80\uB974\uB294 \uADF8 \uC874\uC7AC\uC774\uB2E4."
+      portName: Beelzebub_Smirk
+    - isRight: 1
+      isPorted: 1
+      line: "\uB098\uB294 \uBD80\uD328\uC774\uC790 \uC21C\uD658\uC774\uC694,"
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "\uD63C\uB3C8\uC774\uC790 \uC9C8\uC11C\uC694,"
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "\uC601\uC6D0\uC774\uC790 \uCC30\uB098 \uADF8 \uC790\uCCB4\uB85C\uB2E4."
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "\uB108\uC5D0\uAC8C \uC54C\uB824\uC8FC\uB9C8."
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "\uC774\uAE30\uC2EC\uC73C\uB85C \uAE38\uB7EC\uC628 \uD610\uC624\uB77C\uB294
+        \uB098\uC57D\uD568\uC744."
+      portName: Beelzebub
+  - myList:
+    - isRight: 1
+      isPorted: 1
+      line: "\uC774 \uC800\uD0DD\uC740 \uB9C8\uC74C\uC5D0 \uB4E4\uC5C8\uB290\uB0D0?"
+      portName: Beelzebub_Smirk
+    - isRight: 1
+      isPorted: 1
+      line: "\uD63C\uB3C8\uACFC \uAFC8\uD2C0\uB300\uB294 \uAD6C\uB354\uAE30\uB85C
+        \uAC00\uB4DD\uD55C..."
+      portName: Beelzebub_Smirk
+    - isRight: 1
+      isPorted: 1
+      line: "\uADF8\uC800 \uC369\uC5B4\uAC00 \uD30C\uB9AC\uB4E4\uC774 \uAC00\uB4DD\uD55C
+        \uC774\uACF3\uC774 \uB9D0\uC774\uB2E4."
+      portName: Beelzebub_Smirk
+    - isRight: 1
+      isPorted: 1
+      line: "\uB108\uD76C\uB294 \uAC70\uB984\uC5D0 \uBD88\uACFC\uD558\uB2E4."
+      portName: Beelzebub_Smile
+    - isRight: 1
+      isPorted: 1
+      line: "\uB098\uB97C \uC990\uAC81\uAC8C \uD558\uACE0 \uC800\uD0DD\uC744 \uD0A4\uC6B0\uB294..."
+      portName: Beelzebub_Smile
+    - isRight: 1
+      isPorted: 1
+      line: "\uC6B8\uBD80\uC9D6\uB294 \uAC70\uB984 \uB9D0\uC774\uB2E4."
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "\uC790, \uBC84\uD168\uBCF4\uAC70\uB77C."
+      portName: Beelzebub_Smile
+    - isRight: 1
+      isPorted: 1
+      line: "\uB108\uC5D0\uAC8C \uC54C\uB824\uC8FC\uB9C8."
+      portName: Beelzebub
+    - isRight: 1
+      isPorted: 1
+      line: "\uC138\uC0C1 \uBAA8\uB4E0 \uC774\uB4E4\uC774 \uC6D0\uD558\uB294 \uBAA8\uB4E0
+        \uC9C0\uC2DD\uC744!"
+      portName: Beelzebub
+  - myList:
+    - isRight: 0
+      isPorted: 0
+      line: "...\uB208 \uC55E\uC774 \uD750\uB9AC\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC758\uC2DD\uC774 \uB0A0\uC544\uAC08 \uAC83\uB9CC \uAC19\uB2E4."
+      portName: 
+    - isRight: 1
+      isPorted: 1
+      line: "...\uAFC8\uD2C0\uB300\uB294 \uAC83\uC774 \uCC38\uC73C\uB85C \uBCF4\uAE30
+        \uC88B\uAD6C\uB098."
+      portName: Beelzebub_Smirk
+    - isRight: 0
+      isPorted: 0
+      line: ...
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uBF08\uAC00 \uB9DE\uCDB0\uC9C0\uB294 \uC18C\uB9AC\uAC00 \uB4E4\uB824\uC654\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC5B4\uB460\uC18D\uC5D0\uC11C \uB4E4\uB9AC\uB294 \uD610\uC624\uC2A4\uB7EC\uC6B4
+        \uC18C\uB9AC\uB294..."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uBA85\uB791\uD55C \uBAA9\uC18C\uB9AC\uC640 \uD568\uAED8 \uAE68\uC84C\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 1
+      line: "...\uC88B\uC544!"
+      portName: Imback
+    - isRight: 0
+      isPorted: 1
+      line: "\uB9C8\uC74C\uC5D0 \uB4E4\uC5C8\uB2E4."
+      portName: Imback
+    - isRight: 0
+      isPorted: 1
+      line: "\uB05D\uAE4C\uC9C0 \uBC84\uD168\uB0B4\uB2E4\uB2C8."
+      portName: Imback
+    - isRight: 0
+      isPorted: 1
+      line: "\uC5B4\uC9C0\uAC04\uD788 \uC8FD\uACE0 \uC2F6\uC9C0 \uC54A\uC740 \uBAA8\uC591\uC774\uAD6C\uB098."
+      portName: Imback
+    - isRight: 0
+      isPorted: 1
+      line: "\uADF8\uB7FC, \uC120\uBB3C\uC744 \uC8FC\uB3C4\uB85D \uD558\uB9C8!"
+      portName: Imback
+    - isRight: 0
+      isPorted: 1
+      line: "\uBAA8\uB4E0 \uC778\uAC04\uC774 \uC88B\uC544\uD558\uB294..."
+      portName: Imback
+    - isRight: 0
+      isPorted: 0
+      line: "...\uC758\uC2DD\uC774 \uAEBC\uC838\uAC04\uB2E4..."
+      portName: 
+    - isRight: 0
+      isPorted: 1
+      line: "...\uC601\uC0DD\uC744 \uB9D0\uC774\uC57C."
+      portName: Beelzebub_Goodbye

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f369edf649457ac41b95a1a85ca79ca3, type: 3}
+  m_Name: Enemy_CursedDoll
+  m_EditorClassIdentifier: 
+  skillDia:
+  - myList:
+    - dialogue: "\uB204\uB354\uAE30 \uC778\uD615\uC774 \uB084\uB084\uB300\uAE30 \uC2DC\uC791\uD588\uB2E4..."
+      sfxName: sfx_devilLaugh
+      dmgType: 1
+    - dialogue: "\uC778\uD615\uC774 \uB2EC\uB824\uB4E4\uC5B4 \uCE7C\uC744 \uD718\uB458\uB800\uB2E4!"
+      sfxName: sfx_SwordSwoosh
+      dmgType: 0
+  - myList:
+    - dialogue: "\uC778\uD615\uC774 \uC5C4\uCCAD\uB09C \uD798\uC73C\uB85C \uB2F9\uC2E0\uC744
+        \uBC00\uC5B4 \uB118\uC5B4\uB728\uB838\uB2E4!"
+      sfxName: sfx_strike2
+      dmgType: 1
+    - dialogue: "\uC778\uD615\uC774 \uB2F9\uC2E0 \uC704\uC5D0\uC11C \uB09C\uB3C4\uC9C8\uC744
+        \uC2DC\uC791\uD588\uB2E4!"
+      sfxName: sfx_swordFive
+      dmgType: 0
+    - dialogue: "\uC778\uD615\uC774 \uB2F9\uC2E0\uC744 \uC790\uB974\uB824\uACE0 \uCE7C\uC744
+        \uD718\uB458\uB800\uB2E4!"
+      sfxName: sfx_SwordSwoosh
+      dmgType: 0
+  - myList:
+    - dialogue: "\uC778\uD615\uC774 \uC790\uC2E0\uC758 \uBAB8\uC744 \uB72F\uC5B4
+        \uBD89\uAC8C \uBB3C\uB4E0 \uC19C\uC744 \uB0B4\uBBFC\uB2E4..."
+      sfxName: sfx_devilLaugh
+      dmgType: 2
+    - dialogue: "\uC778\uD615\uC774 \uCE7C\uC744 \uCE58\uCF1C\uB4E4\uACE0 \uB2EC\uB824\uB4E4\uC5C8\uB2E4!"
+      sfxName: sfx_SwordSwoosh
+      dmgType: 0

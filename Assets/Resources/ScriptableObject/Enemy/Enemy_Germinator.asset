@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567363da27686ca4ca98169bdd5b6e0d, type: 3}
+  m_Name: Enemy_Germinator
+  m_EditorClassIdentifier: 
+  turnCount: 3
+  enemyName: "\uBC30\uC591\uCCB4"
+  realName: Enemy_Germinator
+  deathSFX: sfx_growl
+  bgm: Corridor
+  skillList:
+  - myList:
+    - skillName: "\uAFC8\uD2C0\uAC70\uB9BC"
+      dmgs: 00000000000000000f00000000000000
+      tokens: 00000000000000000200000000000000
+    - skillName: "\uC2DC\uCCB4 \uC12D\uCDE8"
+      dmgs: 00000000000000001400000000000000
+      tokens: 00000000000000000200000000000000
+  - myList:
+    - skillName: "\uAC78\uC2E0\uC758 \uBE44\uBA85"
+      dmgs: 000000000f0000000000000000000000
+      tokens: 00000000040000000000000000000000
+    - skillName: "\uAC08\uB9DD\uD558\uB294 \uC785"
+      dmgs: 0f0000000f0000000000000000000000
+      tokens: 02000000020000000000000000000000
+  - myList:
+    - skillName: "\uAC08\uB9DD\uD558\uB294 \uC785"
+      dmgs: 0f0000000f0000000000000000000000
+      tokens: 02000000020000000000000000000000
+    - skillName: "\uBF08\uC758 \uC21C\uD658"
+      dmgs: 050000000a0000000a00000000000000
+      tokens: 01000000020000000200000000000000
+    - skillName: "\uC789\uD0DC"
+      dmgs: 00000000030000000f00000003000000
+      tokens: 00000000010000000200000001000000

@@ -11,7 +11,7 @@ public class Equipment_ResultInventory : MonoBehaviour
     [SerializeField] private GameObject[] bg = new GameObject[3];
     [SerializeField] private GameObject[] equips = new GameObject[3];
     [SerializeField] private GameObject[] equipcheck = new GameObject[3];
-    [SerializeField] private GameObject[] btns = new GameObject[3];
+    private GameObject[] btns = new GameObject[3];
 
     public int[] getEquipNum()
     {
@@ -67,8 +67,8 @@ public class Equipment_ResultInventory : MonoBehaviour
         Reward_Supply.SupplyCancelClicked -= enableAll;
         Reward_Supply.SupplyObtainClicked -= disableAll;
         Supply_ResultInventory.SupplyObtainCompleteFromInventory -= enableAll;
-        Reward_Hallucination.HalluObtainClicked += disableAll;
-        Reward_Hallucination.HalluCancelClicked += enableAll;
+        Reward_Hallucination.HalluObtainClicked -= disableAll;
+        Reward_Hallucination.HalluCancelClicked -= enableAll;
         PackComplete.CompletePressed -= disableAll;
     }
 
@@ -76,14 +76,20 @@ public class Equipment_ResultInventory : MonoBehaviour
     {
         for (int i = 0; i < equipCount; i++)
         {
-            btns[i].GetComponent<Button>().interactable = false;
+            if (btns[i].gameObject != null)
+            {
+                btns[i].GetComponent<Button>().interactable = false;
+            }
         }
     }
     private void disableAll(string obj)
     {
         for (int i = 0; i < equipCount; i++)
         {
-            btns[i].GetComponent<Button>().interactable = false;
+            if (btns[i].gameObject != null)
+            {
+                btns[i].GetComponent<Button>().interactable = false;
+            }
         }
     }
 
@@ -92,8 +98,11 @@ public class Equipment_ResultInventory : MonoBehaviour
         tempEquip = obj;
         for (int i = 0; i < equipCount; i++)
         {
-            btns[i].GetComponent<Button>().interactable = true;
-            btns[i].GetComponentInChildren<TextMeshProUGUI>().SetText("±³  È¯");
+            if (btns[i].gameObject != null)
+            {
+                btns[i].GetComponent<Button>().interactable = true;
+                btns[i].GetComponentInChildren<TextMeshProUGUI>().SetText("±³  È¯");
+            }
         }
     }
 
@@ -104,13 +113,19 @@ public class Equipment_ResultInventory : MonoBehaviour
         {
             if (i == curEquip)
             {
-                btns[i].GetComponent<Button>().interactable = false;
+                if (btns[i].gameObject != null)
+                {
+                    btns[i].GetComponent<Button>().interactable = false;
+                }
                 btns[i].GetComponentInChildren<TextMeshProUGUI>().SetText("Àå Âø Áß");
                 equipcheck[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/SelectedEdge");
             }
             else
             {
-                btns[i].GetComponent<Button>().interactable = true;
+                if (btns[i].gameObject != null)
+                {
+                    btns[i].GetComponent<Button>().interactable = true;
+                }
                 btns[i].GetComponentInChildren<TextMeshProUGUI>().SetText("Àå  Âø");
                 equipcheck[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/DeselectedEdge");
             }
@@ -136,6 +151,7 @@ public class Equipment_ResultInventory : MonoBehaviour
         {
             if (i < equipCount)
             {
+                btns[i].SetActive(true);
                 bg[i].SetActive(true);
                 equips[i].GetComponent<TooltipTrigger>().enabled = true;
                 equips[i].GetComponent<TooltipTrigger>().header = equipment[i].equipName;
@@ -144,17 +160,22 @@ public class Equipment_ResultInventory : MonoBehaviour
 
                 if (i == curEquip)
                 {
-                    btns[i].GetComponent<Button>().interactable = false;
-                    btns[i].GetComponentInChildren<TextMeshProUGUI>().SetText("Àå Âø Áß");
+                    if (btns[i].gameObject != null)
+                    {
+                        btns[i].GetComponent<Button>().interactable = false;
+                        btns[i].GetComponentInChildren<TextMeshProUGUI>().SetText("Àå Âø Áß");
+                    }
                     equipcheck[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/SelectedEdge");
                 }
                 else
                 {
-                    btns[i].GetComponent<Button>().interactable = true;
-                    btns[i].GetComponentInChildren<TextMeshProUGUI>().SetText("Àå  Âø");
+                    if (btns[i].gameObject != null)
+                    {
+                        btns[i].GetComponent<Button>().interactable = true;
+                        btns[i].GetComponentInChildren<TextMeshProUGUI>().SetText("Àå  Âø");
+                    }
                     equipcheck[i].GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/UI/DeselectedEdge");
                 }
-                btns[i].SetActive(true);
             }
             else
             {
@@ -198,6 +219,9 @@ public class Equipment_ResultInventory : MonoBehaviour
 
     private void Awake()
     {
+        this.btns[0] = GameObject.FindWithTag("EBtn1");
+        this.btns[1] = GameObject.FindWithTag("EBtn2");
+        this.btns[2] = GameObject.FindWithTag("EBtn3");
         this.curEquip = this.saveManager.saving.curEquip;
         initEquip(this.saveManager.saving.equip);
     }

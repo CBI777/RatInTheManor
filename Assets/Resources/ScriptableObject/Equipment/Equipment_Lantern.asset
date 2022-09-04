@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipName: "\uAE30\uBB18\uD55C \uB4F1\uBD88"
   realName: Equipment_Lantern
-  description: "\uACF5\uD3EC \uC800\uD56D - 1\n\uD604\uD639 \uC800\uD56D + 1"
+  description: "<color=red>\uBB3C\uB9AC\uC801 \uD53C\uD574 \uC800\uD56D - 1</color>\n<color=blue>\uACF5\uD3EC
+    \uC800\uD56D + 3</color>\n<color=red>\uD610\uC624 \uC800\uD56D -3</color>\n<color=blue>\uD604\uD639
+    \uC800\uD56D + 2</color>"
   index: 6
-  resChange: 00000000ffffffff0000000001000000
+  resChange: ffffffff03000000fdffffff02000000

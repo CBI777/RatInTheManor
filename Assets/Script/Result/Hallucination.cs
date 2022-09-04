@@ -138,7 +138,7 @@ public class Hallu_HighPries : Hallucination_Base
     }
     public override void onUse()
     {
-        ChangeSanity(-50);
+        ChangeSanity(-30);
     }
 }
 
@@ -148,11 +148,11 @@ public class Hallu_HighPries_Rev : Hallucination_Base
         : base("여법황 역위치", "Hallu_HighPries_Rev", 5)
     {
         this.description =
-            "이성을 50 감소.";
+            "이성을 30 감소.";
     }
     public override void onUse()
     {
-        ChangeSanity(50);
+        ChangeSanity(30);
     }
 }
 
@@ -162,11 +162,11 @@ public class Hallu_Empress : Hallucination_Base
         : base("여제 정위치", "Hallu_Empress", 6)
     {
         this.description =
-            "공포 저항이 1 증가.";
+            "공포 저항이 2 증가.";
     }
     public override void onUse()
     {
-        ChangeResist(0, 1, 0, 0);
+        ChangeResist(0, 2, 0, 0);
     }
 }
 
@@ -176,11 +176,11 @@ public class Hallu_Empress_Rev : Hallucination_Base
         : base("여제 역위치", "Hallu_Empress_Rev", 7)
     {
         this.description =
-            "공포 저항이 1 감소.";
+            "공포 저항이 2 감소.";
     }
     public override void onUse()
     {
-        ChangeResist(0, -1, 0, 0);
+        ChangeResist(0, -2, 0, 0);
     }
 }
 
@@ -218,11 +218,11 @@ public class Hallu_Hiero : Hallucination_Base
         : base("법황 정위치", "Hallu_Hiero", 10)
     {
         this.description =
-            "혐오 저항이 1 증가.";
+            "혐오 저항이 2 증가.";
     }
     public override void onUse()
     {
-        ChangeResist(0, 0, 1, 0);
+        ChangeResist(0, 0, 2, 0);
     }
 }
 
@@ -232,11 +232,11 @@ public class Hallu_Hiero_Rev : Hallucination_Base
         : base("법황 역위치", "Hallu_Hiero_Rev", 11)
     {
         this.description =
-            "혐오 저항이 1 감소.";
+            "혐오 저항이 2 감소.";
     }
     public override void onUse()
     {
-        ChangeResist(0, 0, -1, 0);
+        ChangeResist(0, 0, -2, 0);
     }
 }
 
@@ -274,11 +274,11 @@ public class Hallu_Chariot : Hallucination_Base
         : base("전차 정위치", "Hallu_Chariot", 14)
     {
         this.description =
-            "혐오 저항이 1 증가.";
+            "혐오 저항이 2 증가.";
     }
     public override void onUse()
     {
-        ChangeResist(0, 0, 0, 1);
+        ChangeResist(0, 0, 0, 2);
     }
 }
 
@@ -288,11 +288,11 @@ public class Hallu_Chariot_Rev : Hallucination_Base
         : base("전차 역위치", "Hallu_Chariot_Rev", 15)
     {
         this.description =
-            "혐오 저항이 1 감소.";
+            "혐오 저항이 2 감소.";
     }
     public override void onUse()
     {
-        ChangeResist(0, 0, 0, -1);
+        ChangeResist(0, 0, 0, -2);
     }
 }
 
@@ -302,11 +302,11 @@ public class Hallu_Strength : Hallucination_Base
         : base("힘 정위치", "Hallu_Strength", 16)
     {
         this.description =
-            "물리적 피해 저항이 1 증가.";
+            "물리적 피해 저항이 2 증가.";
     }
     public override void onUse()
     {
-        ChangeResist(1, 0, 0, 0);
+        ChangeResist(2, 0, 0, 0);
     }
 }
 
@@ -316,11 +316,11 @@ public class Hallu_Strength_Rev : Hallucination_Base
         : base("힘 역위치", "Hallu_Strength_Rev", 17)
     {
         this.description =
-            "물리적 피해 저항이 1 감소.";
+            "물리적 피해 저항이 2 감소.";
     }
     public override void onUse()
     {
-        ChangeResist(-1, 0, 0, 0);
+        ChangeResist(-2, 0, 0, 0);
     }
 }
 

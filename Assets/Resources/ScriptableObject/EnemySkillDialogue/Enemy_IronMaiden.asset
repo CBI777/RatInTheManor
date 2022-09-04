@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f369edf649457ac41b95a1a85ca79ca3, type: 3}
+  m_Name: Enemy_IronMaiden
+  m_EditorClassIdentifier: 
+  skillDia:
+  - myList:
+    - dialogue: "\uACE0\uBB38 \uAE30\uAD6C\uAC00 \uB179\uC2A8 \uAC00\uC2DC\uB97C
+        \uD718\uB458\uB800\uB2E4!"
+      sfxName: sfx_strike1
+      dmgType: 0
+    - dialogue: "\uACE0\uBB38 \uAE30\uAD6C \uC548\uC5D0\uC11C \uC228\uC8FD\uC774\uB358
+        \uAC83\uB4E4\uC774 \uB6F0\uCCD0\uB098\uC628\uB2E4!"
+      sfxName: sfx_screech
+      dmgType: 0
+  - myList:
+    - dialogue: "\uACE0\uBB38 \uAE30\uAD6C\uAC00 \uB2F9\uC2E0\uC744 \uBA39\uAE30
+        \uC88B\uAC8C \uC190\uC9C8\uD558\uB824 \uD55C\uB2E4!"
+      sfxName: sfx_strike1
+      dmgType: 0
+    - dialogue: "\uACE0\uBB38 \uAE30\uAD6C\uB294 \uBE44\uC6C3\uB4EF \uB2F9\uC2E0\uC744
+        \uC704\uD611\uD55C\uB2E4!"
+      sfxName: sfx_devilLaugh
+      dmgType: 1
+    - dialogue: "\uACE0\uBB38 \uAE30\uAD6C \uC548\uC5D0\uC11C \uC228\uC8FD\uC774\uB358
+        \uAC83\uB4E4\uC774 \uB6F0\uCCD0\uB098\uC628\uB2E4!"
+      sfxName: sfx_screech
+      dmgType: 0
+  - myList:
+    - dialogue: "\uB2F9\uC2E0\uC740 \uAE30\uAD6C \uC548\uC73C\uB85C \uB4E4\uC5B4\uAC00\uACE0\uD508
+        \uCDA9\uB3D9\uC744 \uB290\uB080\uB2E4..."
+      sfxName: sfx_remember
+      dmgType: 3
+    - dialogue: "\uACE0\uBB38 \uAE30\uAD6C\uAC00 \uB2F9\uC2E0\uC744 \uBA39\uAE30
+        \uC88B\uAC8C \uC190\uC9C8\uD558\uB824 \uD55C\uB2E4!"
+      sfxName: sfx_strike1
+      dmgType: 0
+    - dialogue: "\uACE0\uBB38 \uAE30\uAD6C \uC548\uC5D0\uC11C \uC228\uC8FD\uC774\uB358
+        \uAC83\uB4E4\uC774 \uB6F0\uCCD0\uB098\uC628\uB2E4!"
+      sfxName: sfx_screech
+      dmgType: 0

@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f369edf649457ac41b95a1a85ca79ca3, type: 3}
+  m_Name: Enemy_Germinator
+  m_EditorClassIdentifier: 
+  skillDia:
+  - myList:
+    - dialogue: "\uCEE4\uB2E4\uB780 \uB369\uC5B4\uB9AC\uAC00 \uAFC8\uD2C0\uAC70\uB9AC\uBA70
+        \uC81C\uC790\uB9AC\uB97C \uACE0\uC218\uD55C\uB2E4."
+      sfxName: sfx_swoosh1
+      dmgType: 2
+    - dialogue: "\uBC30\uC591\uCCB4\uAC00 \uBC14\uB2E5\uC5D0 \uB110\uBE0C\uB7EC\uC9C4
+        \uC2DC\uCCB4\uB97C \uBA39\uAE30 \uC2DC\uC791\uD55C\uB2E4..."
+      sfxName: sfx_eatMeat
+      dmgType: 2
+  - myList:
+    - dialogue: "\uBC30\uC591\uCCB4\uAC00 \uCD95\uCD95\uD55C \uBE44\uBA85\uC744 \uB0B4\uC9C0\uB978\uB2E4!"
+      sfxName: sfx_enemyScream5
+      dmgType: 1
+    - dialogue: "\uBC30\uC591\uCCB4\uB294 \uB2F9\uC2E0\uC744 \uBA39\uC744 \uC0DD\uAC01\uC73C\uB85C
+        \uC785\uC744 \uBC8C\uB838\uB2E4!"
+      sfxName: sfx_enemyScream3
+      dmgType: 0
+  - myList:
+    - dialogue: "\uBC30\uC591\uCCB4\uB294 \uB2F9\uC2E0\uC744 \uBA39\uC744 \uC0DD\uAC01\uC73C\uB85C
+        \uC785\uC744 \uBC8C\uB838\uB2E4!"
+      sfxName: sfx_enemyScream3
+      dmgType: 0
+    - dialogue: "\uBC30\uC591\uCCB4\uC758 \uBAB8 \uC548\uC758 \uBF08\uB4E4\uC774
+        \uAFC8\uD2C0\uB304\uB2E4..."
+      sfxName: sfx_swoosh1
+      dmgType: 2
+    - dialogue: "\uBC30\uC591\uCCB4\uAC00 \uAFB8\uBB3C\uB300\uBA70 \uC99D\uC2DD\uD558\uB824
+        \uD55C\uB2E4..."
+      sfxName: sfx_swoosh1
+      dmgType: 2

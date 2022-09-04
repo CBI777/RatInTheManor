@@ -11,6 +11,21 @@ public class NormalTokenSlot : MonoBehaviour, SlotInterface, IDropHandler
 
     public static event Action<DmgType, int> PlayerSlotChangedEvent;
 
+    private void OnEnable()
+    {
+        BattleDialogueProvider.betweenTurnDia += BattleDialogueProvider_betweenTurnDia;
+    }
+    private void OnDisable()
+    {
+        BattleDialogueProvider.betweenTurnDia -= BattleDialogueProvider_betweenTurnDia;
+    }
+
+    private void BattleDialogueProvider_betweenTurnDia()
+    {
+        this.tokenCount = 0;
+        PlayerSlotChangedEvent?.Invoke(this.dmgType, this.tokenCount);
+    }
+
     private void Awake()
     {
         this.tokenCount = this.transform.childCount;

@@ -9,6 +9,14 @@ TagManager:
   - MainCanvas
   - Token
   - SaveManager
+  - EBtn1
+  - EBtn2
+  - EBtn3
+  - SBtn1
+  - SBtn2
+  - SBtn3
+  - SBtn4
+  - SBtn5
   layers:
   - Default
   - TransparentFX

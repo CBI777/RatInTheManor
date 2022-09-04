@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567363da27686ca4ca98169bdd5b6e0d, type: 3}
+  m_Name: Enemy_FlyingBook
+  m_EditorClassIdentifier: 
+  turnCount: 2
+  enemyName: "\uB0A0\uC544\uB2E4\uB2C8\uB294 \uACE0\uC11C"
+  realName: Enemy_FlyingBook
+  deathSFX: sfx_fireStart
+  bgm: Restricted_Area
+  skillList:
+  - myList:
+    - skillName: "\uC720\uD639\uD558\uB294 \uAE00\uADC0"
+      dmgs: 000000000a0000000000000028000000
+      tokens: 00000000010000000000000004000000
+    - skillName: "\uCD94\uC545\uD55C \uC9C4\uC2E4"
+      dmgs: 0000000000000000280000000a000000
+      tokens: 00000000000000000400000001000000
+  - myList:
+    - skillName: "\uCC28\uAC00\uC6B4 \uC9C0\uC2DD"
+      dmgs: 050000001e0000000a0000001e000000
+      tokens: 00000000030000000000000003000000
+    - skillName: "\uAC08\uB9DD\uD558\uB294 \uC9C0\uC2DD"
+      dmgs: 0000000000000000000000003c000000
+      tokens: 00000000000000000000000004000000

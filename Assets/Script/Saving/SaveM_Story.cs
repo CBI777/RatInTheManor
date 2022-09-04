@@ -28,24 +28,32 @@ public class SaveM_Story : MonoBehaviour
                 this.saving.resist[2] = -1;
                 this.saving.equip[0] = 0;
                 this.saving.will[0] = 0;
+                this.saving.supply[1] = "Supply_Perfume";
+                this.saving.supply[2] = "Supply_Painkiller";
                 break;
             case 1:
                 this.saving.resist[1] = 1;
                 this.saving.resist[0] = -1;
                 this.saving.equip[0] = 1;
                 this.saving.will[0] = 1;
+                this.saving.supply[1] = "Supply_Painkiller";
+                this.saving.supply[2] = "Supply_Omamori";
                 break;
             case 2:
                 this.saving.resist[2] = 1;
                 this.saving.resist[3] = -1;
                 this.saving.equip[0] = 2;
                 this.saving.will[0] = 2;
+                this.saving.supply[1] = "Supply_Perfume";
+                this.saving.supply[2] = "Supply_CircularPills";
                 break;
             default:
                 this.saving.resist[3] = 1;
                 this.saving.resist[1] = -1;
                 this.saving.equip[0] = 3;
                 this.saving.will[0] = 3;
+                this.saving.supply[1] = "Supply_Omamori";
+                this.saving.supply[2] = "Supply_CircularPills";
                 break;
         }
         saving.stageNum = 0;

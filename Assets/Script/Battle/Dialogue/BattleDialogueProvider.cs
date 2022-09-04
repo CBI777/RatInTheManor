@@ -26,7 +26,7 @@ public class BattleDialogueProvider : MonoBehaviour
 
     private Battle_Script batScript;
     private EnemySkillDialogue skillScript;
-    [SerializeField] private Battle_Script statusScriptBase;
+    private Battle_Script statusScriptBase;
     List<scriptClass> realStatusScript = new List<scriptClass>();
 
     private int bookmark;
@@ -352,12 +352,28 @@ public class BattleDialogueProvider : MonoBehaviour
                 this.batBookmark = (saveManager.saving.turn + 1);
                 skillBookmark = (saveManager.saving.turn + 1);
             }
+            if (saveManager.saving.stageNum == 8)
+            {
+                this.statusScriptBase = Resources.Load<Battle_Script>("ScriptableObject/BattleScript/Status_Script1");
+            }
+            else
+            {
+                this.statusScriptBase = Resources.Load<Battle_Script>("ScriptableObject/BattleScript/Status_Script2");
+            }
         }
         else
         {
             batBookmark = 0;
             skillBookmark = 0;
             batBookmarkLimit = 0;
+            if (saveManager.saving.stageNum == 7)
+            {
+                this.statusScriptBase = Resources.Load<Battle_Script>("ScriptableObject/BattleScript/Status_Script1");
+            }
+            else
+            {
+                this.statusScriptBase = Resources.Load<Battle_Script>("ScriptableObject/BattleScript/Status_Script2");
+            }
         }
         bookmark = 0;
     }

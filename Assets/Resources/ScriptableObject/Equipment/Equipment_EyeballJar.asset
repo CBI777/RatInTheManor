@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipName: "\uB208\uC54C\uC774 \uB4E0 \uBCD1"
   realName: Equipment_EyeballJar
-  description: "\uBB3C\uB9AC\uC801 \uC800\uD56D + 3\n\uACF5\uD3EC \uC800\uD56D -1\n\uD610\uC624
-    \uC800\uD56D - 1\n\uD604\uD639 \uC800\uD56D -1"
+  description: "<color=blue>\uBB3C\uB9AC\uC801 \uD53C\uD574 \uC800\uD56D + 6</color>\n<color=red>\uACF5\uD3EC
+    \uC800\uD56D -2</color>\n<color=red>\uD610\uC624 \uC800\uD56D - 2</color>\n<color=red>\uD604\uD639
+    \uC800\uD56D -2</color>"
   index: 5
-  resChange: 03000000ffffffffffffffffffffffff
+  resChange: 06000000fefffffffefffffffeffffff

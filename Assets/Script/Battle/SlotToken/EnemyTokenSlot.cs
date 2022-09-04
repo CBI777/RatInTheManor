@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class EnemyTokenSlot : MonoBehaviour
         SkillBtn.SkillChanged += SkillBtn_SkillChanged;
         SkillManager.SkillAddedEvent += SkillManager_SkillAddedEvent;
         SkillBtn.SkillDiaProgress += SkillBtn_SkillChanged;
+        BattleDialogueProvider.betweenTurnDia += BattleDialogueProvider_betweenTurnDia;
     }
 
     private void OnDisable()
@@ -19,6 +21,17 @@ public class EnemyTokenSlot : MonoBehaviour
         SkillBtn.SkillChanged -= SkillBtn_SkillChanged;
         SkillManager.SkillAddedEvent -= SkillManager_SkillAddedEvent;
         SkillBtn.SkillDiaProgress -= SkillBtn_SkillChanged;
+        BattleDialogueProvider.betweenTurnDia -= BattleDialogueProvider_betweenTurnDia;
+    }
+
+
+    private void BattleDialogueProvider_betweenTurnDia()
+    {
+        int childCount = transform.childCount;
+        for (int i = childCount - 1; i >= 0; i--)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
     }
 
     private void SkillManager_SkillAddedEvent(ListWrapper<EnemySkill> arg1, int arg2)

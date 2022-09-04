@@ -92,7 +92,7 @@ public class StatusManager : MonoBehaviour
         }
         else if(sanity <= sanityBoundary)
         {
-            SanityChange((-1 * sanityMax));
+            SanityChange((-150));
             sanityOver = 2;
         }
         else
@@ -180,13 +180,13 @@ public class StatusManager : MonoBehaviour
         this.madnessMax = 100;
         this.sanityMax = 100;
         this.obsessionMax = 100;
-        this.sanityMin = -50;
-        this.sanityBoundary = -30;
+        this.sanityMin = -100;
+        this.sanityBoundary = -50;
         this.sanity = this.saveManager.saving.sanity;
         this.madness = this.saveManager.saving.madness;
         this.obsession = this.saveManager.saving.obsession;
         this.madnessSub = 10;
-        this.obsessionSub = 20;
+        this.obsessionSub = 50;
 
         SanityChange(0);
         ObsessionChange(0);

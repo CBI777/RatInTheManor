@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equipName: "\uB208 \uAC00\uB9AC\uAC1C"
   realName: Equipment_Blindfold
-  description: "\uBB3C\uB9AC\uC801 \uC800\uD56D - 4\n\uACF5\uD3EC \uC800\uD56D +
-    1\n\uD610\uC624 \uC800\uD56D + 1\n\uD604\uD639 \uC800\uD56D + 1"
+  description: "<color=red>\uBB3C\uB9AC\uC801 \uD53C\uD574 \uC800\uD56D - 4</color>\n<color=blue>\uACF5\uD3EC
+    \uC800\uD56D + 2</color>\n<color=blue>\uD610\uC624 \uC800\uD56D + 2</color>\n<color=blue>\uD604\uD639
+    \uC800\uD56D + 2</color>"
   index: 4
-  resChange: fcffffff010000000100000001000000
+  resChange: fcffffff020000000200000002000000

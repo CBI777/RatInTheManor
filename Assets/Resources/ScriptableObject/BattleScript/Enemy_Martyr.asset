@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 459efb49695cc6a4c9423b2b0f01aaa6, type: 3}
+  m_Name: Enemy_Martyr
+  m_EditorClassIdentifier: 
+  script:
+  - myList:
+    - isRight: 0
+      isPorted: 0
+      line: "...\uC65C \uAC78\uC5B4\uB3C4 \uAC78\uC5B4\uB3C4 \uB05D\uC774 \uBCF4\uC774\uC9C0
+        \uC54A\uB294\uAC78\uAE4C."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uB2F9\uC2E0\uC740 \uC774\uC81C\uC11C\uC57C \uCC9C\uCC9C\uD788 \uBB34\uC5B8\uAC00\uB97C
+        \uAE68\uB2EB\uAE30 \uC2DC\uC791\uD588\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uBB34\uC5B8\uAC00 \uC798\uBABB \uB418\uC5C8\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC774\uB7F0 \uB2F9\uC5F0\uD55C \uC0DD\uAC01\uC774 \uBB34\uC5B8\uAC00\uC5D0
+        \uC758\uD574\uC11C \uCC28\uB2E8\uB418\uC5B4..."
+      portName: 
+    - isRight: 0
+      isPorted: 1
+      line: "...\uC5B4\uC774, \uC800\uAC70 \uBCF4\uC5EC?"
+      portName: Disappointed
+    - isRight: 0
+      isPorted: 0
+      line: "\uB2F9\uC2E0\uC740 \uADF8\uC81C\uC11C\uC57C \uADF8\uAC83\uC744 \uBCF4\uC558\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uD53C\uB85C \uADF8\uB824\uC9C4 \uC6D0 \uC704\uC5D0 \uC549\uC740...
+        \uB369\uC5B4\uB9AC\uB97C."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uBAB8\uC740 \uC804\uBD80 \uC369\uC5B4 \uBB38\uB4DC\uB7EC\uC84C\uACE0, "
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC785\uC740 \uBE44\uBA85\uC744 \uC9C0\uB97C \uC218 \uC5C6\uAC8C \uAFF0\uBA54\uC5B4\uC84C\uACE0,"
+      portName: AngrySmall
+    - isRight: 0
+      isPorted: 0
+      line: "\uB208\uC740 \uD30C\uB0B4\uC5B4\uC84C\uC73C\uBA70,"
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC774\uB9C8\uC5D0\uB294 \uC0AC\uC545\uD55C \uBB38\uC591\uC774 \uC0C8\uACA8\uC838\uC788\uC5C8\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uB4F1\uC5D0\uB294 \uB4A4\uD2C0\uB9B0 \uD30C\uB9AC\uC758 \uB0A0\uAC1C\uAC00..."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uAD50\uC218\uAC00 \uBB50\uB77C\uACE0 \uB9D0\uC744 \uD558\uAE30\uB3C4
+        \uC804\uC5D0,"
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC778\uAC04\uC744 \uD3EC\uAE30\uD55C \uADF8\uAC83\uC740 \uC785\uC744
+        \uC5F4\uC5C8\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC21C\uAD50\uC790\uC640 \uC870\uC6B0\uD588\uB2E4."
+      portName: 
+  - myList:
+    - isRight: 0
+      isPorted: 0
+      line: "...\uB188\uC740 \uB9C8\uC9C0\uB9C9 \uC228\uC744 \uB0B4\uC26C\uC5C8\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC77C\uADF8\uB7EC\uC9C4 \uC5BC\uAD74 \uC0AC\uC774\uB85C \uBCF4\uC778
+        \uD45C\uC815\uC740,"
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "...\uBC30\uC2E0\uAC10\uC774\uC5C8\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uD798\uACB9\uAC8C \uC9C4\uB3D9\uD558\uB358 \uB0A0\uAC1C\uAC00 \uBA4E\uC5C8\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uC774\uC81C \uBCF5\uB3C4\uB294... \uC544\uB2C8."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uBC29\uC740... \uC5B8\uC81C\uBD80\uD130 \uBC29\uC774\uC5C8\uB358 \uAC70\uC9C0?"
+      portName: 
+    - isRight: 0
+      isPorted: 1
+      line: ...
+      portName: MathGaki
+    - isRight: 0
+      isPorted: 1
+      line: "...\uC65C \uADF8\uB798? \uBB50 \uBB38\uC81C \uC788\uB098?"
+      portName: SmileDark
+    - isRight: 0
+      isPorted: 0
+      line: "\uB2F9\uC2E0\uC740..."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "...\uB2F9\uC2E0\uC740 \uADF8\uB140\uB97C... \uC544\uB2C8. '\uADF8 \uBD84'\uC744
+        \uBC14\uB77C\uBCF4\uC558\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uD30C\uB9AC\uAC00 \uAF2C\uC774\uB294 \uC774 \uC21C\uAD50\uC790\uAC00
+        \uBAA8\uC2DC\uACE0\uC790 \uD588\uB358 \uC790\uB97C."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uADF8\uB9AC\uACE0, \uAD50\uC218\uC758 \uBA38\uB9AC\uAC00 \uB054\uCC0D\uD55C
+        \uC18C\uB9AC\uB97C \uB0B4\uBA70 \uCC22\uC5B4\uC84C\uB2E4."
+      portName: 

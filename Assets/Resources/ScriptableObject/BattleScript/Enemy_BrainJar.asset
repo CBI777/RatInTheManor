@@ -1,0 +1,171 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 459efb49695cc6a4c9423b2b0f01aaa6, type: 3}
+  m_Name: Enemy_BrainJar
+  m_EditorClassIdentifier: 
+  script:
+  - myList:
+    - isRight: 1
+      isPorted: 0
+      line: "\uBCF5\uB3C4\uB97C \uAC78\uC5B4\uAC00\uB358 \uB3C4\uC911, \uAD50\uC218\uAC00
+        \uB2F9\uC2E0\uC744 \uBD88\uB7EC\uC138\uC6B4\uB2E4."
+      portName: 
+    - isRight: 1
+      isPorted: 0
+      line: "\uAD50\uC218\uAC00 \uAC00\uB9AC\uD0A8 \uACF3\uC5D0\uB294... \uB1CC\uAC00
+        \uC788\uC5C8\uB2E4."
+      portName: 
+    - isRight: 1
+      isPorted: 0
+      line: "\uBCF4\uAE00\uAC70\uB9AC\uB294 \uAE30\uD3EC\uAC00 \uC62C\uB77C\uC624\uB294
+        \uD1B5\uC18D\uC5D0 \uB2F4\uAE34... \uB1CC\uAC00."
+      portName: 
+    - isRight: 0
+      isPorted: 1
+      line: "\uC774\uC57C, \uC800\uD0DD \uC8FC\uC778 \uCDE8\uD5A5 \uD55C \uBC88 \uB3C5\uD2B9\uD558\uB124."
+      portName: SmirkMild
+    - isRight: 0
+      isPorted: 1
+      line: "...\uC751? \uBB34\uC2A8\uC77C\uC774\uC57C?"
+      portName: NoThought
+    - isRight: 1
+      isPorted: 0
+      line: "...\uCC30\uB098\uC600\uB2E4. \uB208\uCE58\uCC44\uC9C0\uB3C4 \uBABB \uD560
+        \uADF8 \uCC30\uB098\uC5D0,"
+      portName: Curious
+    - isRight: 1
+      isPorted: 0
+      line: "\uB2F9\uC2E0\uC740 \uADF8 \uB1CC\uC5D0 \uC815\uC2E0\uC774 \uD314\uB824\uBC84\uB838\uB2E4."
+      portName: 
+    - isRight: 1
+      isPorted: 0
+      line: "\uC6D0\uB9AC\uB294 \uC774\uD574\uD560 \uC218 \uC5C6\uC5C8\uC9C0\uB9CC,
+        \uB2F9\uC2E0\uC740 \uB1CC\uC5D0\uAC8C..."
+      portName: NoThought
+    - isRight: 1
+      isPorted: 0
+      line: "'\uACF5\uAC10'\uD558\uACE0 \uC788\uC5C8\uB2E4."
+      portName: 
+    - isRight: 1
+      isPorted: 0
+      line: "\uBAB8\uC740 \uC6C0\uC9C1\uC774\uC9C8 \uC54A\uACE0, \uADF8\uC800 \uB1CC\uC758
+        \uC0DD\uAC01\uC774 \uD758\uB7EC\uB4E4\uC5B4\uC628\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 1
+      line: ...
+      portName: NoThought
+    - isRight: 0
+      isPorted: 1
+      line: ...
+      portName: SmirkLight
+    - isRight: 1
+      isPorted: 0
+      line: "\uD1B5 \uC18D\uC758 \uB1CC\uC640 \uC870\uC6B0\uD588\uB2E4!"
+      portName: 
+  - myList:
+    - isRight: 0
+      isPorted: 0
+      line: "\uB1CC\uAC00 \uC9C0\uB974\uB294 \uC18C\uB9AC\uC5C6\uB294 \uACF5\uD3EC."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uB1CC\uAC00 \uB290\uB07C\uB294 \uC758\uBBF8\uC5C6\uB294 \uC758\uBB38."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uADF8 \uBAA8\uB4E0 \uC0DD\uAC01\uC774 \uB2F9\uC2E0\uC5D0\uAC8C\uB85C
+        \uD758\uB7EC\uB4E4\uC5B4\uC628\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 0
+      line: "\uBAB8\uC740 \uC544\uC9C1\uB3C4 \uB73B\uB300\uB85C \uC6C0\uC9C1\uC774\uC9C8
+        \uC54A\uB294\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 1
+      line: "...\uD750\uD760."
+      portName: SmirkLight
+  - myList:
+    - isRight: 1
+      isPorted: 0
+      line: "\uB1CC\uB294 \uB05D\uC5C6\uB294 \uB450\uB824\uC6C0\uC5D0 \uBE60\uC84C\uB2E4\uAC00\uB3C4,"
+      portName: 
+    - isRight: 1
+      isPorted: 0
+      line: "\uB054\uCC0D\uD55C \uC790\uAE30\uD610\uC624\uC640 \uAC10\uAC01 \uBD80\uC7AC\uC5D0
+        \uBAB8\uBD80\uB9BC\uCE5C\uB2E4."
+      portName: 
+    - isRight: 1
+      isPorted: 0
+      line: "\uB2F9\uC2E0\uC740 \uC544\uBB34\uAC83\uB3C4 \uD558\uC9C0 \uBABB\uD558\uACE0
+        \uACC4\uC18D \uB1CC\uB97C \uBC14\uB77C\uBCFC \uBFD0\uC774\uC5C8\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 1
+      line: "\uC5B4\uC774~ \uC774\uC81C \uC2AC\uC2AC \uAC00\uC790\uACE0."
+      portName: SmirkMild
+    - isRight: 0
+      isPorted: 1
+      line: "\uD750\uD760~ \uB4E4\uB9B4\uB9AC\uAC00 \uC5C6\uB098."
+      portName: SmirkSmall
+  - myList:
+    - isRight: 1
+      isPorted: 0
+      line: "\uB054\uCC0D\uD55C \uC6C3\uC74C\uC18C\uB9AC\uC640 \uD568\uAED8, \uD1B5\uC774
+        \uD130\uC838\uBC84\uB838\uB2E4."
+      portName: 
+    - isRight: 1
+      isPorted: 0
+      line: "\uB1CC\uB294 \uC774\uBBF8 \uACE0\uAE43\uB369\uC774\uAC00 \uB418\uC5C8\uACE0,"
+      portName: 
+    - isRight: 1
+      isPorted: 0
+      line: "\uCC10\uB4DD\uD55C \uC561\uCCB4\uAC00 \uBCF5\uB3C4\uC5D0 \uD37C\uC84C\uB2E4."
+      portName: 
+    - isRight: 1
+      isPorted: 0
+      line: "\uB2F9\uC2E0\uC740 \uADF8\uC81C\uC11C\uC57C \uAC00\uC05C \uC228\uC744
+        \uBAB0\uC544\uC26C\uBA70,"
+      portName: 
+    - isRight: 1
+      isPorted: 0
+      line: "\uB1CC\uC758 \uC758\uC2DD\uACFC \uBD84\uB9AC\uAC00 \uB418\uC5C8\uB2E4."
+      portName: 
+    - isRight: 0
+      isPorted: 1
+      line: "\uAD1C\uCC2E\uB098? \uBD88\uB7EC\uB3C4 \uB300\uAFB8\uB3C4 \uC548\uD558\uACE0."
+      portName: SmirkMild
+    - isRight: 0
+      isPorted: 1
+      line: "\uC5BC\uAD74\uC774 \uCC3D\uBC31\uD55C\uB370? \uAD1C\uCC2E\uC544?"
+      portName: NoThought
+    - isRight: 0
+      isPorted: 1
+      line: "\uB1CC\uD558\uACE0 \uC5F0\uACB0\uC774 \uB410\uB2E4\uACE0?"
+      portName: NoThought
+    - isRight: 0
+      isPorted: 1
+      line: ...
+      portName: SmirkSmall
+    - isRight: 0
+      isPorted: 1
+      line: "\uBC14\uBCF4 \uAC19\uC740 \uC18C\uB9AC \uD558\uC9C0 \uB9D0\uB77C\uAD6C."
+      portName: SmirkMild
+    - isRight: 0
+      isPorted: 1
+      line: "\uC57D\uD55C \uC18C\uB9AC \uD574\uB3C4, \uAE38\uC740 \uD558\uB098 \uBFD0\uC774\uC796\uC544."
+      portName: AngrySmall
+    - isRight: 0
+      isPorted: 1
+      line: "\uAC00\uC790\uAD6C, \uB354 \uC548\uC73C\uB85C. \uCD9C\uAD6C\uB97C \uCC3E\uC544\uC57C\uC9C0."
+      portName: SmileSmall

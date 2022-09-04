@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567363da27686ca4ca98169bdd5b6e0d, type: 3}
+  m_Name: Enemy_CursedDoll
+  m_EditorClassIdentifier: 
+  turnCount: 3
+  enemyName: "\uC800\uC8FC\uBC1B\uC740 \uC778\uD615"
+  realName: Enemy_CursedDoll
+  deathSFX: sfx_strike2
+  bgm: Halloween_Monsters
+  skillList:
+  - myList:
+    - skillName: "\uC548\uB155?"
+      dmgs: 00000000140000000a00000000000000
+      tokens: 00000000030000000200000000000000
+    - skillName: "\uB108\uB3C4 \uC798\uB77C\uC904\uAC8C"
+      dmgs: 1e0000000a0000000000000000000000
+      tokens: 03000000010000000000000000000000
+  - myList:
+    - skillName: "\uC548 \uB193\uCE60\uAC70\uC57C"
+      dmgs: 0a000000140000001400000000000000
+      tokens: 01000000030000000200000000000000
+    - skillName: "\uB098\uB791 \uB180\uC790"
+      dmgs: 28000000050000000000000000000000
+      tokens: 04000000000000000000000000000000
+    - skillName: "\uB108\uB3C4 \uC798\uB77C\uC904\uAC8C"
+      dmgs: 1e0000000a0000000000000000000000
+      tokens: 03000000010000000000000000000000
+  - myList:
+    - skillName: "\uB098\uB220 \uC904\uAC8C"
+      dmgs: 00000000000000001400000000000000
+      tokens: 00000000000000000200000000000000
+    - skillName: "\uB108\uB3C4 \uB098\uCC98\uB7FC"
+      dmgs: 1e0000001e0000000000000000000000
+      tokens: 03000000030000000000000000000000

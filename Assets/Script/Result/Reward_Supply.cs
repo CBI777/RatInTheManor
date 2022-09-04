@@ -103,7 +103,6 @@ public class Reward_Supply : MonoBehaviour
         }
 
         realName = supplyList.items[(UnityEngine.Random.Range(0, supplyList.items.Count))];
-        Debug.Log(realName);
         presentSupply = (Supply_Base)Activator.CreateInstance(Type.GetType(realName));
     }
 
@@ -150,14 +149,22 @@ public class Reward_Supply : MonoBehaviour
 
     private void Awake()
     {
+        int temp = 0;
+        for (int i = 1; i < 6; i++)
+        {
+            if (saveManager.saving.supply[i] != "NA")
+            {
+                temp++;
+            }
+        }
         if (saveManager.saving.isBattle)
         {
-            initPotenSupply(saveManager.saving.earnSupply.Length);
+            initPotenSupply(temp);
         }
         else
         {
             presentSupply = (Supply_Base)Activator.CreateInstance(Type.GetType(saveManager.saving.earnSupply));
-            if (saveManager.saving.supply.Length == 5)
+            if (temp == 5)
             {
                 trouble = true;
             }

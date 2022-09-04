@@ -17,28 +17,38 @@ public class CurtainsUp : MonoBehaviour
     [SerializeField] private float resetSpeed = 4f;
 
     public static event Action CurtainHasBeenLifted;
-    public static event Action CurtainDownComplete;
+    public static event Action<bool> CurtainDownComplete;
 
     private void OnEnable()
     {
         PackComplete.SafeToGo += CurtainDown;
         SaveM_Result.firstSaveFinished += SaveM_Result_firstSaveFinished;
+        Result_StatusManager.MadnessMaxEvent += Result_StatusManager_MadnessMaxEvent; ;
     }
 
     private void OnDisable()
     {
         PackComplete.SafeToGo -= CurtainDown;
         SaveM_Result.firstSaveFinished -= SaveM_Result_firstSaveFinished;
+        Result_StatusManager.MadnessMaxEvent -= Result_StatusManager_MadnessMaxEvent;
+    }
+
+    private void Result_StatusManager_MadnessMaxEvent()
+    {
+        playerinput.actions.FindActionMap("PlayerInput").Disable();
+        Curtain.DOAnchorPos(new Vector2(0, -120f), resetSpeed);
+        StartCoroutine(CurtainLift(false, true));
+        StartCoroutine(BackGroundFade());
     }
 
     private void SaveM_Result_firstSaveFinished()
     {
         Curtain.DOAnchorPos(new Vector2(0, 1100f), resetSpeed);
-        StartCoroutine(CurtainLift(true));
+        StartCoroutine(CurtainLift(true, false));
         StartCoroutine(BackGroundLight());
     }
 
-    private IEnumerator CurtainLift(bool isUp)
+    private IEnumerator CurtainLift(bool isUp, bool isMad)
     {
         this.audioSource.Play();
         yield return new WaitForSeconds(resetSpeed);
@@ -50,7 +60,14 @@ public class CurtainsUp : MonoBehaviour
         }
         else
         {
-            CurtainDownComplete?.Invoke();
+            if(isMad)
+            {
+                CurtainDownComplete?.Invoke(true);
+            }
+            else
+            {
+                CurtainDownComplete?.Invoke(false);
+            }
         }
     }
     IEnumerator BackGroundFade()
@@ -81,7 +98,7 @@ public class CurtainsUp : MonoBehaviour
     {
         playerinput.actions.FindActionMap("PlayerInput").Disable();
         Curtain.DOAnchorPos(new Vector2(0, -120f), resetSpeed);
-        StartCoroutine(CurtainLift(false));
+        StartCoroutine(CurtainLift(false, false));
         StartCoroutine(BackGroundFade());
     }
 
