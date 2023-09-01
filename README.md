@@ -2,6 +2,10 @@
 저택 속의 쥐
 </h1>
 
+<p align="center">
+    <img src="https://github.com/CBI777/RatInTheManor/blob/main/README_Img/image.png" width=700>
+</p>
+
 -------------------
 
 ## About this repository
@@ -24,6 +28,10 @@ This game is a result of 1-person development, using Unity with C#.
 저택 속의 쥐 features three different scenes : **Story / Battle / Result**
 
 > Story
+<p align="center">
+    <img src="https://github.com/CBI777/RatInTheManor/blob/main/README_Img/image%20(1).png" width=700>
+</p>
+
 ```
 Press anywhere with **Left mouse button** to enjoy the story
 ```
@@ -33,6 +41,9 @@ Alternatively, Press **Skip Button** to skip the whole story.
 ```
 
 > Battle
+<p align="center">
+    <img src="https://github.com/CBI777/RatInTheManor/blob/main/README_Img/image%20(2).png" width=700>
+</p>
 > > The battle is turn-based.
 > > The goal of battle is not to defeat the monster, but rather to * *Protect* * oneself from the monster.
 > > View each monsters attack, and find the best defence move to reduce as much damage as possible.
@@ -64,6 +75,9 @@ Press **Q** to reset the board and turn.
 ```
 
 > Result
+<p align="center">
+    <img src="https://github.com/CBI777/RatInTheManor/blob/main/README_Img/image%20(3).png" width=700>
+</p>
 > > After every battle, there's a chance to earn new equipment and items.
 > > The more equipments and items you have, the better you will be able to cope with different situations.
 > > You must earn one of the **Hallucinations** displayed on the top right corner of screen. Choose one of them to proceed to next battle.
