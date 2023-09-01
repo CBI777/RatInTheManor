@@ -2,7 +2,9 @@
 저택 속의 쥐
 </h1>
 
-
+<p align="center">
+    <img src="https://github.com/CBI777/RatInTheManor/blob/main/README_Img/image.png" width=700>
+</p>
 
 -------------------
 
