@@ -20,7 +20,6 @@ This game is a result of 1-person development, using Unity with C#.
 ## Installation
 > Download the zip file stored in repository and unzip it. Execute .exe file to start the game.
 > > Note that this game only supports Korean for now.
-
 > > Also, note that this game contains some violent or unpleasant descriptions. Please be careful when you are playing the actual game.
 
 --------------------
@@ -32,56 +31,57 @@ This game is a result of 1-person development, using Unity with C#.
     <img src="https://github.com/CBI777/RatInTheManor/blob/main/README_Img/image%20(1).png" width=700>
 </p>
 
-```
-Press anywhere with **Left mouse button** to enjoy the story
-```
+<pre>
+Press anywhere with <b><ins>Left mouse button</ins></b> to enjoy the story
+</pre>
 
-```
-Alternatively, Press **Skip Button** to skip the whole story.
-```
+<pre>
+Alternatively, Press <b><ins>Skip Button</ins></b> to skip the whole story.
+</pre>
 
 > Battle
 <p align="center">
     <img src="https://github.com/CBI777/RatInTheManor/blob/main/README_Img/image%20(2).png" width=700>
 </p>
-> > The battle is turn-based.
-> > The goal of battle is not to defeat the monster, but rather to * *Protect* * oneself from the monster.
-> > View each monsters attack, and find the best defence move to reduce as much damage as possible.
++ The battle is turn-based.
++ The goal of battle is not to defeat the monster, but rather to * *Protect* * oneself from the monster.
++ View each monsters attack, and find the best defence move to reduce as much damage as possible.
 
-```
-Use **Left mouse button** to proceed the story between each turn. Press 다음 / 진행 button.
-```
+<pre>
+Use <b><ins>Left mouse button</ins></b> to proceed the story between each turn. Press 다음 / 진행 button.
+</pre>
 
-```
-Use **Mouse wheel** to view previous story lines.
-```
+<pre>
+Use <b><ins>Mouse wheel</ins></b> to view previous story lines.
+</pre>
 
-> > Monster's each move has four types of attacks. Player has 저항 수치(resistance) for each types.
-> > Monsters have tokens, which shows the amount of monster's attack nullifying the resistance of player.
-> > Use 방어 토큰(defence token) to temporarily increase your resistance.
-> > Every attack decreases 이성(sanity), which is displayed on the top of screen. If sanity drops below 0, 광기(madness) goes up.
-> > If madness reaches 0, your journey ends.
++ Monster's each move has four types of attacks. Player has 저항 수치(resistance) for each types.
++ Monsters have tokens, which shows the amount of monster's attack nullifying the resistance of player.
++ Use 방어 토큰(defence token) to temporarily increase your resistance.
++ Every attack decreases 이성(sanity), which is displayed on the top of screen. If sanity drops below 0, 광기(madness) goes up.
++ If madness reaches 0, your journey ends.
 
-```
-Use **Left mouse button** to interact with UIs and drag&drop tokens.
-```
+<pre>
+Use <b><ins>Left mouse button</ins></b> to interact with UIs and drag&drop tokens.
+</pre>
 
-```
-Press **E** to see your equipment and items.
-```
+<pre>
+Press <b><ins>E</ins></b> to see your equipment and items.
+</pre>
 
-```
-Press **Q** to reset the board and turn.
-```
+<pre>
+Press <b><ins>Q</ins></b> to reset the board and restart current turn.
+</pre>
 
 > Result
 <p align="center">
     <img src="https://github.com/CBI777/RatInTheManor/blob/main/README_Img/image%20(3).png" width=700>
 </p>
-> > After every battle, there's a chance to earn new equipment and items.
-> > The more equipments and items you have, the better you will be able to cope with different situations.
-> > You must earn one of the **Hallucinations** displayed on the top right corner of screen. Choose one of them to proceed to next battle.
 
-```
-Use **Left mouse button** to interact with UIs.
-```
++ After every battle, there's a chance to earn new equipment and items.
++ The more equipments and items you have, the better you will be able to cope with different situations.
++ You must earn one of the **Hallucinations** displayed on the top right corner of screen. Choose one of them to proceed to next battle.
+
+<pre>
+Use <b><ins>Left mouse button</ins></b> to interact with UIs.
+</pre>
